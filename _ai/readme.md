@@ -25,7 +25,7 @@ This directory contains the individual Nuxt applications.
 This directory holds the reusable Nuxt layers shared across applications.
 
 - **`auth/`**: Handles authentication logic.
-- **`styling/`**: Configures Tailwind CSS (v4) and DaisyUI via `@tailwindcss/vite`. Includes `tailwind.config.js` and main CSS import.
+- **`styling/`**: Provides a base `tailwind.config.js` (Tailwind v4). **Note:** Due to current limitations, apps must install `tailwindcss`/`daisyui` themselves and import the main CSS (`@import 'tailwindcss'; @import 'daisyui';`) in their own `assets/css/`. The layer primarily serves to share the base config.
 - **`i18n/`**: Manages internationalization and localization.
 - **`database/`**: Provides utilities (`server/utils/db.ts`) to access the shared Prisma client defined in `packages/psql`.
 

@@ -35,7 +35,8 @@ This monorepo includes:
 - **Monorepo:** Turborepo
 - **Package Manager:** pnpm
 - **Database:** PostgreSQL with Prisma
-- **Styling:** TailwindCSS with DaisyUI plugin
+- **Styling:** TailwindCSS (v4) with DaisyUI plugin
+  - **Note:** Current setup requires apps to install Tailwind/DaisyUI deps and handle CSS imports; the `layers/styling` layer provides base config.
 - **Icons:** nuxt-icon
 - **i18n:** nuxt-i18n
 - **Linting/Formatting:** ESLint, Prettier

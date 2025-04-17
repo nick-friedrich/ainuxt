@@ -1,84 +1,113 @@
-# Turborepo VueJS/NuxtJS starter
+# Project Ainuxt - Nuxt Monorepo
 
-This is a community-maintained example. If you experience a problem, please submit a pull request with a fix. GitHub Issues will be closed.
+This repository contains the codebase for Project Ainuxt, a collection of Nuxt applications built within a Turborepo-powered monorepo structure.
 
-## Using this example
+## Project Goal
 
-Run the following command:
+The primary goal is to create a highly maintainable and easily extendable Nuxt project ecosystem. We achieve this through:
 
-```sh
-npx create-turbo@latest -e with-vue-nuxt
-```
+- **Modularity:** Using Nuxt Layers and shared packages to promote code reuse and separation of concerns.
+- **Structure:** A clear and consistent directory layout.
+- **Understandability:** Well-defined components and clear conventions.
 
-## What's inside?
+## What's Inside?
 
-This Turborepo includes the following packages/apps:
+This monorepo includes:
 
-### Apps and Packages
+- **`apps/`**: Contains the individual Nuxt applications built using the shared layers and packages.
+  - `my-app`: The primary Nuxt application. (Others may follow)
+- **`layers/`**: Reusable Nuxt Layers providing specific functionalities or features shared across apps.
+  - `auth`: Authentication logic.
+  - `styling`: Shared styling (TailwindCSS, DaisyUI) configuration and components.
+  - `i18n`: Internationalization setup (using `nuxt-i18n`).
+  - `database`: Utilities for accessing the shared database connection (via `packages/psql`).
+- **`packages/`**: Shared non-Nuxt packages (utilities, configurations).
+  - `psql`: Prisma client setup and database utilities for PostgreSQL.
+  - `eslint-config-custom`: Shared ESLint configurations.
+  - `tsconfig`: Shared TypeScript configurations.
+- **`__examples/`**: Example setups (e.g., minimal Nuxt layer) for reference.
+- **`_ai/`**: Internal documentation and prompts for AI assistant usage (see `_ai/readme.md`).
 
-- `docs`: a [Nuxt](https://nuxt.com/) app
-- `web`: another [Vue3](https://vuejs.org/) app
-- `ui`: a stub Vue component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `@nuxtjs/eslint-config-typescript` and `@vue/eslint-config-typescript`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+## Tech Stack
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+- **Framework:** Nuxt 3
+- **Language:** TypeScript
+- **Monorepo:** Turborepo
+- **Package Manager:** pnpm
+- **Database:** PostgreSQL with Prisma
+- **Styling:** TailwindCSS with DaisyUI plugin
+- **Icons:** nuxt-icon
+- **i18n:** nuxt-i18n
+- **Linting/Formatting:** ESLint, Prettier
+- **Deployment (Potentially):** Docker
 
-### Utilities
+## Getting Started & Usage
 
-This Turborepo has some additional tools already setup for you:
+1.  **Install Dependencies:**
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+    ```bash
+    # Run from the root of the monorepo
+    pnpm install
+    ```
 
-### Build
+2.  **Environment Variables:**
 
-To build all apps and packages, run the following command:
+    - Each application in `apps/` requires its own `.env` file.
+    - Ensure `DATABASE_URL` is defined in the `.env` file of the app you intend to run (e.g., `apps/my-app/.env`).
+    - The `packages/psql` package also has its own `.env` for potential direct use (e.g., seeding).
+    - For docker compose we also need a .env in the root of the monorepo (see .env.example)
 
-```
-cd my-turborepo
-pnpm build
-```
+3.  **Database Setup:**
 
-### Develop
+        - Ensure PostgreSQL is running (potentially via Docker - setup TBD).
+        - Run Prisma migrations from the root:
+          ```bash
+          pnpm --filter @db/psql db:migrate # Or specific prisma commands via the psql package
+          ```
+        - Generate Prisma client (usually happens automatically post-install or on migration, but can be run manually):
+          ```bash
+          pnpm --filter @db/psql generate
+          ```
+        - Seed the database (if applicable):
+          `bash
 
-To develop all apps and packages, run the following command:
+    pnpm --filter @db/psql db:seed
+    `      _(Note: Adjust Prisma commands based on`packages/psql/package.json` scripts)\_
 
-```
-cd my-turborepo
-pnpm dev
-```
+4.  **Development:**
+    To run a specific app (e.g., `my-app`) in development mode:
 
-### Remote Caching
+    ```bash
+    # Option 1: Using Turborepo filtering
+    pnpm dev --filter=my-app...
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+    # Option 2: Specifying the app directly (if turbo scripts allow)
+    pnpm dev my-app
+    ```
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+    Turborepo handles building dependencies.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+5.  **Build:**
+    To build all apps and packages:
+    ```bash
+    pnpm build
+    ```
+    To build a specific app:
+    ```bash
+    pnpm build --filter=my-app...
+    ```
 
-```
-cd my-turborepo
-npx turbo login
-```
+### Important Conventions
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
+- **PNPM Workspaces:** Use `pnpm` for all package management. Run commands from the workspace root.
+- **Adding Dependencies:** Use `pnpm add <package> -F <app-or-package-name>` (e.g., `pnpm add lodash -F my-app`) or `pnpm add <package> -w` for root dev dependencies. Do _not_ manually edit `package.json` files.
+- **Nuxt Layers:** New reusable functionalities should ideally be implemented as layers in the `layers/` directory. Refer to `__examples/minimal_nuxt_layer_example/instructions.md`.
+- **AI Assistant:** Use `@_ai ...` commands for assistance. Refer to `_ai/readme.md` and `_ai/prompts/` for details.
 
 ## Useful Links
 
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/docs/reference/command-line-reference)
+- [Nuxt 3 Documentation](https://nuxt.com/docs)
+- [Turborepo Documentation](https://turbo.build/docs)
+- [Prisma Documentation](https://www.prisma.io/docs/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [DaisyUI Documentation](https://daisyui.com/)

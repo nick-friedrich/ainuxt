@@ -10,6 +10,10 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "layer:dev": {
+      "cache": false,
+      "persistent": true
     }
   }
 }

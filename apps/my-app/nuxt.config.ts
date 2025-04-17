@@ -6,7 +6,9 @@ export default defineNuxtConfig({
 
   // Add the database layer
   extends: [
+    '../../layers/layout',
     '../../layers/database', // Path relative to this nuxt.config.ts
+    '../../layers/i18n',
     '@layers/styling', // using pnpm workspace to link the layer
   ],
 

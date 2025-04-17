@@ -12,9 +12,9 @@ This document outlines the steps to manually create a new Nuxt layer within this
 2.  **Create `package.json`:**
     Copy the `package.json` from this example directory to `layers/<new-layer-name>/package.json`.
 
-    - **Modify `name`:** Change the `name` field to something descriptive, following the convention `@ainuxt/layer-<new-layer-name>`.
-    - **Add Dependencies:** Add any specific dependencies needed for this layer. For internal packages (like `@db/psql`), use the `workspace:*` protocol (e.g., `"@db/psql": "workspace:*"`).
-    - **Keep:** `private: true`, `type: "module"`, `main: "./nuxt.config.ts"`.
+    - **Modify `name`:** Change the `name` field to something descriptive, following the convention `@layers/<new-layer-name>`.
+    - **Review Dependencies:** The example includes the core dependencies required for a Nuxt layer (`nuxt`, `vue`, `vue-router`). Add any additional layer-specific dependencies if needed. For internal packages (like `@db/psql`), use the `workspace:*` protocol (e.g., `"@db/psql": "workspace:*"`).
+    - **Keep:** `private: true`, `type: "module"`, `main: "./nuxt.config.ts"`, and the `aiReference` field.
 
 3.  **Create `nuxt.config.ts`:**
     Copy the `nuxt.config.ts` from this example directory to `layers/<new-layer-name>/nuxt.config.ts`. This provides a minimal starting point. You can add layer-specific configurations here later.

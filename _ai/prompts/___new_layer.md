@@ -6,16 +6,27 @@ When requested to create a new Nuxt layer (e.g., using `@layer create <layer-nam
 
 2.  **Create Directory:** Create the directory `layers/<layer-name>`.
 
-3.  **Create `package.json`:** Create a minimal `layers/<layer-name>/package.json`. Use `__examples/minimal_nuxt_layer_example/package.json` as a template but **do not include dependencies manually**. Update the `name` field to `@layers/<layer-name>` (following project convention).
+3.  **Create `package.json`:** Create a minimal `layers/<layer-name>/package.json`. Include the standard core dependencies needed for a Nuxt layer and add the `aiReference` field. Update the `name` field to `@layers/<layer-name>` (following project convention).
 
     ```json
-    {\n  \"name\": \"@layers/<layer-name>\",\n  \"version\": \"0.0.1\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"main\": \"./nuxt.config.ts\"\n}
+    {
+      "name": "@layers/<layer-name>",
+      "version": "0.0.1",
+      "private": true,
+      "type": "module",
+      "aiReference": "See ~/_ai/README.md for guidelines and patterns",
+      "main": "./nuxt.config.ts",
+      "dependencies": {
+        "nuxt": "^3.16.2",
+        "vue": "^3.5.13",
+        "vue-router": "^4.5.0"
+      }
+    }
     ```
 
-4.  **Instruct User to Add Dependencies:** Tell the user to run the following from the workspace root:
+4.  **Add Additional Dependencies (if needed):** If the layer requires additional dependencies beyond the standard ones, tell the user to run:
 
-    - Add base dev dependencies: `pnpm add -F @layers/<layer-name> nuxt vue vue-router -D`
-    - Add any other layer-specific dependencies: `pnpm add -F @layers/<layer-name> <list-of-other-dependencies>`. Specify `-D` for dev dependencies.
+    - Add layer-specific dependencies: `pnpm add -F @layers/<layer-name> <list-of-other-dependencies>`. Specify `-D` for dev dependencies.
     - **Note for Tailwind v4 Styling Layer:** Dependencies (`tailwindcss`, `daisyui`, etc.) should be added to the _application_ package, not the layer.
 
 5.  **Create `nuxt.config.ts`:** Create `layers/<layer-name>/nuxt.config.ts`. Use `__examples/minimal_nuxt_layer_example/nuxt.config.ts` as a template, or create a minimal one:

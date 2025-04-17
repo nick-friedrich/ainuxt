@@ -13,9 +13,22 @@
   - [x] Updated `_ai/prompts/___ai_update.md` trigger.
 
 - [x] Configure `apps/my-app` styling (Tailwind v4 Workaround):
+
   - [x] Extend `layers/styling` in `apps/my-app/nuxt.config.ts`.
   - [x] Add Tailwind/DaisyUI dev dependencies to `apps/my-app` (`pnpm add -F my-app ...`).
   - [x] Create `apps/my-app/assets/css/tailwind.css` with `@import` directives.
   - [x] Register CSS file in `apps/my-app/nuxt.config.ts`.
   - [x] Configure `@tailwindcss/vite` plugin in `apps/my-app/nuxt.config.ts`.
   - [x] Create/update `apps/my-app/tailwind.config.js` with `content` paths.
+
+- [ ] Implement the `layers/layout` layer:
+
+  - [ ] Create shared layout components (DefaultLayout, etc.)
+  - [ ] Configure composables for layout management
+  - [ ] Document usage in applications
+
+- [ ] Implement the `layers/i18n` layer:
+  - [ ] Add nuxt-i18n module dependency
+  - [ ] Configure basic translation structure
+  - [ ] Create translation utilities and composables
+  - [ ] Document usage in applications

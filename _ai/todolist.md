@@ -1,1 +1,4 @@
-- in our nuxt app we want to have a abstraction of our database, in case we want to change the database in the future. should be under server/utils/db.ts
+- [ ] Create a reusable `layers/database` layer for database abstraction.
+  - [ ] Initialize Prisma client within the layer using `runtimeConfig` for dynamic connection strings.
+  - [ ] Provide database utility functions via `server/utils/db.ts`.
+- [ ] Configure `apps/my-app` to use the `layers/database` layer and provide its `DATABASE_URL` via `runtimeConfig`.

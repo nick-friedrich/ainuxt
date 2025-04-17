@@ -1,4 +1,4 @@
-import db from "@db/psql";
+import { db } from "#imports";
 
 export default defineEventHandler(async () => {
   const users = await db.user.findMany();

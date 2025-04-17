@@ -1,0 +1,1 @@
+- in our nuxt app we want to have a abstraction of our database, in case we want to change the database in the future. should be under server/utils/db.ts

@@ -2,6 +2,8 @@
 
 This repository contains the codebase for Project Ainuxt, a collection of Nuxt applications built within a Turborepo-powered monorepo structure.
 
+Optimized for AI development, also called Vibe-Coding.
+
 ## Project Goal
 
 The primary goal is to create a highly maintainable and easily extendable Nuxt project ecosystem. We achieve this through:

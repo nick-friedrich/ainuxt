@@ -26,9 +26,9 @@ This directory holds the reusable Nuxt layers shared across applications.
 
 - **`auth/`**: Handles authentication logic.
 - **`styling/`**: Provides a base `tailwind.config.js` (Tailwind v4). **Note:** Due to current limitations, apps must install `tailwindcss`/`daisyui` themselves and import the main CSS (`@import 'tailwindcss'; @import 'daisyui';`) in their own `assets/css/`. The layer primarily serves to share the base config.
-- **`i18n/`**: Manages internationalization and localization.
+- **`i18n/`**: Manages internationalization and localization using `@nuxtjs/i18n` module. Provides pre-configured locale files (English, German) with a structured translation architecture. The layer handles translation files, locale configuration, and typing for translations.
 - **`database/`**: Provides utilities (`server/utils/db.ts`) to access the shared Prisma client defined in `packages/psql`.
-- **`layout/`**: Provides shared layout components and configurations.
+- **`layout/`**: Provides shared layout components and theme management. Includes a default layout, theme switching functionality using cookies, and a language switcher component. The layer extends both `styling` and `i18n` layers to provide a complete UI foundation.
 
 ### `packages/`
 
@@ -55,6 +55,8 @@ This directory contains example code snippets or mini-projects demonstrating com
 - We use nuxt-i18n for internationalization.
 - We use nuxt-icon for icons.
 - We use daisyui for the ui library.
+
+- **Type Generation for Layers:** When working with layers that use specialized modules (like i18n), run `pnpm layer:dev --filter @layers/layer-name` to generate type definitions in the `.nuxt` folder. This ensures proper TypeScript support.
 
 - **File Header Comment:** All new source code files (`.ts`, `.js`, `.vue`, `.css`, `.md`, etc.) should start with a reference comment:
 

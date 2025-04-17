@@ -19,8 +19,9 @@ This monorepo includes:
 - **`layers/`**: Reusable Nuxt Layers providing specific functionalities or features shared across apps.
   - `auth`: Authentication logic.
   - `styling`: Shared styling (TailwindCSS, DaisyUI) configuration and components.
-  - `i18n`: Internationalization setup (using `nuxt-i18n`).
+  - `i18n`: Internationalization setup using `@nuxtjs/i18n` with structured locale files for English and German.
   - `database`: Utilities for accessing the shared database connection (via `packages/psql`).
+  - `layout`: UI layout components with theme switching (light/dark) and language switcher integration.
 - **`packages/`**: Shared non-Nuxt packages (utilities, configurations).
   - `psql`: Prisma client setup and database utilities for PostgreSQL.
   - `eslint-config-custom`: Shared ESLint configurations.
@@ -87,6 +88,19 @@ This monorepo includes:
     ```
 
     Turborepo handles building dependencies.
+
+    **Layer Development:**
+    Some layers, especially those with modules like i18n, need to generate type definitions for proper TypeScript support:
+
+    ```bash
+    # Generate types for a specific layer
+    pnpm layer:dev --filter @layers/i18n
+
+    # Run layer:dev across all layers that support it
+    pnpm layer:dev
+    ```
+
+    This creates the `.nuxt` folder with necessary type definitions.
 
 5.  **Build:**
     To build all apps and packages:

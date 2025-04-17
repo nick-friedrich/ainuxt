@@ -21,14 +21,30 @@
   - [x] Configure `@tailwindcss/vite` plugin in `apps/my-app/nuxt.config.ts`.
   - [x] Create/update `apps/my-app/tailwind.config.js` with `content` paths.
 
-- [ ] Implement the `layers/layout` layer:
+- [x] Implement the `layers/layout` layer:
 
-  - [ ] Create shared layout components (DefaultLayout, etc.)
-  - [ ] Configure composables for layout management
+  - [x] Create shared layout components (DefaultLayout, etc.)
+  - [x] Configure composables for layout management (useThemeCookie)
+  - [x] Implement theme switching functionality
+  - [x] Create language switcher component
   - [ ] Document usage in applications
 
-- [ ] Implement the `layers/i18n` layer:
-  - [ ] Add nuxt-i18n module dependency
-  - [ ] Configure basic translation structure
-  - [ ] Create translation utilities and composables
+- [x] Implement the `layers/i18n` layer:
+
+  - [x] Add nuxt-i18n module dependency
+  - [x] Configure basic translation structure with locale files
+  - [x] Set up English and German translations
+  - [x] Add `layer:dev` script command for generating type definitions
   - [ ] Document usage in applications
+
+- [ ] Future Enhancements:
+
+  - [ ] Expand i18n translations for additional components and pages
+  - [ ] Create additional layout variants (AuthLayout, AdminLayout, etc.)
+  - [ ] Add more UI components to the layout layer
+  - [ ] Integrate auth layer with layout for user-specific themes/settings
+
+- [ ] Create Documentation:
+  - [x] Create `_ai/i18n.md` with i18n layer usage guide and best practices
+  - [x] Create `_ai/layout.md` with layout layer usage guide and theme examples
+  - [x] Update application READMEs with layer integration instructions

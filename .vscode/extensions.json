@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    // Core Vue/Nuxt Support
+    "Vue.volar",
+    "bradlc.vscode-tailwindcss",
+    "Prisma.prisma",
+    "ms-azuretools.vscode-docker",
+    "esbenp.prettier-vscode",
+    "antfu.goto-alias"
+  ]
+}

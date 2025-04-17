@@ -5,7 +5,8 @@ export default defineNuxtConfig({
 
   // Add the database layer
   extends: [
-    '../../layers/database' // Path relative to this nuxt.config.ts
+    '../../layers/database', // Path relative to this nuxt.config.ts
+    '@layers/styling', // using pnpm workspace to link the layer
   ],
 
   // Expose DATABASE_URL to the server runtime
@@ -14,5 +15,15 @@ export default defineNuxtConfig({
     databaseUrl: process.env.DATABASE_URL, // Read from the app's .env
     // public:
     //   Keys defined here are available client-side
-  }
+  },
+
+  // TypeScript strict mode (ensure tsconfig also has it)
+  typescript: {
+    strict: true,
+  },
+
+  // Alias for easier imports
+  alias: {
+    '@': '.',
+  },
 })

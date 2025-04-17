@@ -28,11 +28,18 @@ When requested to create a new Nuxt layer (e.g., using `@layer create <layer-nam
 
     - **For Tailwind v4 Styling Layer:** This file likely remains empty or minimal. CSS registration and Vite plugin configuration should happen in the _application's_ `nuxt.config.ts`.
 
+    **Important:** Add the standard header comment to the top of the created `nuxt.config.ts` file:
+    `// AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.`
+
 6.  **Create Layer-Specific Config Files:** Create necessary config files (e.g., `tailwind.config.js`, `.env.example`) within the layer if needed:
 
     - **For Tailwind v4 Styling Layer:** Create `tailwind.config.js` to hold the base configuration (theme, daisyui settings). The `content` and `plugins` arrays should generally be empty or minimal, as these are handled by the application's config. Do **not** create `assets/css/tailwind.css` here; it belongs in the application.
 
+    **Important:** Add the standard header comment (using appropriate syntax) to the top of any created config files.
+
 7.  **Create Basic Structure (Optional):** Create common subdirectories like `components/`, `server/utils/`, `public/` within `layers/<layer-name>/` if appropriate for the layer's purpose.
+
+    **Important:** Add the standard header comment (using appropriate syntax) to the top of any files created within these structures.
 
 8.  **Verify Workspace Config:** Check `pnpm-workspace.yaml` and ensure `layers/*` is included in the `packages` list. If not, add it.
 

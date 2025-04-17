@@ -1,3 +1,4 @@
+// AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
 import { PrismaClient } from './generated/prisma/client'
 
 // Ensure a single PrismaClient instance in development to prevent hot-reload issues

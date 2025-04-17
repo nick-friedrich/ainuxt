@@ -2,6 +2,7 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
+  "aiReference": "See ~/_ai/README.md for guidelines and patterns",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",

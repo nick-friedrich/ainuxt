@@ -1,6 +1,7 @@
 {
   "name": "with-vue-nuxt",
   "private": true,
+  "aiReference": "See ~/_ai/README.md for guidelines and patterns",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",

@@ -55,6 +55,23 @@ This directory contains example code snippets or mini-projects demonstrating com
 - We use nuxt-icon for icons.
 - We use daisyui for the ui library.
 
+- **File Header Comment:** All new source code files (`.ts`, `.js`, `.vue`, `.css`, `.md`, etc.) should start with a reference comment:
+
+  ```
+  // AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
+  ```
+
+  (Adjust comment syntax: `<!-- ... -->` for HTML/Markdown, `# ...` for shell/config files, etc.)
+
+  **Exception for JSON files:** Since JSON doesn't support comments, add an `"aiReference"` field instead:
+
+  ```json
+  {
+    "aiReference": "See ~/_ai/README.md for guidelines and patterns"
+    // other JSON fields...
+  }
+  ```
+
 - Always try to run the commands in the root of the project.
 - Always try to use pnpm as package manager.
 - Don't edit package.json files to add new dependencies, run pnpm add <package> instead.

@@ -1,3 +1,4 @@
+// AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
 import { defineNuxtConfig } from 'nuxt/config'
 import tailwindcss from '@tailwindcss/vite'
 

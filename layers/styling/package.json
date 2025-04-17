@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
+  "aiReference": "See ~/_ai/README.md for guidelines and patterns",
   "main": "./nuxt.config.ts",
   "devDependencies": {
     "tailwindcss": "^4.1.4",

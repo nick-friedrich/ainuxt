@@ -52,3 +52,9 @@ This document outlines the steps to manually create a new Nuxt layer within this
 
 7.  **Add Layer Content:**
     Start adding components, composables, server routes, utilities, etc., within the `layers/<new-layer-name>/` directory as needed.
+
+8.  **Add Header Comment:**
+    Remember to add the standard AI reference comment to the top of all newly created source files (`.ts`, `.vue`, `.css`, `.md`, etc.), adjusting the syntax (`//`, `<!--`, `#`) based on the file type:
+    ```
+    // AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
+    ```

@@ -1,3 +1,4 @@
+// AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
 // Re-export the Prisma client instance made available by the Nitro plugin
 // This provides a clean way to access it within server routes/utils
 

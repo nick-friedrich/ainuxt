@@ -1,3 +1,5 @@
+<!-- AI Generation Reference: See ~/_ai/README.md for guidelines and patterns. -->
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.

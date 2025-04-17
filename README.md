@@ -104,6 +104,20 @@ This monorepo includes:
 - **Adding Dependencies:** Use `pnpm add <package> -F <app-or-package-name>` (e.g., `pnpm add lodash -F my-app`) or `pnpm add <package> -w` for root dev dependencies. Do _not_ manually edit `package.json` files.
 - **Nuxt Layers:** New reusable functionalities should ideally be implemented as layers in the `layers/` directory. Refer to `__examples/minimal_nuxt_layer_example/instructions.md`.
 - **AI Assistant:** Use `@_ai ...` commands for assistance. Refer to `_ai/readme.md` and `_ai/prompts/` for details.
+- **File Header Comment:** All new source files (`.ts`, `.js`, `.vue`, `.css`, `.md`, etc., excluding auto-generated/config files where inappropriate) should start with a reference comment to the AI guidelines (adjust syntax based on file type):
+
+  ```
+  // AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
+  ```
+
+  For JSON files (which don't support comments), add an `"aiReference"` field:
+
+  ```json
+  {
+    "aiReference": "See ~/_ai/README.md for guidelines and patterns",
+    ...
+  }
+  ```
 
 ## Useful Links
 

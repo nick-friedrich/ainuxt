@@ -1,3 +1,4 @@
+<!-- AI Generation Reference: See ~/_ai/README.md for guidelines and patterns. -->
 <script setup lang="ts">
 const { data, error } = useFetch("/api/hello");
 </script>

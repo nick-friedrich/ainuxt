@@ -1,5 +1,5 @@
 {
-  "name": "@layers/database",
+  "name": "@layers/minimal_nuxt_layer_example",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -7,7 +7,6 @@
   "dependencies": {
     "nuxt": "^3.16.2",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0",
-    "@db/psql": "workspace:*"
+    "vue-router": "^4.5.0"
   }
 }

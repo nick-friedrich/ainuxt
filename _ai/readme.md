@@ -27,6 +27,7 @@ This directory holds the reusable Nuxt layers shared across applications.
 - **`auth/`**: Handles authentication logic.
 - **`styling/`**: Contains shared styling configurations and components.
 - **`i18n/`**: Manages internationalization and localization.
+- **`database/`**: Provides utilities (`server/utils/db.ts`) to access the shared Prisma client defined in `packages/psql`.
 
 ### `packages/`
 
@@ -34,6 +35,10 @@ This directory includes non-Nuxt-layer packages that are reused across the monor
 
 - **`psql/`**: Provides utilities or configurations for interacting with PostgreSQL.
 - **`psql2/`**: (Potential future package) Intended for another application potentially requiring PostgreSQL interaction.
+
+### `__examples/`
+
+This directory contains example code snippets or mini-projects demonstrating common patterns or setups within this monorepo (e.g., creating a minimal Nuxt layer).
 
 # General Instructions
 

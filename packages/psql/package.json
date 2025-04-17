@@ -1,18 +1,20 @@
 {
-  "name": "@packages/prisma-sqlite",
+  "name": "@db/psql",
   "version": "1.0.0",
   "main": "index.ts",
   "types": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prisma": "prisma"
+    "prisma": "prisma",
+    "seed": "tsx seed.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@prisma/client": "^6.6.0"
+    "@prisma/client": "^6.6.0",
+    "dotenv": "^16.5.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.1",

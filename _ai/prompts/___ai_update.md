@@ -12,7 +12,9 @@ When requested to update the `_ai` folder (e.g., using `@_ai update` or similar 
     - Mark completed tasks with `[x]`. Add brief notes if the implementation differed from the original plan (e.g., "Leveraged existing package X").
     - Add new tasks identified during the conversation or from user requests. Ensure tasks are clear and actionable.
     - Remove or consolidate obsolete tasks.
-4.  **Check Other `.md` Files:** Review any other `.md` files within `_ai` (or subfolders like `prompts`) for necessary updates based on the recent changes.
-5.  **Confirm with User:** Briefly summarize the updates made to the `_ai` folder.
+4.  **Check Other Documentation:**
+    - Review the root `README.md` for necessary updates based on project changes (structure, tech stack, usage instructions).
+    - Review any other `.md` files within `_ai` (or subfolders like `prompts`) for necessary updates based on the recent changes.
+5.  **Confirm with User:** Briefly summarize the updates made to the documentation (`_ai` folder and root `README.md`).
 
-**Goal:** Keep the `_ai` folder an accurate and up-to-date reference for the AI assistant working on this project.
+**Goal:** Keep the `_ai` folder and root `README.md` accurate and up-to-date references.

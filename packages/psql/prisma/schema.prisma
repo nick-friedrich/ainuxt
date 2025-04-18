@@ -19,24 +19,60 @@ datasource db {
 // Lucia package is deprecated, it has been transformed into a learning resource:
 // @see: https://lucia-auth.com/sessions/basic-api/prisma
 
+// Basic User Model (Customize for your needs)
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id             String    @id @default(cuid())
+  email          String    @unique
+  hashedPassword String?   // Optional as planned
+  name           String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  deletedAt DateTime?
+  // Email Verification
+  emailVerifiedAt          DateTime? // Timestamp when email was verified
+  emailVerifyToken         String?   @unique // Token sent for verification
+  emailVerifyTokenExpiresAt DateTime? // Expiry for the verification token
 
+  // OTP / 2FA / Password Reset
+  otpToken                 String?   // OTP token (could be hashed)
+  otpTokenExpiresAt        DateTime? // Expiry for the OTP token
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  deletedAt      DateTime? // Keeping optional soft delete
+
+  // Relations
   sessions Session[]
-
+  roles    UserRole[]
 }
 
 model Session {
-  id    Int     @id @default(autoincrement())
-  userId Int
-  user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
+  id        String   @id // SHA-256 hash of token
+  expiresAt DateTime
+  userId    String   // Changed to String to match User ID
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
+
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String @unique // e.g., "ADMIN", "USER"
+
+
+  users UserRole[]
+}
+
+model UserRole {
+  userId     String   // Changed to String to match User ID
+  roleId     Int      // Role ID remains Int
+  assignedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId]) // Composite primary key
+  @@index([roleId]) // Optional: Index for querying by role
+}
+
+// Remove old example Post model if present
+// model Post { ... }

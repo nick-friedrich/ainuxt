@@ -3,6 +3,9 @@
 // This is the header with auth which will override the base layout header.
 // AI Generation Reference: See /ai/README.md for guidelines and patterns.
 import { useAuth } from "~/composables/useAuth";
+const { fetchUser } = useAuth();
+await fetchUser();
+
 import { useRouter } from "vue-router";
 
 const navigationItems = [

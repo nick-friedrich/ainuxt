@@ -1,15 +1,19 @@
 // AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
 
   // Add the database layer
   extends: [
-    '../../layers/layout',
+    '../../layers/base',
+    '@layers/styling', // using pnpm workspace to link the layer
+
+    // The layout layer is extended by the auth layer, so we don't need to extend it here.
+    // '../../layers/layout',
+
     '../../layers/database', // Path relative to this nuxt.config.ts
     '../../layers/i18n',
-    '@layers/styling', // using pnpm workspace to link the layer
+    '../../layers/auth',
   ],
 
   // Expose DATABASE_URL to the server runtime

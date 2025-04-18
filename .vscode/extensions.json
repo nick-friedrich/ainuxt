@@ -6,6 +6,7 @@
     "Prisma.prisma",
     "ms-azuretools.vscode-docker",
     "esbenp.prettier-vscode",
-    "antfu.goto-alias"
+    "antfu.goto-alias",
+    "Nuxtr.nuxtr-vscode"
   ]
 }

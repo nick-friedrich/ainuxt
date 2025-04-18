@@ -15,10 +15,7 @@ useHead({
 
 <template>
   <div class="bg-base-100 flex min-h-screen flex-col">
-    <!-- <LayoutAppHeader /> -->
-    <div class="navbar bg-base-100 shadow-sm lg:px-6">
-      <div class="navbar-start"></div>
-    </div>
+    <LayoutAppHeader />
     <!-- Main Content Section -->
     <main class="container mx-auto flex-1 px-4 py-8">
       <slot />

@@ -19,7 +19,13 @@ This document outlines the steps to manually create a new Nuxt layer within this
 3.  **Create `nuxt.config.ts`:**
     Copy the `nuxt.config.ts` from this example directory to `layers/<new-layer-name>/nuxt.config.ts`. This provides a minimal starting point. You can add layer-specific configurations here later.
 
-4.  **Verify Workspace Configuration:**
+4.  **Create `tsconfig.json`:**
+    Copy the `tsconfig.json` from this example directory to `layers/<new-layer-name>/tsconfig.json`. This will extend the Nuxt-generated TypeScript configuration.
+
+    - Note that you may initially see TypeScript errors when the layer is first created.
+    - You'll need to run `pnpm layer:dev` from the root directory to generate the proper TypeScript types.
+
+5.  **Verify Workspace Configuration:**
     Ensure the `pnpm-workspace.yaml` file at the root of the monorepo includes `layers/*` in its `packages` list:
 
     ```yaml
@@ -29,14 +35,23 @@ This document outlines the steps to manually create a new Nuxt layer within this
       - "layers/*" # Make sure this line exists
     ```
 
-5.  **Install Dependencies:**
+6.  **Install Dependencies:**
     Run `pnpm install` from the root directory of the monorepo. This will link the new layer and install its dependencies.
 
     ```bash
     pnpm install
     ```
 
-6.  **Extend Layer in App(s):**
+7.  **Generate TypeScript Types:**
+    To ensure proper TypeScript support, run the following command from the root directory:
+
+    ```bash
+    pnpm layer:dev
+    ```
+
+    This will generate the necessary TypeScript types for your layer.
+
+8.  **Extend Layer in App(s):**
     To use the new layer in an application (e.g., `apps/my-app`), edit that application's `nuxt.config.ts` file (`apps/my-app/nuxt.config.ts`). Add the relative path to your new layer to the `extends` array:
 
     ```typescript
@@ -50,10 +65,10 @@ This document outlines the steps to manually create a new Nuxt layer within this
     });
     ```
 
-7.  **Add Layer Content:**
+9.  **Add Layer Content:**
     Start adding components, composables, server routes, utilities, etc., within the `layers/<new-layer-name>/` directory as needed.
 
-8.  **Add Header Comment:**
+10. **Add Header Comment:**
     Remember to add the standard AI reference comment to the top of all newly created source files (`.ts`, `.vue`, `.css`, `.md`, etc.), adjusting the syntax (`//`, `<!--`, `#`) based on the file type:
     ```
     // AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.

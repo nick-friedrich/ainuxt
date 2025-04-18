@@ -24,7 +24,8 @@ This directory contains the individual Nuxt applications.
 
 This directory holds the reusable Nuxt layers shared across applications.
 
-- **`auth/`**: (Upcoming) Will handle user authentication, protected routes, and session management. Will extend the layout layer to provide auth-aware UI components.
+- **`base/`**: The fundamental layer that serves as the parent for all other layers. It provides base configuration (including compatibilityDate) for all layers and applications in the monorepo.
+- **`auth/`**: Handles user authentication, protected routes, and session management. Extends the base layer for consistent configuration. Will extend the layout layer to provide auth-aware UI components.
 - **`styling/`**: Provides a base `tailwind.config.js` (Tailwind v4). **Note:** Due to current limitations, apps must install `tailwindcss`/`daisyui` themselves and import the main CSS (`@import 'tailwindcss'; @import 'daisyui';`) in their own `assets/css/`. The layer primarily serves to share the base config.
 - **`i18n/`**: Manages internationalization and localization using `@nuxtjs/i18n` module. Provides pre-configured locale files (English, German) with a structured translation architecture. The layer handles translation files, locale configuration, and typing for translations.
 - **`database/`**: Provides utilities (`server/utils/db.ts`) to access the shared Prisma client defined in `packages/psql`.
@@ -35,6 +36,15 @@ This directory holds the reusable Nuxt layers shared across applications.
 This directory includes non-Nuxt-layer packages that are reused across the monorepo.
 
 - **`psql/`**: Provides utilities or configurations for interacting with PostgreSQL.
+  - **Authentication Models**: The package includes Prisma models for authentication (User, Session, Role, UserRole) with support for:
+    - Session-based authentication with secure token handling
+    - Role-based access control with User-Role relationships
+    - Password hashing using argon2
+    - Email verification infrastructure
+    - OTP/2FA support structure
+  - **Database Client**: Singleton pattern for Prisma client instantiation
+  - **Seeding**: Scripts for creating initial admin and regular users with appropriate roles
+  - **Environment**: Uses AUTH_SECRET environment variable for secure password hashing
 - **`psql2/`**: (Potential future package) Intended for another application potentially requiring PostgreSQL interaction.
 
 ### `__examples/`
@@ -66,7 +76,7 @@ This directory contains example code snippets or mini-projects demonstrating com
 
   (Adjust comment syntax: `<!-- ... -->` for HTML/Markdown, `# ...` for shell/config files, etc.)
 
-  **Exception for JSON files:** Since JSON doesn't support comments, add an `"aiReference"` field instead:
+  **Exception for JSON files:** Since JSON doesn't support comments, add an `"aiReference"` field instead (except for turbo.json):
 
   ```json
   {

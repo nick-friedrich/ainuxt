@@ -1,9 +1,10 @@
 // AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
-// Ignore errors when created we need to run pnpm layer:dev from root to generate the types
-// @ts-expect-error - nuxt module typings
+
 import { defineNuxtConfig } from 'nuxt/config'
+
+// Base layer is the parent of all layers. It provides the base configuration for all layers.
+// It is also the parent of the app layer.
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  // Layer configuration can go here if needed in the future
 }) 

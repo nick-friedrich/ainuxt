@@ -84,7 +84,10 @@
   - [ ] Add success/error states and feedback
 
 - [ ] Create Documentation:
+
   - [x] Create `_ai/i18n.md` with i18n layer usage guide and best practices
   - [x] Create `_ai/layout.md` with layout layer usage guide and theme examples
   - [x] Update application READMEs with layer integration instructions
   - [ ] Create `_ai/auth.md` with authentication layer usage guide and security best practices
+
+- [ ] Get the translations into the layers not centralised in the i18n layer

@@ -3,17 +3,26 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
-  // Add the database layer
   extends: [
-    '../../layers/base',
-    '@layers/styling', // using pnpm workspace to link the layer
+    // Not sure if we need to keep this here, but let's keep it for now
+    '../../layers/base', // Use the relative path to the base layer
+
+    // I commented this out and it still works
+    // But we cannot remove /assets/css/main.css, this will break the styling
+    // TODO: Figure out if we can symlink the .css from the layer to everywhere
+    // '@layers/styling', // using pnpm workspace to link the layer
+
+    // Commenting out to see if we need it here because its already imported via i18n -> layout -> auth 
+    // '../../layers/i18n',
 
     // The layout layer is extended by the auth layer, so we don't need to extend it here.
     // '../../layers/layout',
 
-    '../../layers/database', // Path relative to this nuxt.config.ts
-    '../../layers/i18n',
+    // The auth layer also imports the layout layer, and also i18n
     '../../layers/auth',
+
+    '../../layers/database', // Path relative to this nuxt.config.ts
+
   ],
 
   // Expose DATABASE_URL to the server runtime

@@ -24,11 +24,11 @@ This directory contains the individual Nuxt applications.
 
 This directory holds the reusable Nuxt layers shared across applications.
 
-- **`auth/`**: Handles authentication logic.
+- **`auth/`**: (Upcoming) Will handle user authentication, protected routes, and session management. Will extend the layout layer to provide auth-aware UI components.
 - **`styling/`**: Provides a base `tailwind.config.js` (Tailwind v4). **Note:** Due to current limitations, apps must install `tailwindcss`/`daisyui` themselves and import the main CSS (`@import 'tailwindcss'; @import 'daisyui';`) in their own `assets/css/`. The layer primarily serves to share the base config.
 - **`i18n/`**: Manages internationalization and localization using `@nuxtjs/i18n` module. Provides pre-configured locale files (English, German) with a structured translation architecture. The layer handles translation files, locale configuration, and typing for translations.
 - **`database/`**: Provides utilities (`server/utils/db.ts`) to access the shared Prisma client defined in `packages/psql`.
-- **`layout/`**: Provides shared layout components and theme management. Includes a default layout, theme switching functionality using cookies, and a language switcher component. The layer extends both `styling` and `i18n` layers to provide a complete UI foundation.
+- **`layout/`**: Provides shared layout components and theme management. Includes a default layout, theme switching functionality using cookies, and a language switcher component. The layer extends both `styling` and `i18n` layers to provide a complete UI foundation. **Note:** The current implementation does not include authentication-related UI; these will be added by the upcoming `auth` layer.
 
 ### `packages/`
 

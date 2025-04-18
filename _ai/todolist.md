@@ -27,6 +27,7 @@
   - [x] Configure composables for layout management (useThemeCookie)
   - [x] Implement theme switching functionality
   - [x] Create language switcher component
+  - [x] Create auth-free AppHeader component (for base layout usage)
   - [ ] Document usage in applications
 
 - [x] Implement the `layers/i18n` layer:
@@ -43,6 +44,22 @@
   - [ ] Create additional layout variants (AuthLayout, AdminLayout, etc.)
   - [ ] Add more UI components to the layout layer
   - [ ] Integrate auth layer with layout for user-specific themes/settings
+
+- [ ] Implement the `layers/auth` layer:
+
+  - [ ] Set up authentication system with session management
+  - [ ] Create login/register pages and components
+  - [ ] Implement protected routes and middleware
+  - [ ] Create auth-aware AppHeader component that extends the base version
+  - [ ] Add user profile management
+
+- [ ] Implement Contact Form:
+
+  - [ ] Transfer contact form component from existing repository
+  - [ ] Create server API endpoint for form submission
+  - [ ] Add form validation
+  - [ ] Implement email sending functionality
+  - [ ] Add success/error states and feedback
 
 - [ ] Create Documentation:
   - [x] Create `_ai/i18n.md` with i18n layer usage guide and best practices

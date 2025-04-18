@@ -202,7 +202,7 @@ export const useThemeCookie = () => {
 ### Layout-Related Components
 
 - `layouts/default.vue`: The main layout with header and footer
-- `components/layout/AppHeader.vue`: Application header (if implemented)
+- `components/layout/AppHeader.vue`: Application header (auth-free version)
 - `components/layout/AppFooter.vue`: Application footer (if implemented)
 
 ### UI Components

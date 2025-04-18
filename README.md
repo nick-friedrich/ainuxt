@@ -19,7 +19,7 @@ This monorepo includes:
 - **`apps/`**: Contains the individual Nuxt applications built using the shared layers and packages.
   - `my-app`: The primary Nuxt application. (Others may follow)
 - **`layers/`**: Reusable Nuxt Layers providing specific functionalities or features shared across apps.
-  - `auth`: Authentication logic.
+  - `auth`: Authentication logic. _(Upcoming)_
   - `styling`: Shared styling (TailwindCSS, DaisyUI) configuration and components.
   - `i18n`: Internationalization setup using `@nuxtjs/i18n` with structured locale files for English and German.
   - `database`: Utilities for accessing the shared database connection (via `packages/psql`).
@@ -44,6 +44,12 @@ This monorepo includes:
 - **i18n:** nuxt-i18n
 - **Linting/Formatting:** ESLint, Prettier
 - **Deployment (Potentially):** Docker
+
+## Planned Features
+
+- **Authentication System:** User authentication, registration, and profile management via the upcoming `auth` layer.
+- **Contact Form:** Integrated contact form with validation and email forwarding capabilities.
+- **Advanced Layouts:** Additional layout variants for various application contexts.
 
 ## Getting Started & Usage
 

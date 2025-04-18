@@ -6,7 +6,8 @@
 // For utilities used outside of route handlers, consider alternative injection patterns
 // or passing the prisma instance explicitly.
 
-import { H3Event } from 'h3';
+// ATTENTION: Only working in .vue files, not in .ts files
+// But we keep this file if we call the db directly in vue
 
 // Import the Prisma client instance from the shared psql package
 import db from '@db/psql';
@@ -20,5 +21,5 @@ export default db;
 import type { PrismaClient } from '@db/psql/generated/prisma/client';
 export type { PrismaClient };
 
-// Alternatively, if you often need just the client type:
-// export type { PrismaClient }; 
+import { Session, User, Role, UserRole } from '@db/psql/generated/prisma';
+export type { Session, User, Role, UserRole };

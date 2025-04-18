@@ -7,4 +7,12 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
+  extends: [
+    '../database',
+  ],
+
+  // TypeScript strict mode (ensure tsconfig also has it)
+  typescript: {
+    strict: true,
+  },
 }) 

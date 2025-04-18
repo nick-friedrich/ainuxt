@@ -21,7 +21,9 @@ export default defineNuxtConfig({
     // The auth layer also imports the layout layer, and also i18n
     '../../layers/auth',
 
-    '../../layers/database', // Path relative to this nuxt.config.ts
+
+    // Now imported from the base layer
+    // '../../layers/database', // Path relative to this nuxt.config.ts
 
   ],
 
@@ -33,10 +35,6 @@ export default defineNuxtConfig({
     //   Keys defined here are available client-side
   },
 
-  // TypeScript strict mode (ensure tsconfig also has it)
-  typescript: {
-    strict: true,
-  },
 
   // Alias for easier imports
   alias: {

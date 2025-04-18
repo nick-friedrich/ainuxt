@@ -56,11 +56,17 @@
 
   - [x] Set up initial layer structure with basic configuration
   - [x] Configure layer to extend the base layer
-  - [ ] Integrate with database layer for user authentication
-  - [ ] Create login/register pages and components
-  - [ ] Implement protected routes and middleware
-  - [ ] Create auth-aware AppHeader component that extends the base version
+  - [x] Create login/register pages with forms and validation
+  - [x] Create protected dashboard page
+  - [x] Implement useAuth composable for authentication state management
+  - [x] Implement auth and guest middleware for route protection
+  - [x] Create auth server API endpoints (login, register, logout, user)
+  - [x] Create auth-aware AppHeader component with user menu
+  - [ ] Integrate with database layer for user authentication (Started)
   - [ ] Add user profile management
+  - [ ] Add role-based access control
+  - [ ] Add email verification
+  - [ ] Add password reset functionality
 
 - [ ] Future Enhancements:
 

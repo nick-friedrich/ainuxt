@@ -25,7 +25,13 @@ This directory contains the individual Nuxt applications.
 This directory holds the reusable Nuxt layers shared across applications.
 
 - **`base/`**: The fundamental layer that serves as the parent for all other layers. It provides base configuration (including compatibilityDate) for all layers and applications in the monorepo.
-- **`auth/`**: Handles user authentication, protected routes, and session management. Extends the base layer for consistent configuration. Will extend the layout layer to provide auth-aware UI components.
+- **`auth/`**: Handles user authentication, protected routes, and session management. Extends the base layer for consistent configuration. Features include:
+  - Login and registration pages with forms and validation
+  - Protected routes via middleware (`auth.ts` and `guest.ts`)
+  - Authentication state management with `useAuth` composable
+  - Auth-aware AppHeader component with user menu
+  - Server API endpoints for authentication (login, register, logout, user info)
+  - Dashboard page for authenticated users
 - **`styling/`**: Provides a base `tailwind.config.js` (Tailwind v4). **Note:** Due to current limitations, apps must install `tailwindcss`/`daisyui` themselves and import the main CSS (`@import 'tailwindcss'; @import 'daisyui';`) in their own `assets/css/`. The layer primarily serves to share the base config.
 - **`i18n/`**: Manages internationalization and localization using `@nuxtjs/i18n` module. Provides pre-configured locale files (English, German) with a structured translation architecture. The layer handles translation files, locale configuration, and typing for translations.
 - **`database/`**: Provides utilities (`server/utils/db.ts`) to access the shared Prisma client defined in `packages/psql`.

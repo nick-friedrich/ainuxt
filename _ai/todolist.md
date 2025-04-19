@@ -52,6 +52,15 @@
   - [x] Add argon2 for password hashing
   - [x] Add AUTH_SECRET environment variable for secure password hashing
 
+- [x] Refactor i18n implementation to use decentralized approach:
+
+  - [x] Convert TypeScript translation files to JSON format
+  - [x] Move translations from i18n layer to each individual layer
+  - [x] Update i18n configuration in each layer's nuxt.config.ts
+  - [x] Add example translations to the minimal_nuxt_layer_example
+  - [x] Update documentation to reflect the new i18n structure
+  - [x] Test integration with existing components
+
 - [ ] Implement the `@layers/auth` layer:
 
   - [x] Set up initial layer structure with basic configuration

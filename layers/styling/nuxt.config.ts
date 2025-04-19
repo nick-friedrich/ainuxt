@@ -10,6 +10,10 @@ export default defineNuxtConfig({
 
   extends: ['../base'],
 
+  modules: [
+    '@nuxt/icon',
+  ],
+
   css: ['./assets/css/main.css'],
 
   vite: {

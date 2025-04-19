@@ -27,6 +27,20 @@ export default defineNuxtConfig({
 
   ],
 
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        file: 'en.json',
+      },
+      {
+        code: 'de',
+        file: 'de.json',
+      }
+    ],
+
+  },
+
   // Expose DATABASE_URL to the server runtime
   runtimeConfig: {
     // Keys defined here are available server-side only

@@ -1,0 +1,49 @@
+{
+  "common": {
+    "error": "Fehler"
+  },
+  "validation": {
+    "required": "Dieses Feld ist erforderlich",
+    "invalid_email": "Ungültige E-Mail-Adresse",
+    // Contact Form Specific
+    "contact": {
+      "name": {
+        "required": "Name ist erforderlich"
+      },
+      "email": {
+        "invalid": "Ungültige E-Mail-Adresse"
+      },
+      "message": {
+        "minLength": "Nachricht muss mindestens {min} Zeichen lang sein"
+      }
+    },
+    "password": {
+      "required": "Passwort ist erforderlich",
+      "minLength": "Passwort muss mindestens {min} Zeichen lang sein"
+    }
+  },
+  "page_contact": {
+    "contact": {
+      "title": "Kontaktseite",
+      "description": "Dies ist der Inhalt der Kontaktseite.",
+      "form": {
+        "title": "Schreib uns eine Nachricht",
+        "name": {
+          "label": "Name",
+          "placeholder": "Dein Name"
+        },
+        "email": {
+          "label": "E-Mail"
+        },
+        "message": {
+          "label": "Nachricht",
+          "placeholder": "Deine Nachricht..."
+        },
+        "submit": "Nachricht senden",
+        "success": "Nachricht erfolgreich gesendet! Wir melden uns bald bei Dir.",
+        "error": "Nachricht konnte nicht gesendet werden. Bitte versuche es später erneut.",
+        "submitting": "Senden..."
+      }
+    },
+  }
+}

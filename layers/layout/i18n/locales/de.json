@@ -1,0 +1,16 @@
+{
+  "layout": {
+    "navigation": {
+      "home": "Startseite",
+      "contact": "Kontakt",
+      "login": "Anmelden",
+      "logout": "Abmelden",
+      "profile": "Profil",
+      "settings": "Einstellungen",
+      "dashboard": "Dashboard"
+    },
+    "footer": {
+      "copyright": "Alle Rechte vorbehalten © {year}"
+    }
+  }
+}

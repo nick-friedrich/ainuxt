@@ -7,6 +7,6 @@ const { data, error } = useFetch("/api/hello");
   <div>
     <pre>{{ data }}</pre>
     <pre>{{ error }}</pre>
-    <button class="btn btn-primary">DaisyUI / Tailwind Test Button</button>
+    <button class="btn btn-primary">{{ $t("myapp.testBtn") }}</button>
   </div>
 </template>

@@ -6,6 +6,18 @@ export default defineNuxtConfig({
   extends: [
     '../base',
     '../layout',
-  ]
+  ],
 
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        file: 'en.json',
+      },
+      {
+        code: 'de',
+        file: 'de.json',
+      }
+    ],
+  }
 }) 

@@ -1,0 +1,21 @@
+{
+  "page_login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "password_placeholder": "••••••••",
+    "submit": "Login",
+    "success": "Login successful! Redirecting...",
+    "no_account": "Don't have an account? Register"
+  },
+  "page_register": {
+    "title": "Register",
+    "email": "Email",
+    "password": "Password",
+    "password_placeholder": "At least 8 characters",
+    "submit": "Register",
+    "success": "Registration successful! Redirecting...",
+    "have_account": "Already have an account? Login"
+  },
+  "validation": {},
+}

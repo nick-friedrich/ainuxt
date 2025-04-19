@@ -6,4 +6,18 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   extends: ['../base'],
   // Layer configuration can go here if needed in the future
+
+  // Example i18n configuration for layers, this way we can add translations to the layer
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        file: 'en.json',
+      },
+      {
+        code: 'de',
+        file: 'de.json',
+      }
+    ],
+  }
 }) 

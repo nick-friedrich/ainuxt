@@ -8,7 +8,17 @@ export default defineNuxtConfig({
     '@layers/i18n',
     '@layers/styling',
   ],
-  modules: [
-    '@nuxt/icon',
-  ]
+
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        file: 'en.json',
+      },
+      {
+        code: 'de',
+        file: 'de.json',
+      }
+    ],
+  }
 }) 

@@ -62,10 +62,23 @@
   - [x] Update documentation to reflect the new i18n structure
   - [x] Test integration with existing components
 
+- [x] Implement the `@layers/contact` layer:
+
+  - [x] Set up initial layer structure with basic configuration
+  - [x] Configure layer to extend the base and layout layers
+  - [x] Create contact page with form UI
+  - [x] Add Zod schema for form validation
+  - [x] Implement i18n support with translated validation messages
+  - [x] Create server endpoint for form submission
+  - [x] Integrate with mail layer for sending contact emails
+  - [x] Add proper error handling and success states
+  - [x] Update apps/my-app to use the contact layer
+
 - [ ] Implement the `@layers/mail` layer:
 
   - [x] Set up initial layer structure with basic configuration
   - [x] Configure layer to extend the base layer
+  - ~~[x] Set up i18n translations for the mail functionality~~ (Removed in favor of direct integration)
   - [x] Add an email sending service using a mail provider (Resend API)
   - [x] Create adapter-based architecture for different email providers
   - [x] Implement console adapter for development environment
@@ -101,13 +114,13 @@
   - [ ] Add more UI components to the layout layer
   - [ ] Integrate auth layer with layout for user-specific themes/settings
 
-- [ ] Implement Contact Form:
+- [x] Implement Contact Form:
 
-  - [ ] Transfer contact form component from existing repository
-  - [ ] Create server API endpoint for form submission
-  - [ ] Add form validation
-  - [ ] Implement email sending functionality
-  - [ ] Add success/error states and feedback
+  - [x] Create contact form component
+  - [x] Create server API endpoint for form submission
+  - [x] Add form validation
+  - [x] Implement email sending functionality
+  - [x] Add success/error states and feedback
 
 - [ ] Create Documentation:
 
@@ -116,5 +129,6 @@
   - [x] Update application READMEs with layer integration instructions
   - [ ] Create `_ai/auth.md` with authentication layer usage guide and security best practices
   - [ ] Create `_ai/mail.md` with mail layer usage guide and examples
+  - [ ] Create `_ai/contact.md` with contact layer usage guide and examples
 
 - [ ] Get the translations into the layers not centralised in the i18n layer

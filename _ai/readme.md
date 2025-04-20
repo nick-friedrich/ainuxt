@@ -32,6 +32,12 @@ This directory holds the reusable Nuxt layers shared across applications.
   - Auth-aware AppHeader component with user menu
   - Server API endpoints for authentication (login, register, logout, user info)
   - Dashboard page for authenticated users
+- **`contact/`**: Provides contact form functionality and email submission handling. Extends the base and layout layers. Features include:
+  - Contact page with responsive form UI
+  - Form validation using Zod schema
+  - Internationalization support with translated error messages
+  - Email submission via the mail layer
+  - Server-side validation and error handling
 - **`mail/`**: Provides email functionality for the application. Extends the base layer and includes infrastructure for sending and managing emails. Features include:
   - Adapter-based architecture with different email providers (Resend for production, console for development)
   - Centralized email sending through a simple API (`sendEmail` function)

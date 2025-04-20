@@ -1,6 +1,7 @@
 - [x] Create a reusable `layers/database` layer for database abstraction.
   - ~~[ ] Initialize Prisma client within the layer using `runtimeConfig` for dynamic connection strings.~~ (Leveraged existing `packages/psql` singleton)
   - [x] Provide database utility functions via `server/utils/db.ts` (imports from `packages/psql`).
+  - [x] Configure the database layer to be imported by other layers via proper exports configuration.
 - [x] Configure `apps/my-app` to use the `layers/database` layer and provide its `DATABASE_URL` via `runtimeConfig`.
 
 - [x] In the ai folder create a prompts folder and create a file called `___ai_update.md`, the prompt should be used to update the todolist.md file and the ai folder in general.
@@ -65,8 +66,12 @@
 
   - [x] Set up initial layer structure with basic configuration
   - [x] Configure layer to extend the base layer
-  - [x] Set up i18n translations for the mail functionality
-  - [ ] Add an email sending service using a mail provider (e.g., Nodemailer, SendGrid, etc.)
+  - [x] Add an email sending service using a mail provider (Resend API)
+  - [x] Create adapter-based architecture for different email providers
+  - [x] Implement console adapter for development environment
+  - [x] Add configuration through runtime config (API keys, from email/name)
+  - [x] Add exports configuration for importing mail functionality
+  - [x] Create proper TypeScript interfaces for email operations
   - [ ] Create email templates for various use cases (welcome, password reset, notifications, etc.)
   - [ ] Create a mail queue system for reliable email delivery
   - [ ] Add logging and error handling for email operations
@@ -83,7 +88,7 @@
   - [x] Implement auth and guest middleware for route protection
   - [x] Create auth server API endpoints (login, register, logout, user)
   - [x] Create auth-aware AppHeader component with user menu
-  - [ ] Integrate with database layer for user authentication (Started)
+  - [x] Refactor to use database layer abstraction instead of direct DB package
   - [ ] Add user profile management
   - [ ] Add role-based access control
   - [ ] Add email verification

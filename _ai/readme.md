@@ -32,10 +32,15 @@ This directory holds the reusable Nuxt layers shared across applications.
   - Auth-aware AppHeader component with user menu
   - Server API endpoints for authentication (login, register, logout, user info)
   - Dashboard page for authenticated users
-- **`mail/`**: Provides email functionality for the application. Extends the base layer and includes infrastructure for sending and managing emails.
+- **`mail/`**: Provides email functionality for the application. Extends the base layer and includes infrastructure for sending and managing emails. Features include:
+  - Adapter-based architecture with different email providers (Resend for production, console for development)
+  - Centralized email sending through a simple API (`sendEmail` function)
+  - Type-safe email interfaces
+  - Environment-based configuration through runtime config
+  - Auto-switching between production and development modes
 - **`styling/`**: Provides a base `tailwind.config.js` (Tailwind v4). **Note:** Due to current limitations, apps must install `tailwindcss`/`daisyui` themselves and import the main CSS (`@import 'tailwindcss'; @import 'daisyui';`) in their own `assets/css/`. The layer primarily serves to share the base config.
 - **`i18n/`**: Manages internationalization and localization using `@nuxtjs/i18n` module. Provides core configuration, locale setup, and types. **Note:** Each layer manages its own translations using JSON files rather than centralizing them in the i18n layer. The i18n layer primarily provides the infrastructure for internationalization.
-- **`database/`**: Provides utilities (`server/utils/db.ts`) to access the shared Prisma client defined in `packages/psql`.
+- **`database/`**: Provides utilities (`server/utils/db.ts`) to access the shared Prisma client defined in `packages/psql`. The layer acts as an abstraction over the direct database package, allowing other layers to import from `@layers/database/db` rather than directly from `@db/psql`.
 - **`layout/`**: Provides shared layout components and theme management. Includes a default layout, theme switching functionality using cookies, and a language switcher component. The layer extends both `styling` and `i18n` layers to provide a complete UI foundation. **Note:** The current implementation does not include authentication-related UI; these will be added by the upcoming `auth` layer.
 
 ### `packages/`
@@ -76,6 +81,17 @@ This directory contains example code snippets or mini-projects demonstrating com
 - **Type Generation for Layers:** When working with layers that use specialized modules (like i18n), run `pnpm layer:dev --filter @layers/layer-name` to generate type definitions in the `.nuxt` folder. This ensures proper TypeScript support.
 
 - **Internationalization Strategy:** Each layer should manage its own translations using JSON files rather than centralizing them in the i18n layer. This promotes modularity and keeps translations close to where they're used.
+
+- **Layer Exports:** When creating functionality in a layer that should be imported by other layers or apps, define it in the `exports` field of the layer's package.json. For example:
+
+  ```json
+  "exports": {
+    "./db": "./server/utils/db.ts",
+    "./mail": "./server/utils/email/index.ts"
+  }
+  ```
+
+  Then import it as `import { something } from "@layers/layer-name/export-name"`.
 
 - **File Header Comment:** All new source code files (`.ts`, `.js`, `.vue`, `.css`, `.md`, etc.) should start with a reference comment:
 

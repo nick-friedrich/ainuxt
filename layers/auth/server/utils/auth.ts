@@ -2,7 +2,7 @@
 import crypto from 'node:crypto';
 import argon2 from 'argon2';
 // Revert to standard Prisma Client import
-import type { Session, User, Role } from '@db/psql/generated/prisma';
+import type { Session, User, Role } from '@layers/database/db';
 
 // Why is #imports not working? Because it's not a vue file
 // Easier to use the db package directly here, but let's keep the layer for vue files

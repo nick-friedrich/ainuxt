@@ -61,6 +61,18 @@
   - [x] Update documentation to reflect the new i18n structure
   - [x] Test integration with existing components
 
+- [ ] Implement the `@layers/mail` layer:
+
+  - [x] Set up initial layer structure with basic configuration
+  - [x] Configure layer to extend the base layer
+  - [x] Set up i18n translations for the mail functionality
+  - [ ] Add an email sending service using a mail provider (e.g., Nodemailer, SendGrid, etc.)
+  - [ ] Create email templates for various use cases (welcome, password reset, notifications, etc.)
+  - [ ] Create a mail queue system for reliable email delivery
+  - [ ] Add logging and error handling for email operations
+  - [ ] Integrate with the auth layer for user-related emails
+  - [ ] Create documentation for the mail layer
+
 - [ ] Implement the `@layers/auth` layer:
 
   - [x] Set up initial layer structure with basic configuration
@@ -98,5 +110,6 @@
   - [x] Create `_ai/layout.md` with layout layer usage guide and theme examples
   - [x] Update application READMEs with layer integration instructions
   - [ ] Create `_ai/auth.md` with authentication layer usage guide and security best practices
+  - [ ] Create `_ai/mail.md` with mail layer usage guide and examples
 
 - [ ] Get the translations into the layers not centralised in the i18n layer

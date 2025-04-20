@@ -1,7 +1,7 @@
 // AI Generation Reference: See /ai/README.md for guidelines and patterns.
 import { defineEventHandler, readValidatedBody, createError } from 'h3';
 import { z } from 'zod';
-import db from '@db/psql';
+import db from '@layers/database/db';
 import { hashPassword } from '../../utils/auth';
 
 // Zod schema for registration data

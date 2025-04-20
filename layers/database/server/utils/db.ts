@@ -21,5 +21,5 @@ export default db;
 import type { PrismaClient } from '@db/psql/generated/prisma/client';
 export type { PrismaClient };
 
-import { Session, User, Role, UserRole } from '@db/psql/generated/prisma';
+import type { Session, User, Role, UserRole } from '@db/psql/generated/prisma';
 export type { Session, User, Role, UserRole };

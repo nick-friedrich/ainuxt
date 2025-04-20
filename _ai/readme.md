@@ -32,6 +32,7 @@ This directory holds the reusable Nuxt layers shared across applications.
   - Auth-aware AppHeader component with user menu
   - Server API endpoints for authentication (login, register, logout, user info)
   - Dashboard page for authenticated users
+- **`mail/`**: Provides email functionality for the application. Extends the base layer and includes infrastructure for sending and managing emails.
 - **`styling/`**: Provides a base `tailwind.config.js` (Tailwind v4). **Note:** Due to current limitations, apps must install `tailwindcss`/`daisyui` themselves and import the main CSS (`@import 'tailwindcss'; @import 'daisyui';`) in their own `assets/css/`. The layer primarily serves to share the base config.
 - **`i18n/`**: Manages internationalization and localization using `@nuxtjs/i18n` module. Provides core configuration, locale setup, and types. **Note:** Each layer manages its own translations using JSON files rather than centralizing them in the i18n layer. The i18n layer primarily provides the infrastructure for internationalization.
 - **`database/`**: Provides utilities (`server/utils/db.ts`) to access the shared Prisma client defined in `packages/psql`.

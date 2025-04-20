@@ -3,6 +3,18 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
+  // Expose DATABASE_URL to the server runtime
+  runtimeConfig: {
+    // Keys defined here are available server-side only
+    databaseUrl: process.env.DATABASE_URL, // Read from the app's .env
+    // public:
+    //   Keys defined here are available client-side
+    public: {
+      appName: 'My App',
+    }
+
+  },
+
   extends: [
     // Not sure if we need to keep this here, but let's keep it for now
     '../../layers/base', // Use the relative path to the base layer
@@ -25,6 +37,8 @@ export default defineNuxtConfig({
     // Now imported from the base layer
     // '../../layers/database', // Path relative to this nuxt.config.ts
 
+    '../../layers/contact',
+
   ],
 
   i18n: {
@@ -41,13 +55,7 @@ export default defineNuxtConfig({
 
   },
 
-  // Expose DATABASE_URL to the server runtime
-  runtimeConfig: {
-    // Keys defined here are available server-side only
-    databaseUrl: process.env.DATABASE_URL, // Read from the app's .env
-    // public:
-    //   Keys defined here are available client-side
-  },
+
 
 
   // Alias for easier imports

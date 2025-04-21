@@ -18,6 +18,7 @@ onMounted(() => {
 const formStatus = ref("idle"); // idle, submitting, success, error
 const serverError = ref<string | null>(null);
 const successMessage = ref<string | null>(null);
+const verificationEmailSent = ref(false);
 
 // Profile data with initial values from user
 const profileData = reactive({
@@ -189,6 +190,7 @@ const resendVerificationEmail = async () => {
       method: "POST",
     });
     successMessage.value = t("auth.profile.verification_email_sent");
+    verificationEmailSent.value = true;
   } catch (error: any) {
     serverError.value = error.data?.message
       ? t(error.data.message)
@@ -228,6 +230,7 @@ const resendVerificationEmail = async () => {
           <button
             @click="resendVerificationEmail"
             class="btn btn-sm btn-warning btn-outline ml-2"
+            :disabled="verificationEmailSent"
           >
             {{ $t("auth.profile.resend_verification") }}
           </button>

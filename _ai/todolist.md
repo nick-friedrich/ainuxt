@@ -102,10 +102,23 @@
   - [x] Create auth server API endpoints (login, register, logout, user)
   - [x] Create auth-aware AppHeader component with user menu
   - [x] Refactor to use database layer abstraction instead of direct DB package
-  - [ ] Add user profile management
-  - [ ] Add role-based access control
-  - [ ] Add email verification
-  - [ ] Add password reset functionality
+  - [x] Implement user registration endpoint
+  - [x] Implement user login endpoint
+  - [x] Implement user logout endpoint
+  - [x] Implement get current user endpoint
+  - [x] Implement update user profile endpoint
+  - [x] Implement change password endpoint
+  - [ ] Implement password reset functionality
+  - [ ] Implement email verification process
+  - [ ] Add social authentication providers (Google, GitHub, etc.)
+
+## Lessons Learned
+
+- [x] Use consistent database access patterns (`db` from '@layers/database/db' instead of direct 'prisma' usage)
+- [x] Use i18n translation keys in both client-side forms and server-side validations
+- [x] Verify that database schema field names match exactly in code (e.g., 'emailVerifiedAt' not 'emailVerified')
+- [x] Keep error handling consistent across API endpoints (401 for unauthorized, 400 for validation errors)
+- [x] Add comprehensive translations for all user-facing content in all supported languages (EN, DE)
 
 - [ ] Future Enhancements:
 
@@ -127,7 +140,7 @@
   - [x] Create `_ai/i18n.md` with i18n layer usage guide and best practices
   - [x] Create `_ai/layout.md` with layout layer usage guide and theme examples
   - [x] Update application READMEs with layer integration instructions
-  - [ ] Create `_ai/auth.md` with authentication layer usage guide and security best practices
+  - [x] Create `_ai/auth.md` with authentication layer usage guide and security best practices
   - [ ] Create `_ai/mail.md` with mail layer usage guide and examples
   - [ ] Create `_ai/contact.md` with contact layer usage guide and examples
 

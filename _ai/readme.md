@@ -129,3 +129,50 @@ This directory contains example code snippets or mini-projects demonstrating com
 - please keep the \_ai folder up to date with the latest information.
 
 - feel free to create new .md files in the \_ai folder if needed.
+
+## Auth Layer
+
+The auth layer provides authentication and user management functionality:
+
+- **User Registration and Login**: Standard email/password authentication
+- **Session Management**: Secure cookie-based sessions
+- **Profile Management**: Users can update their profile information (name, email) and change passwords
+- **Role-based Authorization**: Support for user roles and permissions
+
+### API Routes
+
+- `/api/auth/login.post.ts`: User login endpoint
+- `/api/auth/register.post.ts`: User registration endpoint
+- `/api/auth/logout.post.ts`: User logout endpoint
+- `/api/auth/user.get.ts`: Get current user data endpoint
+- `/api/auth/profile.put.ts`: Update user profile (name, email) endpoint
+- `/api/auth/password.put.ts`: Update user password endpoint
+
+### Components
+
+- `profile.vue`: User profile page with forms for updating personal information and changing password
+
+### Notes
+
+- Email changes require verification (emailVerifiedAt is set to null when email changes)
+- The database schema uses `emailVerifiedAt` field for email verification status, not `emailVerified`
+- Use the imported `db` object from '@layers/database/db' for database operations, not 'prisma'
+
+### Important Implementation Details
+
+- **Form Validation**:
+  - Always use i18n translation keys in validation schemas (e.g., `z.string().min(1, { message: 'auth.profile.validation.name_required' })`)
+  - Client and server validation should be consistent using Zod schemas
+  - Error messages should be displayed from API responses
+- **Password Management**:
+  - Current password must be verified before allowing password changes
+  - New passwords require minimum 8 characters
+  - Passwords are hashed using argon2 with AUTH_SECRET environment variable
+- **Translations Structure**:
+  - Auth translations follow the pattern `auth.profile.*` for profile-related content
+  - Each form field should have corresponding validation messages
+  - Error states should have clear, translated messages
+- **Database Operations**:
+  - Always check for existing records before creation (e.g., email uniqueness)
+  - Select only necessary fields when returning user data (no password hashes)
+  - Use proper error handling with appropriate HTTP status codes

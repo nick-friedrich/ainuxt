@@ -175,4 +175,20 @@ export async function invalidateAllUserSessions(userId: string): Promise<void> {
       userId: userId,
     },
   });
+}
+
+/**
+ * Gets the authenticated user from the session in the request.
+ * @param {H3Event} event - The H3 event object from the request.
+ * @returns {Promise<(User & { roles: Role[] }) | null>} The user object with roles, or null if not authenticated.
+ */
+export async function getUserFromSession(event: any): Promise<(User & { roles: Role[] }) | null> {
+  const token = getCookie(event, SESSION_COOKIE_NAME);
+
+  if (!token) {
+    return null;
+  }
+
+  const { user } = await validateSessionToken(token);
+  return user;
 } 

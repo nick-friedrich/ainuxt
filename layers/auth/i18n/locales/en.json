@@ -18,4 +18,42 @@
     "have_account": "Already have an account? Login"
   },
   "validation": {},
+  "auth": {
+    "profile": {
+      "title": "Profile",
+      "personal_info": "Personal Information",
+      "name": "Name",
+      "name_placeholder": "Your full name",
+      "email": "Email",
+      "email_placeholder": "Your email address",
+      "update_profile": "Update Profile",
+      "updating": "Updating...",
+      "update_success": "Profile updated successfully",
+      "update_error": "Failed to update profile",
+      "email_verification_required": "Profile updated. Please verify your new email address.",
+      "email_already_exists": "This email is already registered with another account",
+      "unauthorized": "You must be logged in to update your profile",
+      "validation_error": "Please correct the errors in the form",
+      "server_error": "An error occurred on the server",
+      "change_password": "Change Password",
+      "current_password": "Current Password",
+      "new_password": "New Password",
+      "new_password_placeholder": "At least 8 characters",
+      "confirm_password": "Confirm Password",
+      "confirm_password_placeholder": "Repeat your new password",
+      "password_placeholder": "Enter your current password",
+      "update_password": "Update Password",
+      "password_update_success": "Password updated successfully",
+      "password_update_error": "Failed to update password",
+      "password_not_set": "Password has not been set for this account",
+      "invalid_current_password": "Current password is incorrect",
+      "validation": {
+        "name_required": "Name is required",
+        "email_invalid": "Invalid email address",
+        "current_password_required": "Current password is required",
+        "password_min_length": "Password must be at least 8 characters",
+        "passwords_must_match": "Passwords don't match"
+      }
+    }
+  }
 }

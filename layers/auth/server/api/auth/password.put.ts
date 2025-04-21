@@ -1,7 +1,7 @@
 // AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
 import { z } from 'zod';
-import { getUserFromSession } from '~/server/utils/auth';
-import { verifyPassword, hashPassword } from '~/server/utils/auth';
+import { getUserFromSession } from '../../utils/auth';
+import { verifyPassword, hashPassword } from '../../utils/auth';
 import db from '@layers/database/db';
 
 // Validation schema for password data

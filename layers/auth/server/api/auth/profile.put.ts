@@ -5,8 +5,8 @@ import db from '@layers/database/db';
 
 // Validation schema for profile data
 const profileSchema = z.object({
-  name: z.string().min(1, { message: 'Name is required' }),
-  email: z.string().email({ message: 'Invalid email address' })
+  name: z.string().min(1, { message: 'auth.profile.validation.name_required' }),
+  email: z.string().email({ message: 'auth.profile.validation.email_invalid' })
 });
 
 export default defineEventHandler(async (event) => {

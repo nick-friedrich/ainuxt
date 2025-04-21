@@ -112,7 +112,7 @@ const updateProfile = async () => {
     }
     // Handle server errors
     else if (error.data?.message) {
-      serverError.value = error.data.message;
+      serverError.value = t(error.data.message);
     } else {
       serverError.value = t("auth.profile.update_error");
     }
@@ -175,7 +175,7 @@ const updatePassword = async () => {
     }
     // Handle server errors
     else if (error.data?.message) {
-      serverError.value = error.data.message;
+      serverError.value = t(error.data.message);
     } else {
       serverError.value = t("auth.profile.password_update_error");
     }
@@ -195,12 +195,12 @@ const updatePassword = async () => {
       <h1 class="text-2xl font-bold mb-6">{{ $t("auth.profile.title") }}</h1>
 
       <!-- Success message -->
-      <div v-if="successMessage" class="alert alert-success mb-6">
+      <div v-if="successMessage" class="alert alert-success alert-soft mb-6">
         <div>{{ successMessage }}</div>
       </div>
 
       <!-- Server error message -->
-      <div v-if="serverError" class="alert alert-error mb-6">
+      <div v-if="serverError" class="alert alert-error alert-soft mb-6">
         <div>{{ serverError }}</div>
       </div>
 

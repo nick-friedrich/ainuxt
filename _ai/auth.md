@@ -114,6 +114,21 @@ Provides reactive auth state and helper methods.
 
 ## Common Implementation Patterns
 
+### Imports in Layer Files
+
+When working with Nuxt layers, always use relative paths for imports within the same layer:
+
+```ts
+// CORRECT: Use relative paths within the same layer
+import { getUserFromSession } from "../../utils/auth";
+import { verifyPassword } from "../../utils/auth";
+
+// INCORRECT: Don't use ~ alias for imports within the layer
+// import { getUserFromSession } from '~/server/utils/auth';
+```
+
+This is because the `~` alias resolves to the project root in the final application, but not correctly within the layer's own file structure.
+
 ### Form Validation
 
 Both client and server validation use Zod schemas:
@@ -196,3 +211,6 @@ Auth translations follow this pattern:
 
 3. **Issue**: Hardcoded validation messages make internationalization difficult
    **Solution**: Always use i18n translation keys in validation schemas
+
+4. **Issue**: Import paths using `~` alias don't work correctly in layer files
+   **Solution**: Use relative paths for imports within the same layer

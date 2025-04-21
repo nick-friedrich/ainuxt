@@ -176,3 +176,18 @@ The auth layer provides authentication and user management functionality:
   - Always check for existing records before creation (e.g., email uniqueness)
   - Select only necessary fields when returning user data (no password hashes)
   - Use proper error handling with appropriate HTTP status codes
+
+### Imports in Layer Files
+
+When working with Nuxt layers, always use relative paths for imports within the same layer:
+
+```ts
+// CORRECT: Use relative paths within the same layer
+import { getUserFromSession } from "../../utils/auth";
+import { verifyPassword } from "../../utils/auth";
+
+// INCORRECT: Don't use ~ alias for imports within the layer
+// import { getUserFromSession } from '~/server/utils/auth';
+```
+
+This is because the `~` alias resolves to the project root in the final application, but not correctly within the layer's own file structure.

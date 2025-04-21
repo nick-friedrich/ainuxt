@@ -137,6 +137,7 @@ The auth layer provides authentication and user management functionality:
 - **User Registration and Login**: Standard email/password authentication
 - **Session Management**: Secure cookie-based sessions
 - **Profile Management**: Users can update their profile information (name, email) and change passwords
+- **Email Verification**: Support for email verification with resendable verification links
 - **Role-based Authorization**: Support for user roles and permissions
 
 ### API Routes
@@ -147,16 +148,19 @@ The auth layer provides authentication and user management functionality:
 - `/api/auth/user.get.ts`: Get current user data endpoint
 - `/api/auth/profile.put.ts`: Update user profile (name, email) endpoint
 - `/api/auth/password.put.ts`: Update user password endpoint
+- `/api/auth/send-verification-mail.post.ts`: Resend verification email endpoint
 
 ### Components
 
 - `profile.vue`: User profile page with forms for updating personal information and changing password
+  - Includes email verification status banner with resend option
 
 ### Notes
 
 - Email changes require verification (emailVerifiedAt is set to null when email changes)
 - The database schema uses `emailVerifiedAt` field for email verification status, not `emailVerified`
 - Use the imported `db` object from '@layers/database/db' for database operations, not 'prisma'
+- Server-side translations use a custom implementation since Nuxt's i18n doesn't work well on the server side
 
 ### Important Implementation Details
 
@@ -170,12 +174,20 @@ The auth layer provides authentication and user management functionality:
   - Passwords are hashed using argon2 with AUTH_SECRET environment variable
 - **Translations Structure**:
   - Auth translations follow the pattern `auth.profile.*` for profile-related content
+  - Email notifications use the pattern `auth.email.*` for email-related content
   - Each form field should have corresponding validation messages
   - Error states should have clear, translated messages
 - **Database Operations**:
+
   - Always check for existing records before creation (e.g., email uniqueness)
   - Select only necessary fields when returning user data (no password hashes)
   - Use proper error handling with appropriate HTTP status codes
+
+- **Email Verification**:
+  - Server-side email templates use a custom translation implementation
+  - Verification tokens are stored in the database with expiration dates
+  - The profile page shows a warning banner for unverified emails
+  - Users can request resending verification emails
 
 ### Imports in Layer Files
 

@@ -32,7 +32,6 @@ function t(key: string, params: TranslationParams = {}, locale = 'en') {
   return translation;
 }
 
-// TODO:// Missing server side translations
 export default defineEventHandler(async (event) => {
   // Get local from request, we send it with the request in the body
   const body = await readBody(event);

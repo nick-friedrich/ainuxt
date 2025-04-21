@@ -192,6 +192,117 @@ const user = await db.user.findUnique({
 });
 ```
 
+### Server-Side Translations Workaround
+
+The built-in Nuxt i18n functions don't work well in server-side API routes. For email templates, we implemented a custom translation solution:
+
+```ts
+// Import translations directly
+import * as en from "../../../i18n/locales/en.json";
+import * as de from "../../../i18n/locales/de.json";
+
+const translations = {
+  en: en,
+  de: de,
+} as const;
+
+// Helper to access nested properties by dot notation
+function getNestedValue(obj: any, path: string): string {
+  const keys = path.split(".");
+  return (
+    keys.reduce(
+      (o, key) => (o && o[key] !== undefined ? o[key] : undefined),
+      obj
+    ) || path
+  );
+}
+
+// Custom t function for server-side
+function t(
+  key: string,
+  params: Record<string, string | number> = {},
+  locale = "en"
+) {
+  let translation =
+    getNestedValue(translations[locale as keyof typeof translations], key) ||
+    getNestedValue(translations.en, key) ||
+    key;
+
+  Object.keys(params).forEach((param) => {
+    translation = translation.replace(
+      new RegExp(`{${param}}`, "g"),
+      String(params[param])
+    );
+  });
+  return translation;
+}
+```
+
+Usage in API routes:
+
+```ts
+// Get locale from request body if needed
+const body = await readBody(event);
+const locale = body.locale || "en";
+
+// Send email with translated content
+await sendEmail({
+  to: user.email,
+  subject: t("auth.email.verify_subject", {}, locale),
+  html: `
+  <p>${t("auth.email.verify_body", {}, locale)}</p>
+  <p>
+  <a href="${config.public.applicationUrl}/verify-email?token=${token}">
+  ${t("auth.email.verify_link", {}, locale)}
+  </a>
+  </p>
+  `,
+});
+```
+
+### Email Verification UI
+
+The profile page displays a warning banner when the user's email is not verified:
+
+```vue
+<!-- Email verification banner -->
+<div
+  v-if="user && user.email && !user.emailVerifiedAt"
+  class="alert alert-warning alert-soft mb-6"
+>
+  <div class="flex flex-row justify-between w-full items-center">
+    <span>{{ $t("auth.profile.email_not_verified") }}</span>
+    <button
+      @click="resendVerificationEmail"
+      class="btn btn-sm btn-warning btn-outline ml-2"
+      :disabled="verificationEmailSent"
+    >
+      {{ $t("auth.profile.resend_verification") }}
+    </button>
+  </div>
+</div>
+```
+
+With the supporting function:
+
+```ts
+const verificationEmailSent = ref(false);
+
+const resendVerificationEmail = async () => {
+  try {
+    await $fetch("/api/auth/send-verification-mail", {
+      method: "POST",
+    });
+    successMessage.value = t("auth.profile.verification_email_sent");
+    verificationEmailSent.value = true;
+  } catch (error: any) {
+    serverError.value = error.data?.message
+      ? t(error.data.message)
+      : t("auth.profile.verification_email_error");
+  }
+};
+```
+
 ## Translation Structure
 
 Auth translations follow this pattern:

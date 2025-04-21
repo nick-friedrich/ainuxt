@@ -109,7 +109,7 @@
   - [x] Implement update user profile endpoint
   - [x] Implement change password endpoint
   - [ ] Implement password reset functionality
-  - [ ] Implement email verification process
+  - [x] Implement email verification process
   - [ ] Add social authentication providers (Google, GitHub, etc.)
 
 ## Lessons Learned

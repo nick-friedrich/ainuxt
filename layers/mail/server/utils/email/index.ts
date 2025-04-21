@@ -18,7 +18,7 @@ function getEmailAdapter(): EmailAdapter {
 
     if (resendApiKey && process.env.NODE_ENV === 'production') {
       console.log('Using Resend email adapter.');
-      emailAdapter = new ResendAdapter(resendApiKey, fromEmail, fromName);
+      emailAdapter = new ResendAdapter(resendApiKey as string, fromEmail, fromName);
     } else {
       console.log('Using Console email adapter (Resend API key not found or not in production).');
       emailAdapter = new ConsoleAdapter();
@@ -32,6 +32,11 @@ function getEmailAdapter(): EmailAdapter {
  * @param options - Options for sending the email (to, subject, html, text?).
  */
 export async function sendEmail(options: SendEmailOptions): Promise<{ success: boolean; messageId?: string; error?: unknown }> {
-  const adapter = getEmailAdapter();
-  return adapter.send(options);
+  try {
+    const adapter = getEmailAdapter();
+    return adapter.send(options);
+  } catch (error) {
+    console.error('Error sending email:', error);
+    throw error;
+  }
 } 

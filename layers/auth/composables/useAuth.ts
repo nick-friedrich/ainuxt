@@ -9,6 +9,7 @@ export type AuthUser = {
   email: string;
   name?: string;
   roles: Role[];
+  emailVerifiedAt?: Date;
 } | null;
 
 // State key for Nuxt useState

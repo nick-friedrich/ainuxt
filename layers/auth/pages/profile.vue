@@ -181,6 +181,20 @@ const updatePassword = async () => {
     }
   }
 };
+
+// Add resendVerificationEmail function in script section
+const resendVerificationEmail = async () => {
+  try {
+    await $fetch("/api/auth/send-verification-mail", {
+      method: "POST",
+    });
+    successMessage.value = t("auth.profile.verification_email_sent");
+  } catch (error: any) {
+    serverError.value = error.data?.message
+      ? t(error.data.message)
+      : t("auth.profile.verification_email_error");
+  }
+};
 </script>
 
 <template>
@@ -202,6 +216,22 @@ const updatePassword = async () => {
       <!-- Server error message -->
       <div v-if="serverError" class="alert alert-error alert-soft mb-6">
         <div>{{ serverError }}</div>
+      </div>
+
+      <!-- Email verification banner -->
+      <div
+        v-if="user && user.email && !user.emailVerifiedAt"
+        class="alert alert-warning alert-soft mb-6"
+      >
+        <div class="flex flex-row justify-between w-full items-center">
+          <span>{{ $t("auth.profile.email_not_verified") }}</span>
+          <button
+            @click="resendVerificationEmail"
+            class="btn btn-sm btn-warning btn-outline ml-2"
+          >
+            {{ $t("auth.profile.resend_verification") }}
+          </button>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">

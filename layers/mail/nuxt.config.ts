@@ -7,7 +7,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     // Server-side secrets
-    resendApiKey: process.env.RESEND_API_KEY ?? undefined, // Used by ResendAdapter
+    resendApiKey: process.env.RESEND_API_KEY, // Used by ResendAdapter
 
     // Public keys exposed client-side (use with caution)
     public: {

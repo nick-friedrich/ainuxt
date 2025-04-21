@@ -47,6 +47,11 @@
       "password_update_error": "Fehler beim Aktualisieren des Passworts",
       "password_not_set": "Für dieses Konto wurde kein Passwort festgelegt",
       "invalid_current_password": "Aktuelles Passwort ist nicht korrekt",
+      "email_not_verified": "Ihre E-Mail-Adresse wurde nicht verifiziert.",
+      "email_already_verified": "Ihre E-Mail-Adresse ist bereits verifiziert.",
+      "resend_verification": "Bestätigungs-E-Mail erneut senden",
+      "verification_email_sent": "Bestätigungs-E-Mail erfolgreich gesendet. Bitte überprüfen Sie Ihren Posteingang.",
+      "verification_email_error": "Die Bestätigungs-E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.",
       "validation": {
         "name_required": "Name ist erforderlich",
         "email_invalid": "Ungültige E-Mail-Adresse",
@@ -54,6 +59,18 @@
         "password_min_length": "Passwort muss mindestens 8 Zeichen lang sein",
         "passwords_must_match": "Passwörter stimmen nicht überein"
       }
+    },
+    "email": {
+      "verify_subject": "Bestätigen Sie Ihre E-Mail-Adresse",
+      "verify_click_here": "Klicken Sie hier, um Ihre E-Mail-Adresse zu bestätigen",
+      "verify_email": "E-Mail bestätigen"
+    },
+    "validation": {
+      "name_required": "Name ist erforderlich",
+      "email_invalid": "Ungültige E-Mail-Adresse",
+      "current_password_required": "Aktuelles Passwort ist erforderlich",
+      "password_min_length": "Passwort muss mindestens 8 Zeichen lang sein",
+      "passwords_must_match": "Passwörter stimmen nicht überein"
     }
   }
 }

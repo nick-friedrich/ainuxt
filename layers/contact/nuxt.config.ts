@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   extends: [
     '../base',
     '../layout',
+    '../mail'
   ],
 
   i18n: {

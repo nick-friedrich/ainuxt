@@ -47,13 +47,23 @@
       "password_update_error": "Failed to update password",
       "password_not_set": "Password has not been set for this account",
       "invalid_current_password": "Current password is incorrect",
-      "validation": {
-        "name_required": "Name is required",
-        "email_invalid": "Invalid email address",
-        "current_password_required": "Current password is required",
-        "password_min_length": "Password must be at least 8 characters",
-        "passwords_must_match": "Passwords don't match"
-      }
+      "email_not_verified": "Your email address has not been verified.",
+      "email_already_verified": "Your email address is already verified.",
+      "resend_verification": "Resend verification email",
+      "verification_email_sent": "Verification email sent successfully. Please check your inbox.",
+      "verification_email_error": "Unable to send verification email. Please try again later."
+    },
+    "email": {
+      "verify_subject": "Verify your email address",
+      "verify_click_here": "Click here to verify your email address",
+      "verify_email": "Verify Email"
+    },
+    "validation": {
+      "name_required": "Name is required",
+      "email_invalid": "Invalid email address",
+      "current_password_required": "Current password is required",
+      "password_min_length": "Password must be at least 8 characters",
+      "passwords_must_match": "Passwords don't match"
     }
   }
 }

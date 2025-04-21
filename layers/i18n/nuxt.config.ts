@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     strategy: 'prefix_except_default', // Keep routing strategy
     bundle: {
       optimizeTranslationDirective: false,
-    }
+    },
+
   },
 }) 

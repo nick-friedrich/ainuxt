@@ -15,4 +15,12 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
+
+  runtimeConfig: {
+    public: {
+      applicationName: 'Nuxt Layers',
+      applicationVersion: '1.0.0',
+      applicationUrl: 'http://localhost:3000',
+    }
+  }
 }) 

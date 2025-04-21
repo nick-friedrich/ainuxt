@@ -56,7 +56,9 @@
     "email": {
       "verify_subject": "Verify your email address",
       "verify_click_here": "Click here to verify your email address",
-      "verify_email": "Verify Email"
+      "verify_email": "Verify Email",
+      "verify_body": "Click the link below to verify your email address:",
+      "verify_link": "Verify Email"
     },
     "validation": {
       "name_required": "Name is required",

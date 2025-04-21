@@ -3,7 +3,7 @@
 import { ref, reactive, onMounted } from "vue";
 import { z } from "zod";
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const { user, loading: isLoading, isLoggedIn: isAuthenticated } = useAuth();
 const router = useRouter();
 
@@ -188,6 +188,9 @@ const resendVerificationEmail = async () => {
   try {
     await $fetch("/api/auth/send-verification-mail", {
       method: "POST",
+      body: {
+        locale: locale.value,
+      },
     });
     successMessage.value = t("auth.profile.verification_email_sent");
     verificationEmailSent.value = true;

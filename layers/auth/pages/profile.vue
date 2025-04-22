@@ -108,7 +108,7 @@ const updateProfile = async () => {
     };
     const response = await $fetch<ProfileResponse>("/api/auth/profile", {
       method: "PUT",
-      body: validData,
+      body: { ...validData, locale: locale.value },
     });
 
     // Handle success: display translated message

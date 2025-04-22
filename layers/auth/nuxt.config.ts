@@ -30,5 +30,14 @@ export default defineNuxtConfig({
         file: 'de.json',
       }
     ],
+  },
+
+  // Runtime config for auth settings
+  runtimeConfig: {
+    public: {
+      auth: {
+        autoLoginAfterRegister: false, // Set to true to automatically log in users after registration
+      }
+    }
   }
 }) 

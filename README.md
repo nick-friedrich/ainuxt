@@ -110,6 +110,12 @@ This monorepo includes:
 
     This creates the `.nuxt` folder with necessary type definitions.
 
+    **Note about Runtime Config and Type Generation:**
+    When adding custom properties to runtime config or other typed structures in Nuxt layers, TypeScript may show errors for valid properties until types are regenerated. You can fix this by either:
+
+    - Running `pnpm layer:dev --filter @layers/yourLayer` to regenerate types for a specific layer
+    - Restarting the development server
+
 5.  **Build:**
     To build all apps and packages:
     ```bash

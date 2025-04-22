@@ -11,6 +11,11 @@ export default defineNuxtConfig({
     //   Keys defined here are available client-side
     public: {
       appName: 'My App',
+
+      auth: {
+        // We override this defaults to false in the auth layer
+        autoLoginAfterRegister: true,
+      }
     }
 
   },

@@ -54,7 +54,10 @@ async function onSubmit() {
     typeof response.message === "string"
   ) {
     successMessageKey.value = response.message;
-    setTimeout(() => router.push("/"), 2000);
+
+    // Redirect to dashboard if auto-login is enabled, otherwise go to login page
+    const redirectPath = response.autoLogin === true ? "/" : "/login";
+    setTimeout(() => router.push(redirectPath), 2000);
   }
 }
 </script>

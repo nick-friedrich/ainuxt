@@ -70,6 +70,22 @@ export function useAuth() {
         body: { email, password, locale },
       });
       if (fetchError.value) throw fetchError.value;
+
+      // Check if autoLogin is enabled in the response
+      if (data.value && data.value.autoLogin === true) {
+        // Set user data directly if we have enough information
+        if (data.value.userId && data.value.email) {
+          user.value = {
+            id: data.value.userId,
+            email: data.value.email,
+            roles: [] // Default roles, might need to be fetched
+          };
+        } else {
+          // If we don't have enough info, do a full login
+          await login(email, password);
+        }
+      }
+
       return data.value;
     } catch (err: any) {
       error.value = err?.data?.message || err?.message || 'Registration failed.';

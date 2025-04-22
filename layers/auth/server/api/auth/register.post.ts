@@ -104,9 +104,12 @@ export default defineEventHandler(async (event) => {
     console.log(`Verification token for ${newUser.email}: ${token}`);
 
     // 7. Return Success (indicate verification email sent)
+
     return {
       message: 'auth.register.success_verification_sent', // Return key for client translation
-      userId: newUser.id
+      userId: newUser.id,
+      email: newUser.email, // Add email to enable auto-login
+      autoLogin: config.public.auth.autoLoginAfterRegister ?? false // Pass the auto-login setting
     };
 
   } catch (error: any) {

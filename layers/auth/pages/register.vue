@@ -9,22 +9,24 @@ import { useAuth } from "~/composables/useAuth";
 import { useI18n } from "#imports";
 import { useRouter } from "vue-router";
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const router = useRouter();
 const { register, loading, error } = useAuth();
 
 const form = ref({ email: "", password: "" });
 const formErrors = ref<{ email?: string; password?: string }>({});
-const success = ref(false);
+const successMessageKey = ref<string | null>(null);
 
 const schema = z.object({
-  email: z.string().email({ message: "validation.contact.email.invalid" }),
-  password: z.string().min(8, { message: "validation.password.minLength" }),
+  email: z.string().email({ message: "auth.validation.email_invalid" }),
+  password: z
+    .string()
+    .min(8, { message: "auth.validation.password_minLength" }),
 });
 
 async function onSubmit() {
   formErrors.value = {};
-  success.value = false;
+  successMessageKey.value = null;
   const result = schema.safeParse(form.value);
   if (!result.success) {
     for (const issue of result.error.issues) {
@@ -38,10 +40,21 @@ async function onSubmit() {
     }
     return;
   }
-  const ok = await register(form.value.email, form.value.password);
-  if (ok) {
-    success.value = true;
-    setTimeout(() => router.push("/"), 1000);
+
+  const response = await register(
+    form.value.email,
+    form.value.password,
+    locale.value
+  );
+
+  if (
+    typeof response === "object" &&
+    response !== null &&
+    "message" in response &&
+    typeof response.message === "string"
+  ) {
+    successMessageKey.value = response.message;
+    setTimeout(() => router.push("/"), 2000);
   }
 }
 </script>
@@ -90,11 +103,18 @@ async function onSubmit() {
           </div>
           <!-- Alerts -->
           <div v-if="error" class="alert alert-error alert-soft mt-4">
-            <span>{{ error }}</span>
+            <span>{{
+              typeof error === "string" && error.includes(".")
+                ? $t(error)
+                : error
+            }}</span>
           </div>
-          <div v-if="success" class="alert alert-success alert-soft mt-4">
+          <div
+            v-if="successMessageKey"
+            class="alert alert-success alert-soft mt-4"
+          >
             <span>
-              {{ $t("page_register.success") }}
+              {{ $t(successMessageKey) }}
             </span>
           </div>
         </form>

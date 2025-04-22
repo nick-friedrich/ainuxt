@@ -17,8 +17,19 @@
     "success": "Registration successful! Redirecting...",
     "have_account": "Already have an account? Login"
   },
-  "validation": {},
   "auth": {
+    "register": {
+      "error_email_exists": "An account with this email address already exists.",
+      "success_verification_sent": "Registration successful! Please check your email to verify your account.",
+      "error_generic": "Registration failed. Please try again later."
+    },
+    "validation": {
+      "email_invalid": "Please enter a valid email address.",
+      "password_minLength": "Password must be at least {min} characters long.",
+      "name_required": "Name is required",
+      "current_password_required": "Current password is required",
+      "passwords_must_match": "Passwords don't match"
+    },
     "profile": {
       "title": "Profile",
       "personal_info": "Personal Information",
@@ -59,13 +70,11 @@
       "verify_email": "Verify Email",
       "verify_body": "Click the link below to verify your email address:",
       "verify_link": "Verify Email"
-    },
-    "validation": {
-      "name_required": "Name is required",
-      "email_invalid": "Invalid email address",
-      "current_password_required": "Current password is required",
-      "password_min_length": "Password must be at least 8 characters",
-      "passwords_must_match": "Passwords don't match"
+    }
+  },
+  "common": {
+    "error": {
+      "server_config": "Server configuration error. Please contact support."
     }
   }
 }

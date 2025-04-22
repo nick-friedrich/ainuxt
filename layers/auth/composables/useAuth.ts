@@ -61,20 +61,19 @@ export function useAuth() {
   }
 
   // Register
-  async function register(email: string, password: string) {
+  async function register(email: string, password: string, locale: string) {
     loading.value = true;
     error.value = null;
     try {
-      const { data: _data, error: fetchError } = await useFetch('/api/auth/register', {
+      const { data, error: fetchError } = await useFetch('/api/auth/register', {
         method: 'POST',
-        body: { email, password },
+        body: { email, password, locale },
       });
       if (fetchError.value) throw fetchError.value;
-      // Optionally auto-login after registration
-      return await login(email, password);
+      return data.value;
     } catch (err: any) {
       error.value = err?.data?.message || err?.message || 'Registration failed.';
-      return false;
+      return { error: error.value };
     } finally {
       loading.value = false;
     }

@@ -3,10 +3,11 @@
 // This is the header with auth which will override the base layout header.
 // AI Generation Reference: See /ai/README.md for guidelines and patterns.
 import { useAuth } from "~/composables/useAuth";
+import { useRouter } from "vue-router";
+import { useLocalePath } from "#imports";
+
 const { fetchUser } = useAuth();
 await fetchUser();
-
-import { useRouter } from "vue-router";
 
 const navigationItems = [
   { labelKey: "layout.navigation.home", to: "/" },
@@ -21,6 +22,7 @@ const loggedInNavigationItems = [
 // Auth state and actions
 const { isLoggedIn, user, logout } = useAuth();
 const router = useRouter();
+const localePath = useLocalePath();
 
 // Function to close the dropdown by blurring the clicked element (li)
 function closeDropdown() {
@@ -35,8 +37,8 @@ async function handleLogout() {
   closeDropdown(); // Close the dropdown first
   const success = await logout();
   if (success) {
-    // Redirect to home or login page after logout
-    router.push("/");
+    // Redirect to localized home page after logout
+    router.push(localePath("/"));
   }
   // Handle logout failure if needed
 }

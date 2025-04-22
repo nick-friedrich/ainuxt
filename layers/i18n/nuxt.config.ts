@@ -5,6 +5,8 @@ export default defineNuxtConfig({
   extends: ['../base'],
   modules: ['@nuxtjs/i18n'],
   i18n: {
+    defaultLocale: 'en',
+    strategy: 'prefix', // Always prefix even default locale
     locales: [
       {
         code: 'en',
@@ -19,8 +21,6 @@ export default defineNuxtConfig({
         file: 'de.json'
       },
     ],
-    defaultLocale: 'en',
-    strategy: 'prefix_except_default', // Keep routing strategy
     bundle: {
       optimizeTranslationDirective: false,
     },

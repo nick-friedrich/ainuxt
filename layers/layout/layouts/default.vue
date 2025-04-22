@@ -5,9 +5,11 @@
 // AI Generation Reference: See /ai/README.md for guidelines and patterns.
 import { useThemeCookie } from "../composables/useThemeCookie";
 const { theme } = useThemeCookie();
+const { locale } = useI18n();
 
 useHead({
   htmlAttrs: {
+    lang: locale.value,
     "data-theme": () => theme.value, // Dynamically bind to the theme state
   },
 });

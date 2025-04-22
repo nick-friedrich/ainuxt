@@ -2,7 +2,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-
+  app: {
+    head: {
+      title: 'My App',
+      meta: [
+        { name: 'description', content: 'My App description' },
+      ],
+    }
+  },
   // Expose DATABASE_URL to the server runtime
   runtimeConfig: {
     // Keys defined here are available server-side only

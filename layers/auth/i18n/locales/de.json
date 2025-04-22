@@ -6,8 +6,11 @@
     "password_placeholder": "••••••••",
     "submit": "Anmelden",
     "success": "Anmeldung erfolgreich! Weiterleitung...",
-    "no_account": "Noch kein Konto? Registrieren",
-    "forgot_password": "Passwort vergessen?"
+    "no_account": "Kein Konto? Registrieren",
+    "forgot_password": "Passwort vergessen?",
+    "or": "Oder",
+    "login_with_email_link": "Mit E-Mail-Link anmelden",
+    "reset_mismatch": "Die Passwörter stimmen nicht überein."
   },
   "page_register": {
     "title": "Registrieren",
@@ -20,19 +23,28 @@
   },
   "page_forgot_password": {
     "title": "Passwort vergessen",
-    "instructions": "Geben Sie unten Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
+    "instructions": "Gib unten deine E-Mail-Adresse ein und wir senden dir einen Link zum Zurücksetzen deines Passworts.",
     "email": "E-Mail-Adresse",
-    "email_placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "email_placeholder": "Gib deine E-Mail-Adresse ein",
     "submit": "Link zum Zurücksetzen senden",
     "back_to_login": "Zurück zum Login"
   },
   "page_reset_password": {
     "title": "Passwort zurücksetzen",
     "new_password": "Neues Passwort",
-    "new_password_placeholder": "Geben Sie Ihr neues Passwort ein (mind. 8 Zeichen)",
+    "new_password_placeholder": "Gib dein neues Passwort ein (mind. 8 Zeichen)",
     "confirm_password": "Neues Passwort bestätigen",
-    "confirm_password_placeholder": "Wiederholen Sie Ihr neues Passwort",
+    "confirm_password_placeholder": "Wiederhole dein neues Passwort",
     "submit": "Passwort zurücksetzen"
+  },
+  "page_login_email": {
+    "title": "Anmelden mit E-Mail",
+    "description": "Geben Sie unten Ihre E-Mail-Adresse ein und wir senden Ihnen einen magischen Link, um sich sofort anzumelden.",
+    "email": "E-Mail-Adresse",
+    "submit": "Anmelde-Link senden",
+    "success": "Anmelde-Link gesendet! Überprüfen Sie Ihren E-Mail-Posteingang (und Spam-Ordner).",
+    "error_generic": "Anmelde-Link konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.",
+    "back_to_login": "Zurück zur Standardanmeldung"
   },
   "auth": {
     "profile": {
@@ -78,7 +90,8 @@
         "password_min_length": "Passwort muss mindestens 8 Zeichen lang sein",
         "passwords_must_match": "Passwörter stimmen nicht überein",
         "emails_must_match": "E-Mail-Adressen müssen übereinstimmen"
-      }
+      },
+      "verify_go_to_login": "Zur Anmeldeseite"
     },
     "email": {
       "verify_subject": "Bestätige deine E-Mail-Adresse",
@@ -118,11 +131,25 @@
       "reset_success": "Dein Passwort wurde erfolgreich zurückgesetzt. Weiterleitung zum Login...",
       "reset_error": "Beim Zurücksetzen deines Passworts ist ein Fehler aufgetreten. Bitte versuche es erneut.",
       "reset_mismatch": "Die Passwörter stimmen nicht überein."
+    },
+    "otp": {
+      "email_subject": "Dein magischer Anmelde-Link",
+      "email_body": "Hallo {name}, klicke auf den Link unten, um dich bei deinem Konto anzumelden. Dieser Link ist {minutes} Minuten gültig.",
+      "email_link": "Jetzt anmelden",
+      "email_ignore": "Wenn du diese E-Mail nicht angefordert hast, kannst du sie sicher ignorieren.",
+      "error_invalid": "Anmelde-Link ist ungültig. Bitte fordere einen neuen an.",
+      "error_expired": "Anmelde-Link ist abgelaufen. Bitte fordere einen neuen an.",
+      "error_server": "Anmelde-Link konnte aufgrund eines Serverproblems nicht überprüft werden. Bitte versuchen Sie es später erneut.",
+      "verifying_title": "Anmeldung wird überprüft",
+      "verification_failed_title": "Anmeldeüberprüfung fehlgeschlagen",
+      "verifying_message": "Bitte warte, während wir dich sicher anmelden...",
+      "verifying_redirect_info": "Du wirst in Kürze weitergeleitet.",
+      "return_to_login": "Zurück zur Anmeldung"
     }
   },
   "common": {
     "error": {
-      "server_config": "Serverkonfigurationsfehler. Bitte kontaktieren Sie den Support."
+      "server_config": "Serverkonfigurationsfehler. Bitte kontaktiere den Support."
     }
   }
 }

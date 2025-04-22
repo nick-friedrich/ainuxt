@@ -114,6 +114,15 @@
   - [x] Enhance profile update functionality with locale support (email confirmation, instant banner updates)
   - [x] Update Nuxt i18n strategy and layout for prefix localization and locale-aware redirects
   - [ ] Add social authentication providers (Google, GitHub, etc.)
+  - [x] Implement OTP (One-Time Password) Login:
+    - [x] Add OTP fields (`otpToken`, `otpTokenExpiresAt`) to User model (Done, see `schema.prisma`)
+    - [x] Add "Login with Email Link" button/link to `login.vue` page
+    - [x] Create `login-email.vue` page (or similar) to input email for OTP
+    - [x] Create server endpoint (`/api/auth/otp/request`) to generate OTP, store it, and send login email
+    - [x] Integrate with `@layers/mail` to send the OTP email with a unique login link
+    - [x] Create server endpoint (`/api/auth/otp/verify`) to verify the OTP token from the link, log the user in, and clear the token
+    - [x] Add necessary i18n translations for OTP flow
+    - [x] Update auth documentation (`_ai/auth.md`)
 
 ## Lessons Learned
 

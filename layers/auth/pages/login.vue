@@ -112,6 +112,12 @@ async function onSubmit() {
             {{ $t("page_login.no_account") }}
           </NuxtLinkLocale>
         </div>
+        <div class="divider">
+          {{ $t("page_login.or") }}
+        </div>
+        <NuxtLinkLocale to="/login-email" class="btn btn-outline btn-primary">
+          {{ $t("page_login.login_with_email_link") }}
+        </NuxtLinkLocale>
       </div>
     </div>
   </div>

@@ -79,6 +79,7 @@ Updates the user's password.
 - Notes:
   - Verifies current password before allowing change
   - Requires minimum password length (8 characters)
+  - Sends a confirmation email (using `useMail`) to the user.
 
 ### POST /api/auth/password/forgot
 
@@ -104,6 +105,35 @@ Resets the user's password using a valid token.
   - Updates the user's password hash in the database.
   - Invalidates the used token.
   - Sends a confirmation email (using `useMail`) to the user.
+
+### POST /api/auth/otp/request
+
+Initiates the OTP (magic link) login process.
+
+- Body: `{ email }` (Optional: `{ email, locale }` if locale-specific emails are needed)
+- Returns: `{ message: 'OK' }` (Always returns OK for security reasons)
+- Notes:
+  - Checks if the email exists in the database.
+  - Generates a unique, time-limited OTP token (stored in `otpToken`, `otpTokenExpiresAt` fields).
+  - Sends an email (using `sendEmail` from `@layers/mail/mail`) with a link like `/verify-login?token=...`.
+  - Link validity is typically short (e.g., 15 minutes).
+
+### GET /api/auth/otp/verify
+
+Verifies an OTP token from a magic link and logs the user in.
+
+- Query Parameters: `?token=<otp_token>`
+- Returns: Redirects the user.
+- Notes:
+  - Finds user by the `otpToken`.
+  - Checks if the token is valid and not expired.
+  - If valid:
+    - Clears the `otpToken` and `otpTokenExpiresAt` fields in the database.
+    - Creates a new user session using custom auth utils (`createSession`, `generateSessionToken`).
+    - Sets the session cookie (`auth_session_token`).
+    - Redirects the user to the application root (`/`).
+  - If invalid/expired:
+    - Redirects the user to the login page (`/login`) with an `error` query parameter (`otp_invalid` or `otp_expired`).
 
 ## Middleware
 
@@ -163,6 +193,17 @@ Redirects authenticated users away from guest-only pages.
   - Form submits to `POST /api/auth/password/reset` with the token and new password.
   - On success, a message confirms the password change, and the user is redirected to the login page after a short delay.
   - Displays errors if the token is invalid/expired or passwords don't match/meet requirements.
+
+#### `/login-email`
+
+- **File:** `layers/auth/pages/login-email.vue`
+- **Middleware:** `guest`
+- **Purpose:** Allows users to request an OTP (magic link) login email.
+- **Process:**
+  - User enters their email address.
+  - Form submits to `POST /api/auth/otp/request`.
+  - On success, a message indicates that an email has been sent (if the email exists).
+  - Includes a link back to the standard login page.
 
 #### `/dashboard`
 
@@ -385,6 +426,8 @@ Auth translations follow this pattern:
 - `auth.profile.validation.*` - Field validation messages
 - `page_login.*` - Login page content
 - `page_register.*` - Registration page content
+- `page_login_email.*` - OTP Email request page content
+- `auth.otp.*` - OTP email content and error messages
 
 ## Known Issues and Solutions
 

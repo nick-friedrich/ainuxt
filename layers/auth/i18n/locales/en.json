@@ -7,7 +7,9 @@
     "submit": "Login",
     "success": "Login successful! Redirecting...",
     "no_account": "Don't have an account? Register",
-    "forgot_password": "Forgot Password?"
+    "forgot_password": "Forgot Password?",
+    "or": "Or",
+    "login_with_email_link": "Login with Email Link"
   },
   "page_register": {
     "title": "Register",
@@ -34,11 +36,21 @@
     "confirm_password_placeholder": "Repeat your new password",
     "submit": "Reset Password"
   },
+  "page_login_email": {
+    "title": "Login with Email",
+    "description": "Enter your email address below and we'll send you a magic link to log in instantly.",
+    "email": "Email Address",
+    "submit": "Send Login Link",
+    "success": "Login link sent! Check your email inbox (and spam folder).",
+    "error_generic": "Could not send login link. Please try again later.",
+    "back_to_login": "Back to standard login"
+  },
   "auth": {
     "register": {
       "error_email_exists": "An account with this email address already exists.",
       "success_verification_sent": "Registration successful! Please check your email to verify your account.",
-      "error_generic": "Registration failed. Please try again later."
+      "error_generic": "Registration failed. Please try again later.",
+      "verify_go_to_login": "Go to login page"
     },
     "validation": {
       "email_invalid": "Please enter a valid email address.",
@@ -119,6 +131,12 @@
       "reset_success": "Your password has been successfully reset. Redirecting to login...",
       "reset_error": "An error occurred while resetting your password. Please try again.",
       "reset_mismatch": "Passwords do not match."
+    },
+    "otp": {
+      "email_subject": "Your Magic Login Link",
+      "email_body": "Hello {name}, click the link below to log in to your account. This link is valid for {minutes} minutes.",
+      "email_link": "Log In Now",
+      "email_ignore": "If you didn't request this email, you can safely ignore it."
     }
   },
   "common": {

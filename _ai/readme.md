@@ -205,3 +205,8 @@ import { verifyPassword } from "../../utils/auth";
 ```
 
 This is because the `~` alias resolves to the project root in the final application, but not correctly within the layer's own file structure.
+
+## 📝 Updates
+
+- Enhanced profile update flow to include email confirmation and instant UI updates.
+- Switched i18n routing strategy to always prefix locale and added locale-aware redirects in middleware and layout.

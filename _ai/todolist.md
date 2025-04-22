@@ -111,6 +111,8 @@
   - [x] Implement change password endpoint
   - [ ] Implement password reset functionality
   - [x] Implement email verification process
+  - [x] Enhance profile update functionality with locale support (email confirmation, instant banner updates)
+  - [x] Update Nuxt i18n strategy and layout for prefix localization and locale-aware redirects
   - [ ] Add social authentication providers (Google, GitHub, etc.)
 
 ## Lessons Learned

@@ -2,7 +2,7 @@
 
 When requested to update the `_ai` folder (e.g., using `@_ai update` or similar trigger):
 
-1.  **Review Recent Changes:** Examine the latest user messages, code changes, file attachments, and conversation history to understand what progress has been made or what new information needs to be documented.
+1.  **Review Recent Changes:** Examine the latest user messages, code changes, file attachments, and conversation history to understand what progress has been made or what new information needs to be documented (e.g., commits "Enhance profile update functionality with locale support" and "Update Nuxt configuration and layout for improved localization").
 2.  **Update `_ai/readme.md`:**
     - Reflect any changes to the project structure (new apps, layers, packages).
     - Update descriptions of existing components if their purpose has changed.

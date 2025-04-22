@@ -3,6 +3,7 @@
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useI18n, useLocalePath } from "#imports";
+import { useAuth } from "~/composables/useAuth";
 
 // Status states
 const VERIFYING = "verifying";
@@ -13,6 +14,7 @@ const route = useRoute();
 const router = useRouter();
 const { t } = useI18n();
 const localePath = useLocalePath();
+const { isLoggedIn, fetchUser } = useAuth();
 
 // Reactive states
 const status = ref(VERIFYING);
@@ -39,6 +41,12 @@ async function verifyToken(token: string) {
       status.value = SUCCESS;
       message.value = response.message;
       email.value = response.email;
+
+      // Refresh user state if already logged in
+      if (isLoggedIn.value) {
+        await fetchUser();
+      }
+
       // Redirect to login page after 3 seconds on success
       setTimeout(() => {
         router.push(localePath("/login"));

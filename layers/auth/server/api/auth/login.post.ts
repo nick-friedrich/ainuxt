@@ -85,6 +85,7 @@ export default defineEventHandler(async (event) => {
       email: user.email,
       name: user.name,
       roles: roles, // Return roles
+      emailVerifiedAt: user.emailVerifiedAt, // Include email verification timestamp
     };
 
   } catch (error: any) {

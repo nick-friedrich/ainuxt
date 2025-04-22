@@ -44,13 +44,15 @@ export function useAuth() {
     loading.value = true;
     error.value = null;
     try {
+      // Call login endpoint and update user state directly from response
       const { data, error: fetchError } = await useFetch<AuthUser>('/api/auth/login', {
         method: 'POST',
         body: { email, password },
       });
       if (fetchError.value) throw fetchError.value;
+      // Set user state directly from login response (includes emailVerifiedAt)
       user.value = data.value ?? null;
-      return true;
+      return !!user.value;
     } catch (err: any) {
       error.value = err?.data?.message || err?.message || 'Login failed.';
       user.value = null;
@@ -71,19 +73,9 @@ export function useAuth() {
       });
       if (fetchError.value) throw fetchError.value;
 
-      // Check if autoLogin is enabled in the response
-      if (data.value && data.value.autoLogin === true) {
-        // Set user data directly if we have enough information
-        if (data.value.userId && data.value.email) {
-          user.value = {
-            id: data.value.userId,
-            email: data.value.email,
-            roles: [] // Default roles, might need to be fetched
-          };
-        } else {
-          // If we don't have enough info, do a full login
-          await login(email, password);
-        }
+      // If auto-login is enabled, perform a proper login to fetch full user info
+      if (data.value?.autoLogin) {
+        await login(email, password);
       }
 
       return data.value;

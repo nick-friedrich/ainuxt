@@ -155,11 +155,6 @@ async function handleLogout() {
               {{ $t("layout.navigation.profile", "Profile") }}
             </NuxtLinkLocale>
           </li>
-          <li>
-            <NuxtLinkLocale to="/settings" @click="closeDropdown">
-              {{ $t("layout.navigation.settings", "Settings") }}
-            </NuxtLinkLocale>
-          </li>
           <li><hr class="border-base-300 my-1" /></li>
           <li>
             <a @click="handleLogout">{{

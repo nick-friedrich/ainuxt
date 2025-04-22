@@ -1,12 +1,15 @@
 <script setup lang="ts">
 // AI Generation Reference: See /ai/README.md for guidelines and patterns.
 import { useAuth } from "~/composables/useAuth";
+import { onServerPrefetch } from "vue";
 
 definePageMeta({
   middleware: ["auth"], // Apply the auth middleware
 });
 
-const { user } = useAuth();
+const { user, fetchUser } = useAuth();
+// Fetch user data on server before rendering to keep SSR and client in sync
+onServerPrefetch(fetchUser);
 </script>
 
 <template>

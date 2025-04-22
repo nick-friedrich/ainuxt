@@ -110,7 +110,7 @@ Resets the user's password using a valid token.
 
 Initiates the OTP (magic link) login process.
 
-- Body: `{ email }` (Optional: `{ email, locale }` if locale-specific emails are needed)
+- Body: `{ email, locale? }` (Optional locale to determine email language)
 - Returns: `{ message: 'OK' }` (Always returns OK for security reasons)
 - Notes:
   - Checks if the email exists in the database.
@@ -170,6 +170,7 @@ Redirects authenticated users away from guest-only pages.
 - **File:** `layers/auth/pages/profile.vue`
 - **Middleware:** `auth`
 - **Purpose:** Allows authenticated users to view and update their profile information (name, email) and change their password.
+- **Note:** Uses `onServerPrefetch(fetchUser)` in `profile.vue` to fetch user data during SSR and prevent hydration mismatches.
 
 #### `/forgot-password`
 
@@ -210,6 +211,7 @@ Redirects authenticated users away from guest-only pages.
 - **File:** `layers/auth/pages/dashboard.vue`
 - **Middleware:** `auth`
 - **Purpose:** A protected placeholder page accessible only to authenticated users. Displays user information and roles.
+- **Note:** Uses `onServerPrefetch(fetchUser)` in `dashboard.vue` to pre-fetch user data server-side and keep SSR in sync with client, avoiding hydration warnings.
 
 ## Composables
 
@@ -417,6 +419,10 @@ const resendVerificationEmail = async () => {
   }
 };
 ```
+
+### SSR Hydration
+
+- To avoid hydration mismatches on pages that depend on async data (like user state), use Vue's `onServerPrefetch(fetchUser)` within `<script setup>` alongside the `useAuth()` composable. This fetches required data during server-side rendering before client hydration.
 
 ## Translation Structure
 

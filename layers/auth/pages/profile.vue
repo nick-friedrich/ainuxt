@@ -1,11 +1,19 @@
 <!-- AI Generation Reference: See ~/_ai/README.md for guidelines and patterns. -->
 <script setup lang="ts">
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, onServerPrefetch } from "vue";
 import { z } from "zod";
 
 const { t, locale } = useI18n();
-const { user, loading: isLoading, isLoggedIn: isAuthenticated } = useAuth();
+const {
+  user,
+  loading: isLoading,
+  isLoggedIn: isAuthenticated,
+  fetchUser,
+} = useAuth();
 const router = useRouter();
+
+// Fetch user data on server before rendering to avoid hydration mismatch
+onServerPrefetch(fetchUser);
 
 // Redirect if not authenticated
 onMounted(() => {

@@ -6,10 +6,11 @@ definePageMeta({
 import { ref } from "vue";
 import { z } from "zod";
 import { useAuth } from "~/composables/useAuth";
-import { useI18n } from "#imports";
+import { useI18n, useLocalePath } from "#imports";
 import { useRouter } from "vue-router";
 
 const { t } = useI18n();
+const localePath = useLocalePath();
 const router = useRouter();
 const { login, loading, error } = useAuth(); // Removed isLoggedIn as it's not used here
 
@@ -41,7 +42,9 @@ async function onSubmit() {
   const ok = await login(form.value.email, form.value.password);
   if (ok) {
     success.value = true;
-    setTimeout(() => router.push("/"), 1000);
+    setTimeout(() => {
+      router.push(localePath("/"));
+    }, 1000);
   }
 }
 </script>

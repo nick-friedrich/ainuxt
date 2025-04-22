@@ -6,11 +6,12 @@ definePageMeta({
 import { ref } from "vue";
 import { z } from "zod";
 import { useAuth } from "~/composables/useAuth";
-import { useI18n } from "#imports";
+import { useI18n, useLocalePath } from "#imports";
 import { useRouter } from "vue-router";
 
 const { t, locale } = useI18n();
 const router = useRouter();
+const localePath = useLocalePath();
 const { register, loading, error } = useAuth();
 
 const form = ref({ email: "", password: "" });
@@ -57,7 +58,10 @@ async function onSubmit() {
 
     // Redirect to dashboard if auto-login is enabled, otherwise go to login page
     const redirectPath = response.autoLogin === true ? "/" : "/login";
-    setTimeout(() => router.push(redirectPath), 2000);
+    // Use localePath for locale-aware redirects
+    setTimeout(() => {
+      router.push(localePath(redirectPath));
+    }, 2000);
   }
 }
 </script>

@@ -2,7 +2,7 @@
 // AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { useI18n } from "#imports";
+import { useI18n, useLocalePath } from "#imports";
 
 // Status states
 const VERIFYING = "verifying";
@@ -12,6 +12,7 @@ const ERROR = "error";
 const route = useRoute();
 const router = useRouter();
 const { t } = useI18n();
+const localePath = useLocalePath();
 
 // Reactive states
 const status = ref(VERIFYING);
@@ -40,7 +41,7 @@ async function verifyToken(token: string) {
       email.value = response.email;
       // Redirect to login page after 3 seconds on success
       setTimeout(() => {
-        router.push("/login");
+        router.push(localePath("/login"));
       }, 3000);
     } else {
       throw new Error("Verification failed");

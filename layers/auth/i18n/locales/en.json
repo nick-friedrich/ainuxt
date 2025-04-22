@@ -69,7 +69,15 @@
       "verify_click_here": "Click here to verify your email address",
       "verify_email": "Verify Email",
       "verify_body": "Click the link below to verify your email address:",
-      "verify_link": "Verify Email"
+      "verify_link": "Verify Email",
+      "verify_success": "Your email has been successfully verified.",
+      "verify_redirect": "You will be redirected to the login page shortly.",
+      "verify_error": "An error occurred while verifying your email.",
+      "verify_expired_or_invalid": "The verification link has expired or is invalid.",
+      "verify_invalid_token": "Invalid verification token.",
+      "verify_missing_token": "Verification token is missing.",
+      "verify_in_progress": "Verifying your email address...",
+      "verify_go_to_login": "Go to login page"
     }
   },
   "common": {

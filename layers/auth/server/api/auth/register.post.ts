@@ -88,13 +88,20 @@ export default defineEventHandler(async (event) => {
 
     // 6. Send Verification Email using serverT and locale
     console.log('Sending verification email upon registration to:', newUser.email);
+
+    // Build verification URL with locale prefix if needed
+    // Default locale is excluded from URL (prefix_except_default strategy)
+    const defaultLocale = config.public.i18n?.defaultLocale || 'en';
+    const localePrefix = locale !== defaultLocale ? `/${locale}` : '';
+    const verifyUrl = `${config.public.applicationUrl}${localePrefix}/verify-email?token=${token}`;
+
     await sendEmail({
       to: newUser.email,
       subject: serverT('auth.email.verify_subject', {}, locale),
       html: `
         <p>${serverT('auth.email.verify_body', {}, locale)}</p>
         <p>
-          <a href="${config.public.applicationUrl}/verify-email?token=${token}">
+          <a href="${verifyUrl}">
             ${serverT('auth.email.verify_link', {}, locale)}
           </a>
         </p>

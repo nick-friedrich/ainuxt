@@ -64,7 +64,15 @@
       "verify_click_here": "Klicken Sie hier, um Ihre E-Mail-Adresse zu bestätigen",
       "verify_email": "E-Mail bestätigen",
       "verify_body": "Klicken Sie auf den Link unten, um Ihre E-Mail-Adresse zu bestätigen:",
-      "verify_link": "E-Mail bestätigen"
+      "verify_link": "E-Mail bestätigen",
+      "verify_success": "Ihre E-Mail-Adresse wurde erfolgreich bestätigt.",
+      "verify_redirect": "Sie werden in Kürze zur Anmeldeseite weitergeleitet.",
+      "verify_error": "Bei der Bestätigung Ihrer E-Mail-Adresse ist ein Fehler aufgetreten.",
+      "verify_expired_or_invalid": "Der Bestätigungslink ist abgelaufen oder ungültig.",
+      "verify_invalid_token": "Ungültiges Bestätigungstoken.",
+      "verify_missing_token": "Bestätigungstoken fehlt.",
+      "verify_in_progress": "Ihre E-Mail-Adresse wird bestätigt...",
+      "verify_go_to_login": "Zur Anmeldeseite"
     },
     "validation": {
       "name_required": "Name ist erforderlich",

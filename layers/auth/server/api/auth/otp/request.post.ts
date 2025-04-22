@@ -71,7 +71,9 @@ export default defineEventHandler(async (event) => {
       const config = useRuntimeConfig(event);
       // TODO: Determine the correct verification page path
       // Use applicationUrl like in forgot.post.ts
-      const verifyUrl = new URL('/verify-login', String(config.public.applicationUrl));
+      const defaultLocale = config.public.i18n?.defaultLocale || 'en';
+      const localePrefix = locale && locale !== defaultLocale ? `/${locale}` : '';
+      const verifyUrl = new URL(`${localePrefix}/verify-login`, String(config.public.applicationUrl));
       verifyUrl.searchParams.set('token', otpToken);
       const verifyLink = verifyUrl.toString();
 

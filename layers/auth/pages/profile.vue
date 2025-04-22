@@ -24,6 +24,7 @@ const verificationEmailSent = ref(false);
 const profileData = reactive({
   name: "",
   email: "",
+  confirmEmail: "",
 });
 
 // Password change form (separate from profile data)
@@ -40,6 +41,7 @@ watch(
     if (newUser) {
       profileData.name = newUser.name || "";
       profileData.email = newUser.email || "";
+      profileData.confirmEmail = newUser.email || "";
     }
   },
   { immediate: true }
@@ -52,6 +54,7 @@ const errors = reactive({
   currentPassword: "",
   newPassword: "",
   confirmPassword: "",
+  confirmEmail: "",
 });
 
 // Clear all validation errors
@@ -61,6 +64,7 @@ const clearErrors = () => {
   errors.currentPassword = "";
   errors.newPassword = "";
   errors.confirmPassword = "";
+  errors.confirmEmail = "";
   serverError.value = null;
   successMessage.value = null;
 };
@@ -71,14 +75,22 @@ const updateProfile = async () => {
   formStatus.value = "submitting";
 
   // Create validation schema
-  const profileSchema = z.object({
-    name: z
-      .string()
-      .min(1, { message: "auth.profile.validation.name_required" }),
-    email: z
-      .string()
-      .email({ message: "auth.profile.validation.email_invalid" }),
-  });
+  const profileSchema = z
+    .object({
+      name: z
+        .string()
+        .min(1, { message: "auth.profile.validation.name_required" }),
+      email: z
+        .string()
+        .email({ message: "auth.profile.validation.email_invalid" }),
+      confirmEmail: z
+        .string()
+        .email({ message: "auth.profile.validation.email_invalid" }),
+    })
+    .refine((data) => data.email === data.confirmEmail, {
+      message: "auth.profile.validation.emails_must_match",
+      path: ["confirmEmail"],
+    });
 
   try {
     // Validate the form data
@@ -267,8 +279,22 @@ const resendVerificationEmail = async () => {
                 :label="$t('auth.profile.email')"
                 :placeholder="$t('auth.profile.email_placeholder')"
                 :error="errors.email"
-                class="mb-6"
+                class="mb-4"
               />
+
+              <!-- Confirm Email field -->
+              <FormTextField
+                id="confirmEmail"
+                v-model="profileData.confirmEmail"
+                type="email"
+                :label="$t('auth.profile.confirm_email')"
+                :placeholder="$t('auth.profile.confirm_email_placeholder')"
+                :error="errors.confirmEmail"
+                class="mb-4"
+              />
+              <p class="text-sm text-gray-500 mb-4">
+                {{ $t("auth.profile.email_confirmation_info") }}
+              </p>
 
               <!-- Submit button -->
               <FormButton

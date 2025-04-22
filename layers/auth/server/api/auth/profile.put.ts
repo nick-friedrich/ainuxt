@@ -1,13 +1,20 @@
 // AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
 import { z } from 'zod';
+import { defineEventHandler, readBody, createError } from 'h3';
 import { getUserFromSession } from '../../utils/auth';
 import db from '@layers/database/db';
 
-// Validation schema for profile data
-const profileSchema = z.object({
-  name: z.string().min(1, { message: 'auth.profile.validation.name_required' }),
-  email: z.string().email({ message: 'auth.profile.validation.email_invalid' })
-});
+// Validation schema for profile data (with confirmation)
+const profileSchema = z
+  .object({
+    name: z.string().min(1, { message: 'auth.profile.validation.name_required' }),
+    email: z.string().email({ message: 'auth.profile.validation.email_invalid' }),
+    confirmEmail: z.string().email({ message: 'auth.profile.validation.email_invalid' })
+  })
+  .refine((data) => data.email === data.confirmEmail, {
+    message: 'auth.profile.validation.emails_must_match',
+    path: ['confirmEmail'],
+  });
 
 export default defineEventHandler(async (event) => {
   try {

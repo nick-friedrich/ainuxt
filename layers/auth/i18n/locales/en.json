@@ -28,7 +28,8 @@
       "password_minLength": "Password must be at least {min} characters long.",
       "name_required": "Name is required",
       "current_password_required": "Current password is required",
-      "passwords_must_match": "Passwords don't match"
+      "passwords_must_match": "Passwords don't match",
+      "emails_must_match": "Email addresses must match"
     },
     "profile": {
       "title": "Profile",
@@ -42,6 +43,9 @@
       "update_success": "Profile updated successfully",
       "update_error": "Failed to update profile",
       "email_verification_required": "Profile updated. Please verify your new email address.",
+      "confirm_email": "Confirm Email",
+      "confirm_email_placeholder": "Repeat your new email address",
+      "email_confirmation_info": "Please enter your new email address again to confirm it's correct.",
       "email_already_exists": "This email is already registered with another account",
       "unauthorized": "You must be logged in to update your profile",
       "validation_error": "Please correct the errors in the form",
@@ -62,7 +66,15 @@
       "email_already_verified": "Your email address is already verified.",
       "resend_verification": "Resend verification email",
       "verification_email_sent": "Verification email sent successfully. Please check your inbox.",
-      "verification_email_error": "Unable to send verification email. Please try again later."
+      "verification_email_error": "Unable to send verification email. Please try again later.",
+      "validation": {
+        "name_required": "Name is required",
+        "email_invalid": "Invalid email address",
+        "current_password_required": "Current password is required",
+        "password_min_length": "Password must be at least 8 characters",
+        "passwords_must_match": "Passwords don't match",
+        "emails_must_match": "Email addresses must match"
+      }
     },
     "email": {
       "verify_subject": "Verify your email address",

@@ -38,6 +38,6 @@
         "error": "Failed to send message. Please try again later.",
         "submitting": "Sending..."
       }
-    },
+    }
   }
 }

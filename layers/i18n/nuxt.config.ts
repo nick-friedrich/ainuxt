@@ -4,7 +4,6 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   extends: ['../base'],
   modules: ['@nuxtjs/i18n'],
-
   i18n: {
     locales: [
       {

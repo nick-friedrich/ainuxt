@@ -10,6 +10,7 @@ const registerBodySchema = z.object({
   password: z.string().min(8, { message: 'validation.password.minLength' }), // Add key like this to validation.ts
 });
 
+// TODO: Send verification email, therefore we need to refactor our i18n solution from send-verification-mail.post.ts
 export default defineEventHandler(async (event) => {
   // 1. Validate Body
   const bodyResult = await readValidatedBody(event, registerBodySchema.safeParse);

@@ -9,9 +9,10 @@
     "layer:dev": "nuxt dev"
   },
   "dependencies": {
+    "@nuxtjs/i18n": "9.5.3",
+    "glob": "^11.0.1",
     "nuxt": "^3.16.2",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0",
-    "@nuxtjs/i18n": "9.5.3"
+    "vue-router": "^4.5.0"
   }
 }

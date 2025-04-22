@@ -5,7 +5,6 @@
   "validation": {
     "required": "This field is required",
     "invalid_email": "Invalid email address",
-    // Contact Form Specific
     "contact": {
       "name": {
         "required": "Name is required"
@@ -44,6 +43,6 @@
         "error": "Failed to send message. Please try again later.",
         "submitting": "Sending..."
       }
-    },
+    }
   }
 }

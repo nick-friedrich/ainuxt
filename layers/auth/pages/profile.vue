@@ -96,21 +96,35 @@ const updateProfile = async () => {
     // Validate the form data
     const validData = profileSchema.parse(profileData);
 
-    // Submit to API
-    const response = await $fetch("/api/auth/profile", {
+    // Submit to API and get updated user and message key
+    type ProfileResponse = {
+      user: {
+        id: string;
+        name: string;
+        email: string;
+        emailVerifiedAt: string | null;
+      };
+      message: string;
+    };
+    const response = await $fetch<ProfileResponse>("/api/auth/profile", {
       method: "PUT",
       body: validData,
     });
 
-    // Handle success
+    // Handle success: display translated message
     formStatus.value = "success";
-    successMessage.value = t("auth.profile.update_success");
+    successMessage.value = t(response.message);
 
-    // Update user data in auth state
+    // Immediately update local auth user state
     if (user.value) {
-      user.value.name = validData.name;
-      user.value.email = validData.email;
+      user.value.name = response.user.name;
+      user.value.email = response.user.email;
+      user.value.emailVerifiedAt = response.user.emailVerifiedAt
+        ? new Date(response.user.emailVerifiedAt)
+        : undefined;
     }
+    // Reset confirmEmail field to match new email
+    profileData.confirmEmail = response.user.email;
   } catch (error: any) {
     formStatus.value = "error";
 

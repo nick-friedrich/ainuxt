@@ -80,6 +80,31 @@ Updates the user's password.
   - Verifies current password before allowing change
   - Requires minimum password length (8 characters)
 
+### POST /api/auth/password/forgot
+
+Initiates the password reset process by sending an email with a reset link.
+
+- Body: `{ email, locale? }` (locale defaults to 'en')
+- Returns: Success message
+- Notes:
+  - Checks if the email exists in the database.
+  - Generates a unique, time-limited reset token.
+  - Sends an email (using `useMail`) with a link like `/reset-password?token=...`.
+  - Email content is translated based on the provided locale.
+
+### POST /api/auth/password/reset
+
+Resets the user's password using a valid token.
+
+- Body: `{ token, newPassword, confirmPassword, locale? }` (locale defaults to 'en')
+- Returns: Success message
+- Notes:
+  - Verifies the token is valid and not expired.
+  - Validates `newPassword` and `confirmPassword` match and meet length requirements.
+  - Updates the user's password hash in the database.
+  - Invalidates the used token.
+  - Sends a confirmation email (using `useMail`) to the user.
+
 ## Middleware
 
 ### auth.ts
@@ -95,6 +120,55 @@ Redirects authenticated users away from guest-only pages.
 
 - Redirects to dashboard if user is already authenticated
 - Use in page meta: `definePageMeta({ middleware: ['guest'] })`
+
+### Pages
+
+#### `/login`
+
+- **File:** `layers/auth/pages/login.vue`
+- **Middleware:** `guest`
+- **Purpose:** Allows existing users to log in.
+
+#### `/register`
+
+- **File:** `layers/auth/pages/register.vue`
+- **Middleware:** `guest`
+- **Purpose:** Allows new users to create an account.
+
+#### `/profile`
+
+- **File:** `layers/auth/pages/profile.vue`
+- **Middleware:** `auth`
+- **Purpose:** Allows authenticated users to view and update their profile information (name, email) and change their password.
+
+#### `/forgot-password`
+
+- **File:** `layers/auth/pages/forgot-password.vue`
+- **Middleware:** `guest`
+- **Purpose:** Allows users to request a password reset email.
+- **Process:**
+  - User enters their email address.
+  - Form submits to `POST /api/auth/password/forgot`.
+  - On success, a message indicates that an email has been sent (if the email exists).
+  - Includes a link back to the login page.
+
+#### `/reset-password`
+
+- **File:** `layers/auth/pages/reset-password.vue`
+- **Middleware:** `guest`
+- **Purpose:** Allows users to set a new password using a token received via email.
+- **Process:**
+  - Page expects a `token` query parameter (`/reset-password?token=...`).
+  - User enters and confirms their new password.
+  - Form submits to `POST /api/auth/password/reset` with the token and new password.
+  - On success, a message confirms the password change, and the user is redirected to the login page after a short delay.
+  - Displays errors if the token is invalid/expired or passwords don't match/meet requirements.
+
+#### `/dashboard`
+
+- **File:** `layers/auth/pages/dashboard.vue`
+- **Middleware:** `auth`
+- **Purpose:** A protected placeholder page accessible only to authenticated users. Displays user information and roles.
 
 ## Composables
 

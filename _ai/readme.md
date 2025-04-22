@@ -120,6 +120,7 @@ This directory contains example code snippets or mini-projects demonstrating com
 
 - Always try to run the commands in the root of the project.
 - Always try to use pnpm as package manager.
+- - When running scripts defined in a specific workspace package, use `pnpm -F <packageName> <script>` (e.g., `pnpm -F @db/psql prisma migrate dev`).
 - Don't edit package.json files to add new dependencies, run pnpm add <package> instead.
 
 - You might find ai.md files in some folders. These are specific instructions for this folder/package which needs to be followed.

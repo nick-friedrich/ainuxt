@@ -77,6 +77,16 @@ async function onSubmit() {
             required
           />
 
+          <!-- Forgot Password Link -->
+          <div class="text-right">
+            <NuxtLink
+              :to="localePath('/forgot-password')"
+              class="link-hover link text-sm"
+            >
+              {{ t("page_login.forgot_password") }}
+            </NuxtLink>
+          </div>
+
           <div class="card-actions justify-end pt-4">
             <!-- Use BaseButton -->
             <FormButton

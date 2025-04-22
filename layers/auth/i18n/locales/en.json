@@ -6,7 +6,8 @@
     "password_placeholder": "••••••••",
     "submit": "Login",
     "success": "Login successful! Redirecting...",
-    "no_account": "Don't have an account? Register"
+    "no_account": "Don't have an account? Register",
+    "forgot_password": "Forgot Password?"
   },
   "page_register": {
     "title": "Register",
@@ -16,6 +17,22 @@
     "submit": "Register",
     "success": "Registration successful! Redirecting...",
     "have_account": "Already have an account? Login"
+  },
+  "page_forgot_password": {
+    "title": "Forgot Password",
+    "instructions": "Enter your email address below and we'll send you a link to reset your password.",
+    "email": "Email Address",
+    "email_placeholder": "Enter your email address",
+    "submit": "Send Reset Link",
+    "back_to_login": "Back to Login"
+  },
+  "page_reset_password": {
+    "title": "Reset Password",
+    "new_password": "New Password",
+    "new_password_placeholder": "Enter your new password (min. 8 characters)",
+    "confirm_password": "Confirm New Password",
+    "confirm_password_placeholder": "Repeat your new password",
+    "submit": "Reset Password"
   },
   "auth": {
     "register": {
@@ -90,6 +107,18 @@
       "verify_missing_token": "Verification token is missing.",
       "verify_in_progress": "Verifying your email address...",
       "verify_go_to_login": "Go to login page"
+    },
+    "password": {
+      "forgot_success": "If an account with that email exists, a password reset link has been sent.",
+      "forgot_error": "Could not process the request. Please try again later.",
+      "reset_email_sent": "If an account with that email exists, a password reset link has been sent.",
+      "reset_subject": "Reset Your Password",
+      "reset_body": "Click the link below to reset your password. This link is valid for one hour.",
+      "reset_link": "Reset Password",
+      "reset_invalid_token": "The password reset link is invalid or has expired.",
+      "reset_success": "Your password has been successfully reset. Redirecting to login...",
+      "reset_error": "An error occurred while resetting your password. Please try again.",
+      "reset_mismatch": "Passwords do not match."
     }
   },
   "common": {

@@ -6,7 +6,8 @@
     "password_placeholder": "••••••••",
     "submit": "Anmelden",
     "success": "Anmeldung erfolgreich! Weiterleitung...",
-    "no_account": "Noch kein Konto? Registrieren"
+    "no_account": "Noch kein Konto? Registrieren",
+    "forgot_password": "Passwort vergessen?"
   },
   "page_register": {
     "title": "Registrieren",
@@ -17,43 +18,59 @@
     "success": "Registrierung erfolgreich! Weiterleitung...",
     "have_account": "Bereits ein Konto? Anmelden"
   },
+  "page_forgot_password": {
+    "title": "Passwort vergessen",
+    "instructions": "Geben Sie unten Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
+    "email": "E-Mail-Adresse",
+    "email_placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+    "submit": "Link zum Zurücksetzen senden",
+    "back_to_login": "Zurück zum Login"
+  },
+  "page_reset_password": {
+    "title": "Passwort zurücksetzen",
+    "new_password": "Neues Passwort",
+    "new_password_placeholder": "Geben Sie Ihr neues Passwort ein (mind. 8 Zeichen)",
+    "confirm_password": "Neues Passwort bestätigen",
+    "confirm_password_placeholder": "Wiederholen Sie Ihr neues Passwort",
+    "submit": "Passwort zurücksetzen"
+  },
   "auth": {
     "profile": {
       "title": "Profil",
       "personal_info": "Persönliche Informationen",
       "name": "Name",
-      "name_placeholder": "Ihr vollständiger Name",
+      "name_placeholder": "Dein vollständiger Name",
       "email": "E-Mail",
-      "email_placeholder": "Ihre E-Mail-Adresse",
+      "email_placeholder": "Deine E-Mail-Adresse",
       "update_profile": "Profil aktualisieren",
       "updating": "Aktualisiere...",
       "update_success": "Profil erfolgreich aktualisiert",
       "update_error": "Fehler beim Aktualisieren des Profils",
-      "email_verification_required": "Profil aktualisiert. Bitte bestätigen Sie Ihre neue E-Mail-Adresse.",
+      "email_verification_required": "Profil aktualisiert. Bitte bestätige deine neue E-Mail-Adresse.",
       "email_already_exists": "Diese E-Mail ist bereits mit einem anderen Konto registriert",
-      "unauthorized": "Sie müssen angemeldet sein, um Ihr Profil zu aktualisieren",
-      "validation_error": "Bitte korrigieren Sie die Fehler im Formular",
+      "unauthorized": "Du musst angemeldet sein, um dein Profil zu aktualisieren",
+      "validation_error": "Bitte korrigiere die Fehler im Formular",
       "server_error": "Ein Fehler ist auf dem Server aufgetreten",
       "change_password": "Passwort ändern",
       "current_password": "Aktuelles Passwort",
       "new_password": "Neues Passwort",
       "new_password_placeholder": "Mindestens 8 Zeichen",
       "confirm_password": "Passwort bestätigen",
-      "confirm_password_placeholder": "Wiederholen Sie Ihr neues Passwort",
-      "password_placeholder": "Geben Sie Ihr aktuelles Passwort ein",
+      "confirm_password_placeholder": "Wiederhole dein neues Passwort",
+      "password_placeholder": "Gib dein aktuelles Passwort ein",
       "update_password": "Passwort aktualisieren",
       "password_update_success": "Passwort erfolgreich aktualisiert",
       "password_update_error": "Fehler beim Aktualisieren des Passworts",
       "password_not_set": "Für dieses Konto wurde kein Passwort festgelegt",
       "invalid_current_password": "Aktuelles Passwort ist nicht korrekt",
-      "email_not_verified": "Ihre E-Mail-Adresse wurde nicht verifiziert.",
-      "email_already_verified": "Ihre E-Mail-Adresse ist bereits verifiziert.",
+      "email_not_verified": "Deine E-Mail-Adresse wurde nicht verifiziert.",
+      "email_already_verified": "Deine E-Mail-Adresse ist bereits verifiziert.",
       "resend_verification": "Bestätigungs-E-Mail erneut senden",
-      "verification_email_sent": "Bestätigungs-E-Mail erfolgreich gesendet. Bitte überprüfen Sie Ihren Posteingang.",
-      "verification_email_error": "Die Bestätigungs-E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.",
+      "verification_email_sent": "Bestätigungs-E-Mail erfolgreich gesendet. Bitte überprüfe deinen Posteingang.",
+      "verification_email_error": "Die Bestätigungs-E-Mail konnte nicht gesendet werden. Bitte versuche es später erneut.",
       "confirm_email": "E-Mail bestätigen",
-      "confirm_email_placeholder": "Wiederholen Sie Ihre neue E-Mail-Adresse",
-      "email_confirmation_info": "Bitte geben Sie Ihre neue E-Mail-Adresse erneut ein, um sicherzustellen, dass sie korrekt ist.",
+      "confirm_email_placeholder": "Wiederhole deine neue E-Mail-Adresse",
+      "email_confirmation_info": "Bitte gib deine neue E-Mail-Adresse erneut ein, um sicherzustellen, dass sie korrekt ist.",
       "validation": {
         "name_required": "Name ist erforderlich",
         "email_invalid": "Ungültige E-Mail-Adresse",
@@ -64,18 +81,18 @@
       }
     },
     "email": {
-      "verify_subject": "Bestätigen Sie Ihre E-Mail-Adresse",
-      "verify_click_here": "Klicken Sie hier, um Ihre E-Mail-Adresse zu bestätigen",
+      "verify_subject": "Bestätige deine E-Mail-Adresse",
+      "verify_click_here": "Klicke hier, um deine E-Mail-Adresse zu bestätigen",
       "verify_email": "E-Mail bestätigen",
-      "verify_body": "Klicken Sie auf den Link unten, um Ihre E-Mail-Adresse zu bestätigen:",
+      "verify_body": "Klicke auf den Link unten, um deine E-Mail-Adresse zu bestätigen:",
       "verify_link": "E-Mail bestätigen",
-      "verify_success": "Ihre E-Mail-Adresse wurde erfolgreich bestätigt.",
-      "verify_redirect": "Sie werden in Kürze zur Anmeldeseite weitergeleitet.",
-      "verify_error": "Bei der Bestätigung Ihrer E-Mail-Adresse ist ein Fehler aufgetreten.",
+      "verify_success": "Deine E-Mail-Adresse wurde erfolgreich bestätigt.",
+      "verify_redirect": "Du wirst in Kürze zur Anmeldeseite weitergeleitet.",
+      "verify_error": "Bei der Bestätigung deiner E-Mail-Adresse ist ein Fehler aufgetreten.",
       "verify_expired_or_invalid": "Der Bestätigungslink ist abgelaufen oder ungültig.",
       "verify_invalid_token": "Ungültiges Bestätigungstoken.",
       "verify_missing_token": "Bestätigungstoken fehlt.",
-      "verify_in_progress": "Ihre E-Mail-Adresse wird bestätigt...",
+      "verify_in_progress": "Deine E-Mail-Adresse wird bestätigt...",
       "verify_go_to_login": "Zur Anmeldeseite"
     },
     "validation": {
@@ -87,8 +104,20 @@
     },
     "register": {
       "error_email_exists": "Ein Konto mit dieser E-Mail-Adresse existiert bereits.",
-      "success_verification_sent": "Registrierung erfolgreich! Bitte überprüfen Sie Ihre E-Mails, um Ihr Konto zu bestätigen.",
-      "error_generic": "Registrierung fehlgeschlagen. Bitte versuchen Sie es später erneut."
+      "success_verification_sent": "Registrierung erfolgreich! Bitte überprüfe deine E-Mails, um dein Konto zu bestätigen.",
+      "error_generic": "Registrierung fehlgeschlagen. Bitte versuche es später erneut."
+    },
+    "password": {
+      "forgot_success": "Falls ein Konto mit dieser E-Mail existiert, wurde ein Link zum Zurücksetzen des Passworts gesendet.",
+      "forgot_error": "Die Anfrage konnte nicht verarbeitet werden. Bitte versuche es später erneut.",
+      "reset_email_sent": "Falls ein Konto mit dieser E-Mail existiert, wurde ein Link zum Zurücksetzen des Passworts gesendet.",
+      "reset_subject": "Setze dein Passwort zurück",
+      "reset_body": "Klicke auf den Link unten, um dein Passwort zurückzusetzen. Dieser Link ist eine Stunde gültig.",
+      "reset_link": "Passwort zurücksetzen",
+      "reset_invalid_token": "Der Link zum Zurücksetzen des Passworts ist ungültig oder abgelaufen.",
+      "reset_success": "Dein Passwort wurde erfolgreich zurückgesetzt. Weiterleitung zum Login...",
+      "reset_error": "Beim Zurücksetzen deines Passworts ist ein Fehler aufgetreten. Bitte versuche es erneut.",
+      "reset_mismatch": "Die Passwörter stimmen nicht überein."
     }
   },
   "common": {

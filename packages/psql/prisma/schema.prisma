@@ -35,6 +35,10 @@ model User {
   otpToken                 String?   // OTP token (could be hashed)
   otpTokenExpiresAt        DateTime? // Expiry for the OTP token
 
+  // Password Reset
+  passwordResetToken         String?   @unique // Token sent for password reset
+  passwordResetTokenExpiresAt DateTime? // Expiry for the password reset token
+
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   deletedAt      DateTime? // Keeping optional soft delete

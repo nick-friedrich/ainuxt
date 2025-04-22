@@ -4,45 +4,29 @@ import db from '@layers/database/db';
 import crypto from 'node:crypto';
 import { sendEmail } from '@layers/mail/mail';
 
-
-import * as en from '../../../i18n/locales/en.json'
-import * as de from '../../../i18n/locales/de.json'
-
-const translations = {
-  en: en,
-  de: de,
-} as const;
-
-type TranslationParams = Record<string, string | number>;
-
-// Helper to access nested properties by dot notation
-function getNestedValue(obj: any, path: string): string {
-  const keys = path.split('.');
-  return keys.reduce((o, key) => (o && o[key] !== undefined) ? o[key] : undefined, obj) || path;
-}
-
-function t(key: string, params: TranslationParams = {}, locale = 'en') {
-  let translation = getNestedValue(translations[locale as keyof typeof translations], key) ||
-    getNestedValue(translations.en, key) ||
-    key;
-
-  Object.keys(params).forEach(param => {
-    translation = translation.replace(new RegExp(`{${param}}`, 'g'), String(params[param]));
-  });
-  return translation;
-}
-
 export default defineEventHandler(async (event) => {
-  // Get local from request, we send it with the request in the body
-  const body = await readBody(event);
-  const locale = body.locale || 'en';
-  console.log('Sending verification email');
+  // Get locale from request body for email content only
+  const body = await readBody(event).catch(() => ({}));
+  const emailLocale = body.locale || 'en'; // Used specifically for the email
+
+  console.log('Sending verification email with locale:', emailLocale);
   const config = useRuntimeConfig();
+
+  // Access the server-side translation function from the event context
+  const serverT = event.context.t;
+  if (!serverT) {
+    console.error('Server translation function (event.context.t) not found!');
+    throw createError({
+      statusCode: 500,
+      message: 'Internal Server Error: Translation service unavailable' // Keep this generic
+    });
+  }
 
   try {
     // Get the authenticated user
     const user = await getUserFromSession(event);
     if (!user) {
+      // Throw error with the key, client will translate
       throw createError({
         statusCode: 401,
         message: 'auth.profile.unauthorized'
@@ -52,6 +36,7 @@ export default defineEventHandler(async (event) => {
     // Check if email is already verified
     if (user.emailVerifiedAt) {
       console.log('Email already verified');
+      // Return message key, client will translate
       return {
         message: 'auth.profile.email_already_verified'
       };
@@ -71,35 +56,35 @@ export default defineEventHandler(async (event) => {
       }
     });
 
-    // Send verification email
-    // Note: In a real implementation, you would integrate with the mail layer here
-    // await sendVerificationEmail(user.email, token);
+    // Send verification email using context translation function for email content
     console.log('Sending verification email to:', user.email);
     await sendEmail({
       to: user.email,
-      subject: t('auth.email.verify_subject', {}, locale),
+      subject: serverT('auth.email.verify_subject', {}, emailLocale),
       html: `
-      <p>${t('auth.email.verify_body', {}, locale)}</p>
+      <p>${serverT('auth.email.verify_body', {}, emailLocale)}</p>
       <p>
       <a href="${config.public.applicationUrl}/verify-email?token=${token}">
-      ${t('auth.email.verify_link', {}, locale)}
+      ${serverT('auth.email.verify_link', {}, emailLocale)}
       </a>
       </p>
       `
     });
 
-    // For now, we'll just log the token
     console.log(`Verification token for ${user.email}: ${token}`);
 
+    // Return success message key, client will translate
     return {
       message: 'auth.profile.verification_email_sent'
     };
   } catch (error: any) {
     if (error.statusCode) {
+      // Just re-throw the error; client will handle translation of the message key
       throw error;
     }
 
     console.error('Email verification error:', error);
+    // Throw error with the key, client will translate
     throw createError({
       statusCode: 500,
       message: 'auth.profile.verification_email_error'

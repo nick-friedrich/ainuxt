@@ -88,6 +88,8 @@ This directory contains example code snippets or mini-projects demonstrating com
 
 - **Internationalization Strategy:** Each layer should manage its own translations using JSON files rather than centralizing them in the i18n layer. This promotes modularity and keeps translations close to where they're used.
 
+- **Server-Side Translations**: A custom Nitro plugin in the `i18n` layer (`layers/i18n/server/plugins/0.translations.server.ts`) handles server-side translations (e.g., for emails). It scans all layers/apps for locale JSON files, merges them, and injects a `t` function into the H3 event context (`event.context.t`). This is a workaround for limitations with using `@nuxtjs/i18n` directly in server routes.
+
 - **Layer Exports:** When creating functionality in a layer that should be imported by other layers or apps, define it in the `exports` field of the layer's package.json. For example:
 
   ```json

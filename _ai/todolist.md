@@ -43,6 +43,7 @@
   - [x] Configure basic translation structure with locale files
   - [x] Set up English and German translations
   - [x] Add `layer:dev` script command for generating type definitions
+  - [x] Implement server-side translation plugin (`layers/i18n/server/plugins/0.translations.server.ts`) as a workaround for server route limitations.
   - [ ] Document usage in applications
 
 - [x] Update `packages/psql` authentication models:

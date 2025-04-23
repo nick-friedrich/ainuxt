@@ -1,17 +1,20 @@
 {
-  "name": "@layers/styling",
+  "name": "@layers/content",
   "version": "0.0.1",
   "private": true,
   "type": "module",
   "aiReference": "See ~/_ai/README.md for guidelines and patterns",
   "main": "./nuxt.config.ts",
-  "devDependencies": {
-    "tailwindcss": "^4.1.4",
-    "@tailwindcss/vite": "^4.1.4",
-    "@tailwindcss/typography": "^0.5.16",
-    "daisyui": "^5.0.23",
+  "scripts": {
+    "layer:dev": "nuxt dev"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0",
     "nuxt": "^3.16.2",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^12.2.3"
   }
 }

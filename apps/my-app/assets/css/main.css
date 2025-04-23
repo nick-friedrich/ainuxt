@@ -1,3 +1,4 @@
 /* AI Generation Reference: See ~/_ai/README.md for guidelines and patterns. */
 @import "tailwindcss" source("../../../../");
 @plugin "daisyui";
+@plugin "@tailwindcss/typography";

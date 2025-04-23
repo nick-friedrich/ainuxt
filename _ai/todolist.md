@@ -124,6 +124,12 @@
     - [x] Add necessary i18n translations for OTP flow
     - [x] Update auth documentation (`_ai/auth.md`)
 
+- [ ] Implement the `@layers/content` layer:
+  - [ ] Define the functionality and requirements for content management
+  - [ ] Implement necessary components and utilities
+  - [ ] Configure appropriate data models and API endpoints
+  - [ ] Create documentation for content layer usage
+
 ## Lessons Learned
 
 - [x] Use consistent database access patterns (`db` from '@layers/database/db' instead of direct 'prisma' usage)

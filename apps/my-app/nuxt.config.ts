@@ -50,8 +50,14 @@ export default defineNuxtConfig({
     // '../../layers/database', // Path relative to this nuxt.config.ts
 
     '../../layers/contact',
-
+    '../../layers/content',
   ],
+
+  experimental: {
+    componentIslands: {
+      selectiveClient: 'deep'
+    }
+  },
 
   i18n: {
     defaultLocale: 'en',

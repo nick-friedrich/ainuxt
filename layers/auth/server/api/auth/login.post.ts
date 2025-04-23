@@ -84,6 +84,9 @@ export default defineEventHandler(async (event) => {
       id: user.id,
       email: user.email,
       name: user.name,
+      username: user.username,
+      avatarUrl: user.avatarUrl,
+      acceptedMarketing: user.acceptedMarketing,
       roles: roles, // Return roles
       emailVerifiedAt: user.emailVerifiedAt, // Include email verification timestamp
     };

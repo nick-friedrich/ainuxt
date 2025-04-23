@@ -25,6 +25,9 @@ export default defineEventHandler(async (event) => {
       id: user.id,
       email: user.email,
       name: user.name,
+      username: user.username,
+      avatarUrl: user.avatarUrl,
+      acceptedMarketing: user.acceptedMarketing,
       emailVerifiedAt: user.emailVerifiedAt,
       roles: user.roles, // Roles are already included from validateSessionToken
     };

@@ -6,9 +6,9 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
-  moduleFormat = "esm"                     // or `"cjs"` for CommonJS
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "esm" // or `"cjs"` for CommonJS
 }
 
 datasource db {
@@ -21,27 +21,32 @@ datasource db {
 
 // Basic User Model (Customize for your needs)
 model User {
-  id             String    @id @default(cuid())
-  email          String    @unique
-  hashedPassword String?   // Optional as planned
-  name           String?
+  id             String  @id @default(cuid())
+  email          String  @unique
+  authProvider   String? @default("password")
+  hashedPassword String?
+
+  name              String?
+  avatarUrl         String?
+  username          String? @unique
+  acceptedMarketing Boolean @default(false)
 
   // Email Verification
-  emailVerifiedAt          DateTime? // Timestamp when email was verified
-  emailVerifyToken         String?   @unique // Token sent for verification
+  emailVerifiedAt           DateTime? // Timestamp when email was verified
+  emailVerifyToken          String?   @unique // Token sent for verification
   emailVerifyTokenExpiresAt DateTime? // Expiry for the verification token
 
   // OTP / 2FA / Password Reset
-  otpToken                 String?   // OTP token (could be hashed)
-  otpTokenExpiresAt        DateTime? // Expiry for the OTP token
+  otpToken          String? // OTP token (could be hashed)
+  otpTokenExpiresAt DateTime? // Expiry for the OTP token
 
   // Password Reset
-  passwordResetToken         String?   @unique // Token sent for password reset
+  passwordResetToken          String?   @unique // Token sent for password reset
   passwordResetTokenExpiresAt DateTime? // Expiry for the password reset token
 
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  deletedAt      DateTime? // Keeping optional soft delete
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // Keeping optional soft delete
 
   // Relations
   sessions Session[]
@@ -51,7 +56,7 @@ model User {
 model Session {
   id        String   @id // SHA-256 hash of token
   expiresAt DateTime
-  userId    String   // Changed to String to match User ID
+  userId    String // Changed to String to match User ID
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -59,16 +64,15 @@ model Session {
 }
 
 model Role {
-  id    Int    @id @default(autoincrement())
-  name  String @unique // e.g., "ADMIN", "USER"
-
+  id   Int    @id @default(autoincrement())
+  name String @unique // e.g., "ADMIN", "USER"
 
   users UserRole[]
 }
 
 model UserRole {
-  userId     String   // Changed to String to match User ID
-  roleId     Int      // Role ID remains Int
+  userId     String // Changed to String to match User ID
+  roleId     Int // Role ID remains Int
   assignedAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -77,6 +81,18 @@ model UserRole {
   @@id([userId, roleId]) // Composite primary key
   @@index([roleId]) // Optional: Index for querying by role
 }
+
+// model BlogPost {
+//   id        Int      @id @default(autoincrement())
+//   title     String
+//   category  String   @default("general")
+//   slug      String   @unique
+//   published Boolean  @default(false)
+//   content   String
+//   keywords  String[]
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
 
 // Remove old example Post model if present
 // model Post { ... }

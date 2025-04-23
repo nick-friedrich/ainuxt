@@ -8,6 +8,9 @@ export type AuthUser = {
   id: string;
   email: string;
   name?: string;
+  username?: string;
+  avatarUrl?: string;
+  acceptedMarketing?: boolean;
   roles: Role[];
   emailVerifiedAt?: Date;
 } | null;

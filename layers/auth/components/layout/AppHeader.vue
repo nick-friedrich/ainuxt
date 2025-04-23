@@ -42,6 +42,15 @@ async function handleLogout() {
   }
   // Handle logout failure if needed
 }
+
+// Handle avatar loading errors
+function handleAvatarError(event: Event) {
+  // Hide the image if it fails to load
+  if (event.target instanceof HTMLImageElement) {
+    event.target.style.display = "none";
+  }
+  // The fallback text will show since the image is hidden
+}
 </script>
 
 <template>
@@ -133,17 +142,43 @@ async function handleLogout() {
 
       <!-- User Dropdown Menu (if logged in) -->
       <div v-if="isLoggedIn" class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-circle btn-primary">
-          <!-- Placeholder: Use user?.name or initial -->
-          <span class="text-xl">{{
-            user?.email?.charAt(0).toUpperCase() || "U"
-          }}</span>
+        <div
+          tabindex="0"
+          role="button"
+          class="btn btn-circle btn-primary overflow-hidden p-0"
+        >
+          <!-- Use avatar if available, otherwise show initial -->
+          <img
+            v-if="user?.avatarUrl"
+            :src="user.avatarUrl"
+            :alt="user?.name || user?.email"
+            class="w-full h-full object-cover"
+            @error="handleAvatarError"
+          />
+          <span
+            v-else
+            class="inline-flex items-center justify-center w-full h-full text-xl"
+            >{{
+              user?.name?.charAt(0).toUpperCase() ||
+              user?.username?.charAt(0).toUpperCase() ||
+              user?.email?.charAt(0).toUpperCase() ||
+              "U"
+            }}</span
+          >
         </div>
         <ul
           tabindex="0"
           class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[50] mt-3 w-52 p-2 shadow"
         >
-          <li class="p-2 font-semibold">{{ user?.email }}</li>
+          <li class="p-2 font-semibold">
+            {{ user?.name || user?.username || user?.email }}
+          </li>
+          <li
+            v-if="user?.email && (user?.name || user?.username)"
+            class="px-2 text-xs text-base-content/70"
+          >
+            {{ user?.email }}
+          </li>
           <li><hr class="border-base-300 my-1" /></li>
           <li>
             <NuxtLinkLocale to="/dashboard" @click="closeDropdown">

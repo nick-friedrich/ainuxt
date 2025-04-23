@@ -3,6 +3,18 @@
 import { ref, reactive, onMounted, onServerPrefetch } from "vue";
 import { z } from "zod";
 
+// Add TypeScript interface for User to fix type errors
+interface UserType {
+  id: string;
+  email: string;
+  name?: string;
+  roles: any[];
+  username?: string;
+  avatarUrl?: string;
+  acceptedMarketing?: boolean;
+  emailVerifiedAt?: Date;
+}
+
 const { t, locale } = useI18n();
 const {
   user,
@@ -11,6 +23,9 @@ const {
   fetchUser,
 } = useAuth();
 const router = useRouter();
+
+// Type cast user to use our interface
+const typedUser = user as Ref<UserType | null>;
 
 // Fetch user data on server before rendering to avoid hydration mismatch
 onServerPrefetch(fetchUser);
@@ -33,6 +48,9 @@ const profileData = reactive({
   name: "",
   email: "",
   confirmEmail: "",
+  username: "",
+  avatarUrl: "",
+  acceptedMarketing: false,
 });
 
 // Password change form (separate from profile data)
@@ -44,12 +62,15 @@ const passwordData = reactive({
 
 // Load user data when available
 watch(
-  () => user.value,
+  () => typedUser.value,
   (newUser) => {
     if (newUser) {
       profileData.name = newUser.name || "";
       profileData.email = newUser.email || "";
       profileData.confirmEmail = newUser.email || "";
+      profileData.username = newUser.username || "";
+      profileData.avatarUrl = newUser.avatarUrl || "";
+      profileData.acceptedMarketing = newUser.acceptedMarketing || false;
     }
   },
   { immediate: true }
@@ -59,20 +80,26 @@ watch(
 const errors = reactive({
   name: "",
   email: "",
+  username: "",
   currentPassword: "",
   newPassword: "",
   confirmPassword: "",
   confirmEmail: "",
+  avatarUrl: "",
+  acceptedMarketing: "",
 });
 
 // Clear all validation errors
 const clearErrors = () => {
   errors.name = "";
   errors.email = "";
+  errors.username = "";
   errors.currentPassword = "";
   errors.newPassword = "";
   errors.confirmPassword = "";
   errors.confirmEmail = "";
+  errors.avatarUrl = "";
+  errors.acceptedMarketing = "";
   serverError.value = null;
   successMessage.value = null;
 };
@@ -94,10 +121,21 @@ const updateProfile = async () => {
       confirmEmail: z
         .string()
         .email({ message: "auth.profile.validation.email_invalid" }),
+      username: z.string().optional(),
+      avatarUrl: z
+        .string()
+        .url({ message: "auth.profile.validation.avatar_url_invalid" })
+        .or(z.literal(""))
+        .optional(),
+      acceptedMarketing: z.boolean().default(false),
     })
     .refine((data) => data.email === data.confirmEmail, {
       message: "auth.profile.validation.emails_must_match",
       path: ["confirmEmail"],
+    })
+    .refine((data) => !data.username || data.username.length > 0, {
+      message: "auth.profile.validation.username_valid",
+      path: ["username"],
     });
 
   try {
@@ -110,6 +148,9 @@ const updateProfile = async () => {
         id: string;
         name: string;
         email: string;
+        username?: string;
+        avatarUrl?: string;
+        acceptedMarketing?: boolean;
         emailVerifiedAt: string | null;
       };
       message: string;
@@ -127,6 +168,9 @@ const updateProfile = async () => {
     if (user.value) {
       user.value.name = response.user.name;
       user.value.email = response.user.email;
+      (user.value as any).username = response.user.username;
+      (user.value as any).avatarUrl = response.user.avatarUrl;
+      (user.value as any).acceptedMarketing = response.user.acceptedMarketing;
       user.value.emailVerifiedAt = response.user.emailVerifiedAt
         ? new Date(response.user.emailVerifiedAt)
         : undefined;
@@ -259,7 +303,7 @@ const resendVerificationEmail = async () => {
 
       <!-- Email verification banner -->
       <div
-        v-if="user && user.email && !user.emailVerifiedAt"
+        v-if="typedUser && typedUser.email && !typedUser.emailVerifiedAt"
         class="alert alert-warning alert-soft mb-6"
       >
         <div class="flex flex-row justify-between w-full items-center">
@@ -317,6 +361,35 @@ const resendVerificationEmail = async () => {
               <p class="text-sm text-gray-500 mb-4">
                 {{ $t("auth.profile.email_confirmation_info") }}
               </p>
+
+              <!-- Username field -->
+              <FormTextField
+                id="username"
+                v-model="profileData.username"
+                :label="$t('auth.profile.username')"
+                :placeholder="$t('auth.profile.username_placeholder')"
+                :error="errors.username"
+                class="mb-4"
+              />
+
+              <!-- Avatar URL field -->
+              <FormTextField
+                id="avatarUrl"
+                v-model="profileData.avatarUrl"
+                :label="$t('auth.profile.avatar_url')"
+                :placeholder="$t('auth.profile.avatar_url_placeholder')"
+                :error="errors.avatarUrl"
+                class="mb-4"
+              />
+
+              <!-- Accepted Marketing field -->
+              <FormCheckbox
+                id="acceptedMarketing"
+                v-model="profileData.acceptedMarketing"
+                :label="$t('auth.profile.accepted_marketing')"
+                :error="errors.acceptedMarketing"
+                class="mb-4"
+              />
 
               <!-- Submit button -->
               <FormButton

@@ -12,7 +12,14 @@ const profileSchema = z
   .object({
     name: z.string().min(1, { message: 'auth.profile.validation.name_required' }),
     email: z.string().email({ message: 'auth.profile.validation.email_invalid' }),
-    confirmEmail: z.string().email({ message: 'auth.profile.validation.email_invalid' })
+    confirmEmail: z.string().email({ message: 'auth.profile.validation.email_invalid' }),
+    username: z.string().optional(),
+    avatarUrl: z
+      .string()
+      .url({ message: 'auth.profile.validation.avatar_url_invalid' })
+      .or(z.literal(''))
+      .optional(),
+    acceptedMarketing: z.boolean().default(false)
   })
   .refine((data) => data.email === data.confirmEmail, {
     message: 'auth.profile.validation.emails_must_match',
@@ -39,8 +46,23 @@ export default defineEventHandler(async (event) => {
 
     // Parse and validate request body
     const validatedData = profileSchema.parse(body);
-    const { name, email } = validatedData;
+    const { name, email, username, avatarUrl, acceptedMarketing } = validatedData;
     const emailChanged = email !== user.email;
+
+    // Check username uniqueness if provided and changed
+    if (username && username !== user.username) {
+      const existingUser = await db.user.findUnique({
+        where: { username },
+        select: { id: true }
+      });
+
+      if (existingUser && existingUser.id !== user.id) {
+        throw createError({
+          statusCode: 400,
+          message: 'auth.profile.username_taken'
+        });
+      }
+    }
 
     if (emailChanged) {
       // Generate verification token and expiry
@@ -54,6 +76,9 @@ export default defineEventHandler(async (event) => {
         data: {
           name,
           email,
+          username,
+          avatarUrl,
+          acceptedMarketing,
           emailVerifiedAt: null,
           emailVerifyToken: token,
           emailVerifyTokenExpiresAt: expiresAt,
@@ -62,6 +87,9 @@ export default defineEventHandler(async (event) => {
           id: true,
           name: true,
           email: true,
+          username: true,
+          avatarUrl: true,
+          acceptedMarketing: true,
           emailVerifiedAt: true,
         }
       });
@@ -88,8 +116,16 @@ export default defineEventHandler(async (event) => {
     // No email change: regular update
     const updatedUser = await db.user.update({
       where: { id: user.id },
-      data: { name, email },
-      select: { id: true, name: true, email: true, emailVerifiedAt: true }
+      data: { name, email, username, avatarUrl, acceptedMarketing },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        username: true,
+        avatarUrl: true,
+        acceptedMarketing: true,
+        emailVerifiedAt: true
+      }
     });
     return { user: updatedUser, message: 'auth.profile.update_success' };
   } catch (error: any) {

@@ -54,6 +54,7 @@ export default defineNuxtConfig({
   ],
 
   i18n: {
+    defaultLocale: 'en',
     locales: [
       {
         code: 'en',

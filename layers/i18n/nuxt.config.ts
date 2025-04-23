@@ -6,6 +6,9 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/i18n'],
   i18n: {
     defaultLocale: 'en',
+    experimental: {
+      typedOptionsAndMessages: 'default'
+    },
     strategy: 'prefix_except_default',
     locales: [
       {

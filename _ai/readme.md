@@ -213,3 +213,13 @@ This is because the `~` alias resolves to the project root in the final applicat
 
 - Enhanced profile update flow to include email confirmation and instant UI updates.
 - Switched i18n routing strategy to always prefix locale and added locale-aware redirects in middleware and layout.
+
+## Form Components Standard
+
+- Always use the shared form components from `layers/layout/components/form/` (e.g., `FormTextField.vue`, `FormTextArea.vue`, `FormButton.vue`) for all forms in layers and apps. This ensures consistent UI, accessibility, and validation patterns across the project.
+- **Note:** The import names must include the `Form` prefix, e.g., `FormTextField`, `FormTextArea`, `FormButton`.
+
+## Authentication & User Fetching Conventions
+
+- **Server-side (API endpoints, server routes):** Always use `getUserFromSession(event)` from the auth layer utilities to fetch the authenticated user and roles. Do not rely on `event.context.user`.
+- **Client-side (pages, components):** Use the `useAuth` composable from the auth layer for user state, SSR sync, and role checks. Call `fetchUser` on server prefetch for SSR/client sync.

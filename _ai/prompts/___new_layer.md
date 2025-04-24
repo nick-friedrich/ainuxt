@@ -8,6 +8,19 @@ When requested to create a new Nuxt layer (e.g., using `@layer create <layer-nam
 
 3.  **Create `package.json`:** Create a minimal `layers/<layer-name>/package.json`. Include the standard core dependencies needed for a Nuxt layer and add the `aiReference` field. Update the `name` field to `@layers/<layer-name>` (following project convention).
 
+    - **Always add `@nuxtjs/i18n` to the dependencies for i18n support.**
+    - **Always add a standard `tsconfig.json` to every new layer.**
+
+    Example `tsconfig.json`:
+
+    ```json
+    {
+      "extends": "../../tsconfig.json",
+      "include": ["./**/*"],
+      "exclude": ["node_modules", ".output", ".nuxt"]
+    }
+    ```
+
     ```json
     {
       "name": "@layers/<layer-name>",
@@ -17,6 +30,7 @@ When requested to create a new Nuxt layer (e.g., using `@layer create <layer-nam
       "aiReference": "See ~/_ai/README.md for guidelines and patterns",
       "main": "./nuxt.config.ts",
       "dependencies": {
+        "@nuxtjs/i18n": "9.5.3",
         "nuxt": "^3.16.2",
         "vue": "^3.5.13",
         "vue-router": "^4.5.0"

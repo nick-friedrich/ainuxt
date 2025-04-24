@@ -1,0 +1,52 @@
+{
+  "validation": {
+    "blog": {
+      "title": {
+        "required": "Title is required"
+      },
+      "slug": {
+        "required": "Slug is required"
+      },
+      "content": {
+        "required": "Content is required"
+      }
+    }
+  },
+  "page_blog": {
+    "new": {
+      "title": "Add New Blog Post",
+      "form": {
+        "title": {
+          "label": "Title",
+          "placeholder": "Enter the blog post title"
+        },
+        "category": {
+          "label": "Category",
+          "placeholder": "Enter a category (optional)"
+        },
+        "slug": {
+          "label": "Slug",
+          "placeholder": "Unique URL slug"
+        },
+        "published": {
+          "label": "Published"
+        },
+        "content": {
+          "label": "Content",
+          "placeholder": "Write your blog post here..."
+        },
+        "keywords": {
+          "label": "Keywords (comma separated)",
+          "placeholder": "e.g. nuxt, vue, javascript"
+        },
+        "submit": "Add Post",
+        "success": "Blog post added successfully!",
+        "error": "Failed to add blog post. Please try again later."
+      }
+    }
+  },
+  "errors": {
+    "unauthorized": "You are not authorized to add blog posts.",
+    "validation_failed": "Validation failed. Please check your input."
+  }
+}

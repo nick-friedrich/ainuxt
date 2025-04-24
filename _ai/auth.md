@@ -448,3 +448,14 @@ Auth translations follow this pattern:
 
 4. **Issue**: Import paths using `~` alias don't work correctly in layer files
    **Solution**: Use relative paths for imports within the same layer
+
+## User Fetching Best Practices
+
+- **Server-side (API endpoints, server routes):**
+
+  - Always use `getUserFromSession(event)` from the auth layer utilities to fetch the authenticated user and their roles.
+  - Do **not** rely on `event.context.user` for authentication or authorization checks.
+
+- **Client-side (pages, components):**
+  - Use the `useAuth` composable from the auth layer for user state, SSR sync, and role checks.
+  - Call `fetchUser` on server prefetch (e.g., with `onServerPrefetch(fetchUser)`) to keep SSR and client state in sync.

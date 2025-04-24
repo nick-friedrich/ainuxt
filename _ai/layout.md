@@ -248,6 +248,7 @@ const {
 
 5. **Form Elements**:
    - For form elements, use the styling layer's form components if available
+   - **When using form components from the layout layer, always import as `FormTextField`, `FormTextArea`, `FormButton`, etc.**
    - Ensure all forms provide proper feedback and validation
 
 ## Extending the Layout Layer

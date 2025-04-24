@@ -2,11 +2,21 @@
 import { defineNuxtConfig } from "nuxt/config";
 
 export default defineNuxtConfig({
+
   extends: [
     "../base",
-    "../database",
+
     "../i18n",
-    "../layout",
+    "@layers/layout",
+    "../database",
     "../content",
-  ]
-}); 
+  ],
+
+  i18n: {
+    locales: [
+      { code: 'en', file: 'en.json' },
+      { code: 'de', file: 'de.json' }
+    ],
+    defaultLocale: 'en',
+  }
+});

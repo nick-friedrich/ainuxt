@@ -166,3 +166,5 @@
   - [ ] Create `_ai/contact.md` with contact layer usage guide and examples
 
 - [ ] Get the translations into the layers not centralised in the i18n layer
+
+- [ ] Always use getUserFromSession(event) for server-side user fetching in API endpoints and server routes. Do not use event.context.user. Use useAuth for client-side user state and SSR sync.

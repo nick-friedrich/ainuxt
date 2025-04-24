@@ -1,0 +1,5 @@
+{
+  // https://nuxt.com/docs/guide/concepts/typescript
+  // Ignore errors when created we need to run pnpm layer:dev from root to generate the types
+  "extends": "./.nuxt/tsconfig.json"
+}

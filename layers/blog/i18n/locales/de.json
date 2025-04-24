@@ -1,0 +1,52 @@
+{
+  "validation": {
+    "blog": {
+      "title": {
+        "required": "Titel ist erforderlich"
+      },
+      "slug": {
+        "required": "Slug ist erforderlich"
+      },
+      "content": {
+        "required": "Inhalt ist erforderlich"
+      }
+    }
+  },
+  "page_blog": {
+    "new": {
+      "title": "Neuen Blogbeitrag hinzufügen",
+      "form": {
+        "title": {
+          "label": "Titel",
+          "placeholder": "Titel des Blogbeitrags eingeben"
+        },
+        "category": {
+          "label": "Kategorie",
+          "placeholder": "Kategorie eingeben (optional)"
+        },
+        "slug": {
+          "label": "Slug",
+          "placeholder": "Eindeutiger URL-Slug"
+        },
+        "published": {
+          "label": "Veröffentlicht"
+        },
+        "content": {
+          "label": "Inhalt",
+          "placeholder": "Schreiben Sie Ihren Blogbeitrag hier..."
+        },
+        "keywords": {
+          "label": "Schlüsselwörter (durch Kommas getrennt)",
+          "placeholder": "z.B. nuxt, vue, javascript"
+        },
+        "submit": "Beitrag hinzufügen",
+        "success": "Blogbeitrag erfolgreich hinzugefügt!",
+        "error": "Blogbeitrag konnte nicht hinzugefügt werden. Bitte versuchen Sie es später erneut."
+      }
+    }
+  },
+  "errors": {
+    "unauthorized": "Sie sind nicht berechtigt, Blogbeiträge hinzuzufügen.",
+    "validation_failed": "Validierung fehlgeschlagen. Bitte überprüfen Sie Ihre Eingaben."
+  }
+}

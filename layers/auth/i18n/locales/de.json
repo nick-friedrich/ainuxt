@@ -150,11 +150,11 @@
       "verifying_message": "Bitte warte, während wir dich sicher anmelden...",
       "verifying_redirect_info": "Du wirst in Kürze weitergeleitet.",
       "return_to_login": "Zurück zur Anmeldung"
-    }
-  },
-  "common": {
-    "error": {
-      "server_config": "Serverkonfigurationsfehler. Bitte kontaktiere den Support."
+    },
+    "common": {
+      "error": {
+        "server_config": "Serverkonfigurationsfehler. Bitte kontaktiere den Support."
+      }
     }
   }
 }

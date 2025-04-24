@@ -131,7 +131,7 @@
   - [ ] Configure appropriate data models and API endpoints
   - [ ] Create documentation for content layer usage
 
-- [ ] Implement the intended functionality of the new 'blog' layer
+- [x] Implement the intended functionality of the new 'blog' layer (listing, viewing, adding, editing)
 
 ## Lessons Learned
 

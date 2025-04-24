@@ -49,7 +49,7 @@ This directory holds the reusable Nuxt layers shared across applications.
 - **`database/`**: Provides utilities (`server/utils/db.ts`) to access the shared Prisma client defined in `packages/psql`. The layer acts as an abstraction over the direct database package, allowing other layers to import from `@layers/database/db` rather than directly from `@db/psql`.
 - **`layout/`**: Provides shared layout components and theme management. Includes a default layout, theme switching functionality using cookies, and a language switcher component. The layer extends both `styling` and `i18n` layers to provide a complete UI foundation. **Note:** The current implementation does not include authentication-related UI; these will be added by the upcoming `auth` layer.
 - **`content/`**: A layer for managing content within the application.
-- **`blog/`**: A layer for managing blog content within the application.
+- **`blog/`**: A layer for managing blog content within the application. Includes pages for listing, viewing, adding, and editing posts, corresponding API endpoints, and admin role checks for write operations.
 
 ### `packages/`
 
@@ -218,6 +218,7 @@ This is because the `~` alias resolves to the project root in the final applicat
 
 - Always use the shared form components from `layers/layout/components/form/` (e.g., `FormTextField.vue`, `FormTextArea.vue`, `FormButton.vue`) for all forms in layers and apps. This ensures consistent UI, accessibility, and validation patterns across the project.
 - **Note:** The import names must include the `Form` prefix, e.g., `FormTextField`, `FormTextArea`, `FormButton`.
+- All layout form components (e.g., `FormTextField`, `FormTextArea`, `FormButton`) are auto-imported and do not require explicit import statements in pages or components.
 
 ## Authentication & User Fetching Conventions
 

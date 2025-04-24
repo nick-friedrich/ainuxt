@@ -1,4 +1,9 @@
 {
+  "layout": {
+    "navigation": {
+      "blog": "Blog"
+    }
+  },
   "validation": {
     "blog": {
       "title": {
@@ -43,10 +48,33 @@
         "success": "Blogbeitrag erfolgreich hinzugefügt!",
         "error": "Blogbeitrag konnte nicht hinzugefügt werden. Bitte versuchen Sie es später erneut."
       }
+    },
+    "index": {
+      "title": "Blog Beiträge",
+      "empty": "Keine Blogbeiträge gefunden.",
+      "error": "Blogbeiträge konnten nicht geladen werden.",
+      "new_post": "Neuen Blogbeitrag hinzufügen"
+    },
+    "detail": {
+      "not_found": "Blogbeitrag nicht gefunden.",
+      "error": "Blogbeitrag konnte nicht geladen werden.",
+      "edit": "Bearbeiten"
+    },
+    "edit": {
+      "title": "Blogbeitrag bearbeiten",
+      "save": "Änderungen speichern",
+      "success": "Blogbeitrag erfolgreich aktualisiert!"
+    },
+    "common": {
+      "unpublished": "Unveröffentlicht"
     }
   },
   "errors": {
     "unauthorized": "Sie sind nicht berechtigt, Blogbeiträge hinzuzufügen.",
     "validation_failed": "Validierung fehlgeschlagen. Bitte überprüfen Sie Ihre Eingaben."
+  },
+  "common": {
+    "loading": "Lädt...",
+    "back": "Zurück"
   }
 }

@@ -5,7 +5,7 @@ export default defineNuxtConfig({
 
   extends: [
     "../base",
-
+    "../auth",
     "../i18n",
     "@layers/layout",
     "../database",

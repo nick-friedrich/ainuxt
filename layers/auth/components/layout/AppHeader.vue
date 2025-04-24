@@ -12,6 +12,7 @@ await fetchUser();
 const navigationItems = [
   { labelKey: "layout.navigation.home", to: "/" },
   { labelKey: "layout.navigation.contact", to: "/contact" },
+  { labelKey: "layout.navigation.blog", to: "/blog" },
   // Add more navigation items here as needed
 ];
 

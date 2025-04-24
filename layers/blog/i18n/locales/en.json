@@ -1,4 +1,9 @@
 {
+  "layout": {
+    "navigation": {
+      "blog": "Blog"
+    }
+  },
   "validation": {
     "blog": {
       "title": {
@@ -43,10 +48,33 @@
         "success": "Blog post added successfully!",
         "error": "Failed to add blog post. Please try again later."
       }
+    },
+    "index": {
+      "title": "Blog Posts",
+      "empty": "No blog posts found.",
+      "error": "Failed to load blog posts.",
+      "new_post": "Add New Blog Post"
+    },
+    "detail": {
+      "not_found": "Blog post not found.",
+      "error": "Failed to load blog post.",
+      "edit": "Edit"
+    },
+    "edit": {
+      "title": "Edit Blog Post",
+      "save": "Save Changes",
+      "success": "Blog post updated successfully!"
+    },
+    "common": {
+      "unpublished": "Unpublished"
     }
   },
   "errors": {
     "unauthorized": "You are not authorized to add blog posts.",
     "validation_failed": "Validation failed. Please check your input."
+  },
+  "common": {
+    "loading": "Loading...",
+    "back": "Back"
   }
 }

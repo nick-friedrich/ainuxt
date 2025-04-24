@@ -1,15 +1,15 @@
 <script setup lang="ts">
 // AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
 import { ref, onMounted, computed, watchEffect } from "vue";
+import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useAuth } from "../../../../auth/composables/useAuth";
 import { onServerPrefetch } from "vue";
 
 const { t: $t } = useI18n();
-
+const route = useRoute();
 const { user, fetchUser } = useAuth();
 onServerPrefetch(fetchUser);
-
 const isAdmin = computed(() =>
   user.value?.roles?.some((r) => r.name === "ADMIN")
 );
@@ -22,15 +22,35 @@ const form = ref({
   content: "",
   keywords: "",
 });
-
+const loading = ref(true);
 const success = ref(false);
 const error = ref("");
 const fieldErrors = ref<Record<string, string[]>>({});
 
+onMounted(async () => {
+  loading.value = true;
+  error.value = "";
+  try {
+    const post: any = await $fetch(`/api/blog/${route.params.slug}`);
+    form.value = {
+      title: post.title,
+      category: post.category,
+      slug: post.slug,
+      published: post.published,
+      content: post.content,
+      keywords: post.keywords?.join(", ") || "",
+    };
+  } catch (e: any) {
+    error.value = e?.data?.message || e.message || $t("page_blog.detail.error");
+  } finally {
+    loading.value = false;
+  }
+});
+
 watchEffect(() => {
   if (isAdmin.value === false) {
     error.value =
-      $t("errors.unauthorized") || "You are not authorized to add blog posts.";
+      $t("errors.unauthorized") || "You are not authorized to edit blog posts.";
   }
 });
 
@@ -39,29 +59,20 @@ async function submitForm() {
   error.value = "";
   fieldErrors.value = {};
   try {
-    await $fetch("/api/blog/add", {
-      method: "POST",
+    await $fetch(`/api/blog/${route.params.slug}`, {
+      method: "PUT" as any,
       body: {
         ...form.value,
         keywords: form.value.keywords.split(",").map((k) => k.trim()),
       },
     });
     success.value = true;
-    form.value = {
-      title: "",
-      category: "",
-      slug: "",
-      published: false,
-      content: "",
-      keywords: "",
-    };
   } catch (e: any) {
     if (e?.statusCode === 401) {
       error.value =
         $t("errors.unauthorized") ||
-        "You are not authorized to add blog posts.";
+        "You are not authorized to edit blog posts.";
     } else if (e?.statusCode === 400 && e?.data?.data) {
-      // Zod validation error
       fieldErrors.value = e.data.data.fieldErrors || {};
       error.value =
         $t("errors.validation_failed") ||
@@ -75,8 +86,21 @@ async function submitForm() {
 </script>
 <template>
   <div class="max-w-2xl mx-auto py-8">
-    <h1 class="text-2xl font-bold mb-6">{{ $t("page_blog.new.title") }}</h1>
-    <div v-if="!isAdmin && error" class="alert alert-error alert-soft mt-4">
+    <div class="mb-4">
+      <NuxtLinkLocale :to="`/blog/${route.params.slug}`">
+        <FormButton color="secondary" icon-left="heroicons:arrow-left">
+          {{ $t("common.back") }}
+        </FormButton>
+      </NuxtLinkLocale>
+    </div>
+    <h1 class="text-2xl font-bold mb-6">{{ $t("page_blog.edit.title") }}</h1>
+    <div v-if="loading" class="text-center py-8">
+      {{ $t("common.loading") }}
+    </div>
+    <div
+      v-else-if="!isAdmin && error"
+      class="alert alert-error alert-soft mt-4"
+    >
       {{ error }}
     </div>
     <form v-else @submit.prevent="submitForm" class="space-y-4">
@@ -126,14 +150,14 @@ async function submitForm() {
         v-model="form.keywords"
       />
       <FormButton type="submit" color="primary">{{
-        $t("page_blog.new.form.submit")
+        $t("page_blog.edit.save")
       }}</FormButton>
     </form>
     <div v-if="success" class="alert alert-success alert-soft mt-4">
-      {{ $t("page_blog.new.form.success") }}
+      {{ $t("page_blog.edit.success") }}
     </div>
     <div v-if="error" class="alert alert-error alert-soft mt-4">
-      {{ $t("page_blog.new.form.error") }}
+      {{ error }}
     </div>
   </div>
 </template>

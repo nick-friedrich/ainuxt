@@ -82,17 +82,14 @@ model UserRole {
   @@index([roleId]) // Optional: Index for querying by role
 }
 
-// model BlogPost {
-//   id        Int      @id @default(autoincrement())
-//   title     String
-//   category  String   @default("general")
-//   slug      String   @unique
-//   published Boolean  @default(false)
-//   content   String
-//   keywords  String[]
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-// }
-
-// Remove old example Post model if present
-// model Post { ... }
+model BlogPost {
+  id        Int      @id @default(autoincrement())
+  title     String
+  category  String   @default("general")
+  slug      String   @unique
+  published Boolean  @default(false)
+  content   String
+  keywords  String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

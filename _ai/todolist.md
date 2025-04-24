@@ -125,10 +125,13 @@
     - [x] Update auth documentation (`_ai/auth.md`)
 
 - [ ] Implement the `@layers/content` layer:
+
   - [ ] Define the functionality and requirements for content management
   - [ ] Implement necessary components and utilities
   - [ ] Configure appropriate data models and API endpoints
   - [ ] Create documentation for content layer usage
+
+- [ ] Implement the intended functionality of the new 'blog' layer
 
 ## Lessons Learned
 

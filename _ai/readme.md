@@ -49,6 +49,7 @@ This directory holds the reusable Nuxt layers shared across applications.
 - **`database/`**: Provides utilities (`server/utils/db.ts`) to access the shared Prisma client defined in `packages/psql`. The layer acts as an abstraction over the direct database package, allowing other layers to import from `@layers/database/db` rather than directly from `@db/psql`.
 - **`layout/`**: Provides shared layout components and theme management. Includes a default layout, theme switching functionality using cookies, and a language switcher component. The layer extends both `styling` and `i18n` layers to provide a complete UI foundation. **Note:** The current implementation does not include authentication-related UI; these will be added by the upcoming `auth` layer.
 - **`content/`**: A layer for managing content within the application.
+- **`blog/`**: A layer for managing blog content within the application.
 
 ### `packages/`
 

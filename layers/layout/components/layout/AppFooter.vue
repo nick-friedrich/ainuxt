@@ -12,8 +12,9 @@
       <p>
         {{ $t("layout.footer.copyright", { year: new Date().getFullYear() }) }}
       </p>
-
-      <ThemeSwitcher />
+      <div class="flex items-center gap-4">
+        <ThemeSwitcher />
+      </div>
     </div>
   </footer>
 </template>

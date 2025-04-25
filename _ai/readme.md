@@ -235,3 +235,10 @@ This is because the `~` alias resolves to the project root in the final applicat
 
 - **Server-side (API endpoints, server routes):** Always use `getUserFromSession(event)` from the auth layer utilities to fetch the authenticated user and roles. Do not rely on `event.context.user`.
 - **Client-side (pages, components):** Use the `useAuth` composable from the auth layer for user state, SSR sync, and role checks. Call `fetchUser` on server prefetch for SSR/client sync.
+
+## 2025-04 Updates
+
+- Admin-only UI: User dropdown menu now shows a "Page" link only for users with the "ADMIN" role (case-sensitive).
+- i18n: Blog keys removed from EN/DE locale files; navigation/menu labels use new keys (layout.navigation.page, layout.navigation.page_menu).
+- Navigation: Header and footer navigation conventions are clarified; footer link to /page is optional, header link is admin-only in user menu.
+- See `auth.md`, `i18n.md`, `layout.md` for implementation details and code examples.

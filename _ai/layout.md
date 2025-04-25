@@ -123,6 +123,22 @@ The layout layer also includes a language switcher component that integrates wit
 </template>
 ```
 
+## Header & Footer Navigation (2025-04)
+
+- The main header (`AppHeader.vue`) should NOT include a link to `/page` for all users.
+- The user dropdown menu now includes a link to `/page` only for admins (role name "ADMIN").
+- The footer may include a link to `/page` for general navigation, but this can be toggled as needed.
+- All navigation/menu links use i18n keys for labels (see i18n.md).
+
+#### Example (User Dropdown Admin Link)
+```vue
+<li v-if="isAdmin">
+  <NuxtLinkLocale to="/page" @click="closeDropdown">
+    {{ $t("layout.navigation.page", "Page") }}
+  </NuxtLinkLocale>
+</li>
+```
+
 ## Theme Examples
 
 The layout layer uses DaisyUI themes via the `data-theme` attribute. The default implementation toggles between 'light' and 'dark' themes.

@@ -168,3 +168,8 @@
 - [ ] Get the translations into the layers not centralised in the i18n layer
 
 - [ ] Always use getUserFromSession(event) for server-side user fetching in API endpoints and server routes. Do not use event.context.user. Use useAuth for client-side user state and SSR sync.
+
+- [x] Add admin-only "Page" link to user dropdown menu in AppHeader.vue (role name "ADMIN")
+- [x] Remove blog i18n keys from locale files (now handled per-layer or deprecated)
+- [x] Add/Update i18n keys for page menu (layout.navigation.page, layout.navigation.page_menu)
+- [x] Ensure all navigation links use i18n keys for labels

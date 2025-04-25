@@ -1,0 +1,79 @@
+{
+  "layout": {
+    "navigation": {
+      "page": "Page",
+      "page_menu": "Manage Pages"
+    }
+  },
+  "validation": {
+    "page": {
+      "title": {
+        "required": "Title is required"
+      },
+      "slug": {
+        "required": "Slug is required"
+      },
+      "content": {
+        "required": "Content is required"
+      }
+    }
+  },
+  "page_page": {
+    "new": {
+      "title": "Add New Page",
+      "form": {
+        "title": {
+          "label": "Title",
+          "placeholder": "Enter the page title"
+        },
+        "slug": {
+          "label": "Slug",
+          "placeholder": "Unique URL slug"
+        },
+        "published": {
+          "label": "Published"
+        },
+        "content": {
+          "label": "Content",
+          "placeholder": "Write your page content here..."
+        },
+        "keywords": {
+          "label": "Keywords (comma separated)",
+          "placeholder": "e.g. docs, about, info"
+        },
+        "submit": "Add Page",
+        "success": "Page added successfully!",
+        "error": "Failed to add page. Please try again later."
+      }
+    },
+    "index": {
+      "title": "Pages",
+      "empty": "No pages found.",
+      "error": "Failed to load pages.",
+      "new_page": "Add New Page",
+      "seo_description": "Read the latest updates and content on our pages."
+    },
+    "detail": {
+      "not_found": "Page not found.",
+      "error": "Failed to load page.",
+      "edit": "Edit"
+    },
+    "edit": {
+      "title": "Edit Page",
+      "save": "Save Changes",
+      "success": "Page updated successfully!"
+    },
+    "common": {
+      "unpublished": "Unpublished"
+    }
+  },
+  "errors": {
+    "unauthorized": "You are not authorized to add blog posts.",
+    "unauthorized_page": "You are not authorized to add pages.",
+    "validation_failed": "Validation failed. Please check your input."
+  },
+  "common": {
+    "loading": "Loading...",
+    "back": "Back"
+  }
+}

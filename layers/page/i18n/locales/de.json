@@ -1,0 +1,79 @@
+{
+  "layout": {
+    "navigation": {
+      "page": "Page",
+      "page_menu": "Manage Pages"
+    }
+  },
+  "validation": {
+    "page": {
+      "title": {
+        "required": "Titel ist erforderlich"
+      },
+      "slug": {
+        "required": "Slug ist erforderlich"
+      },
+      "content": {
+        "required": "Inhalt ist erforderlich"
+      }
+    }
+  },
+  "page_page": {
+    "new": {
+      "title": "Neue Seite hinzufügen",
+      "form": {
+        "title": {
+          "label": "Titel",
+          "placeholder": "Seitentitel eingeben"
+        },
+        "slug": {
+          "label": "Slug",
+          "placeholder": "Eindeutiger URL-Slug"
+        },
+        "published": {
+          "label": "Veröffentlicht"
+        },
+        "content": {
+          "label": "Inhalt",
+          "placeholder": "Seiteninhalt hier schreiben..."
+        },
+        "keywords": {
+          "label": "Schlüsselwörter (durch Kommas getrennt)",
+          "placeholder": "z.B. docs, about, info"
+        },
+        "submit": "Seite hinzufügen",
+        "success": "Seite erfolgreich hinzugefügt!",
+        "error": "Seite konnte nicht hinzugefügt werden. Bitte versuchen Sie es später erneut."
+      }
+    },
+    "index": {
+      "title": "Seiten",
+      "empty": "Keine Seiten gefunden.",
+      "error": "Seiten konnten nicht geladen werden.",
+      "new_page": "Neue Seite hinzufügen",
+      "seo_description": "Lesen Sie die neuesten Updates und Inhalte auf unseren Seiten."
+    },
+    "detail": {
+      "not_found": "Seite nicht gefunden.",
+      "error": "Seite konnte nicht geladen werden.",
+      "edit": "Bearbeiten"
+    },
+    "edit": {
+      "title": "Seite bearbeiten",
+      "save": "Änderungen speichern",
+      "success": "Seite erfolgreich aktualisiert!"
+    },
+    "common": {
+      "unpublished": "Unveröffentlicht"
+    }
+  },
+  "errors": {
+    "unauthorized": "Sie sind nicht berechtigt, Blogbeiträge hinzuzufügen.",
+    "unauthorized_page": "Sie sind nicht berechtigt, Seiten hinzuzufügen.",
+    "validation_failed": "Validierung fehlgeschlagen. Bitte überprüfen Sie Ihre Eingaben."
+  },
+  "common": {
+    "loading": "Lädt...",
+    "back": "Zurück"
+  }
+}

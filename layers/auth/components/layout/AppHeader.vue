@@ -5,6 +5,7 @@
 import { useAuth } from "~/composables/useAuth";
 import { useRouter } from "vue-router";
 import { useLocalePath } from "#imports";
+import { computed } from "vue";
 
 const { fetchUser } = useAuth();
 await fetchUser();
@@ -22,6 +23,9 @@ const loggedInNavigationItems = [
 
 // Auth state and actions
 const { isLoggedIn, user, logout } = useAuth();
+const isAdmin = computed(() =>
+  user.value?.roles?.some((role: any) => role.name === "ADMIN")
+);
 const router = useRouter();
 const localePath = useLocalePath();
 
@@ -184,6 +188,11 @@ function handleAvatarError(event: Event) {
           <li>
             <NuxtLinkLocale to="/dashboard" @click="closeDropdown">
               {{ $t("layout.navigation.dashboard", "Dashboard") }}
+            </NuxtLinkLocale>
+          </li>
+          <li v-if="isAdmin">
+            <NuxtLinkLocale to="/page" @click="closeDropdown">
+              {{ $t("layout.navigation.page", "Page") }}
             </NuxtLinkLocale>
           </li>
           <li>

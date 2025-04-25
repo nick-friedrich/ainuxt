@@ -459,3 +459,14 @@ Auth translations follow this pattern:
 - **Client-side (pages, components):**
   - Use the `useAuth` composable from the auth layer for user state, SSR sync, and role checks.
   - Call `fetchUser` on server prefetch (e.g., with `onServerPrefetch(fetchUser)`) to keep SSR and client state in sync.
+
+## Admin Role & User Menu (2025-04)
+
+- The user dropdown menu in `AppHeader.vue` now includes a "Page" link to `/page` that is only visible if the user has a role with `name === "ADMIN"` (case-sensitive).
+- The admin check is implemented as:
+
+  ```ts
+  const isAdmin = computed(() => user.value?.roles?.some((role: any) => role.name === "ADMIN"));
+  ```
+- Use this pattern for all admin-only UI and API checks.
+- i18n label for the menu item: `layout.navigation.page`.

@@ -52,7 +52,8 @@ export default defineNuxtConfig({
     '../../layers/contact',
     '../../layers/content',
     '../../layers/blog',
-    '../../layers/page'
+    '../../layers/page',
+    '../../layers/tracking',
   ],
 
   experimental: {

@@ -6,20 +6,7 @@ When requested to create a new Nuxt layer (e.g., using `@layer create <layer-nam
 
 2.  **Create Directory:** Create the directory `layers/<layer-name>`.
 
-3.  **Create `package.json`:** Create a minimal `layers/<layer-name>/package.json`. Include the standard core dependencies needed for a Nuxt layer and add the `aiReference` field. Update the `name` field to `@layers/<layer-name>` (following project convention).
-
-    - **Always add `@nuxtjs/i18n` to the dependencies for i18n support.**
-    - **Always add a standard `tsconfig.json` to every new layer.**
-
-    Example `tsconfig.json`:
-
-    ```json
-    {
-      "extends": "../../tsconfig.json",
-      "include": ["./**/*"],
-      "exclude": ["node_modules", ".output", ".nuxt"]
-    }
-    ```
+3.  **Create `package.json`:** Create `layers/<layer-name>/package.json` with:
 
     ```json
     {
@@ -29,12 +16,25 @@ When requested to create a new Nuxt layer (e.g., using `@layer create <layer-nam
       "type": "module",
       "aiReference": "See ~/_ai/README.md for guidelines and patterns",
       "main": "./nuxt.config.ts",
+      "scripts": {
+        "layer:dev": "nuxt dev"
+      },
       "dependencies": {
-        "@nuxtjs/i18n": "9.5.3",
+        "@nuxtjs/i18n": "^9.5.3",
         "nuxt": "^3.16.2",
         "vue": "^3.5.13",
         "vue-router": "^4.5.0"
       }
+    }
+    ```
+
+3a. **Create `tsconfig.json`:** Create `layers/<layer-name>/tsconfig.json`:
+
+    ```json
+    {
+      "extends": "../../tsconfig.json",
+      "include": ["./**/*"],
+      "exclude": ["node_modules", ".output", ".nuxt"]
     }
     ```
 
@@ -43,18 +43,27 @@ When requested to create a new Nuxt layer (e.g., using `@layer create <layer-nam
     - Add layer-specific dependencies: `pnpm add -F @layers/<layer-name> <list-of-other-dependencies>`. Specify `-D` for dev dependencies.
     - **Note for Tailwind v4 Styling Layer:** Dependencies (`tailwindcss`, `daisyui`, etc.) should be added to the _application_ package, not the layer.
 
-5.  **Create `nuxt.config.ts`:** Create `layers/<layer-name>/nuxt.config.ts`. Use `__examples/minimal_nuxt_layer_example/nuxt.config.ts` as a template, or create a minimal one:
+5.  **Create `nuxt.config.ts`:** Create `layers/<layer-name>/nuxt.config.ts` (from `__examples/minimal_nuxt_layer_example`):
 
     ```typescript
-    import { defineNuxtConfig } from "nuxt/config";
-
-    export default defineNuxtConfig({});
+    // AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
+    import { defineNuxtConfig } from 'nuxt/config';
+    export default defineNuxtConfig({
+      extends: ['../base', '../i18n', '../layout'],
+      components: [
+        { path: fileURLToPath(new URL('./components', import.meta.url)), pathPrefix: false }
+      ],
+      // If providing translations, add:
+      i18n: {
+        locales: [
+          { code: 'en', file: 'en.json' },
+          { code: 'de', file: 'de.json' }
+        ]
+      }
+    });
     ```
 
     - **For Tailwind v4 Styling Layer:** This file likely remains empty or minimal. CSS registration and Vite plugin configuration should happen in the _application's_ `nuxt.config.ts`.
-
-    **Important:** Add the standard header comment to the top of the created `nuxt.config.ts` file:
-    `// AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.`
 
 6.  **Create Layer-Specific Config Files:** Create necessary config files (e.g., `tailwind.config.js`, `.env.example`) within the layer if needed:
 
@@ -70,8 +79,10 @@ When requested to create a new Nuxt layer (e.g., using `@layer create <layer-nam
 
 9.  **Instruct User:**
 
-    - Tell the user the layer structure has been created.
-    - Remind the user to run `pnpm install` from the workspace root (especially if they just added dependencies via `pnpm add`).
+    - Tell the user the layer structure is created.
+    - Remind to run `pnpm install` at the monorepo root.
+    - Then run `pnpm -F @layers/<layer-name> layer:dev` to generate the `.nuxt` folder and types.
+    - **Ignore linter/TS errors until dependencies are installed and `layer:dev` completes.**
     - Instruct the user to add the relative path to the new layer (e.g., `'../../layers/<layer-name>'`) to the `extends` array in the `nuxt.config.ts` of any application(s) that should use this layer.
     - **For Tailwind v4 Styling Layer:** Instruct the user to:
       1.  Install dependencies in the app: `pnpm add -F <app-name> tailwindcss@next @tailwindcss/vite daisyui -D`
@@ -80,6 +91,6 @@ When requested to create a new Nuxt layer (e.g., using `@layer create <layer-nam
       4.  Configure the `@tailwindcss/vite` plugin in the app's `nuxt.config.ts` (`vite: { plugins: [tailwindcss()] }`).
       5.  Create/Update the app's `tailwind.config.js` to include `content` paths. It will automatically extend the layer's config.
 
-10. **Update `_ai/readme.md`:** Add the newly created layer to the list under the `### \`layers/\`` section.
+10. **Update `_ai/readme.md`:** Add the new layer under `### \`layers/\``.
 
-11. **Update `_ai/todolist.md`:** Add a task to implement the intended functionality of the new layer if specified by the user.
+11. **Update `_ai/todolist.md`:** Add a task for implementing the new layer functionality.

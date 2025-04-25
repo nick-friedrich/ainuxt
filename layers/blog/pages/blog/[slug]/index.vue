@@ -1,39 +1,76 @@
 <script setup lang="ts">
 // AI Generation Reference: See ~/_ai/README.md for guidelines and patterns.
-import { ref, onMounted, computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { ref, computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useAuth } from "../../../../auth/composables/useAuth";
+import { useAsyncData, useSeoMeta, createError, showError } from "#imports";
+
+type BlogPost = {
+  id: number;
+  title: string;
+  category: string;
+  slug: string;
+  published: boolean;
+  content: string;
+  keywords: string[];
+  createdAt: string;
+  updatedAt: string;
+};
 
 const { t: $t } = useI18n();
 const route = useRoute();
-const router = useRouter();
-const post = ref<any>(null);
-const loading = ref(true);
-const error = ref("");
 const { user, fetchUser } = useAuth();
 const isAdmin = computed(() =>
-  user.value?.roles?.some((r) => r.name === "ADMIN")
+  user.value?.roles?.some((r: { name: string }) => r.name === "ADMIN")
 );
 
-onMounted(async () => {
-  loading.value = true;
-  error.value = "";
-  try {
-    post.value = await $fetch(`/api/blog/${route.params.slug}`);
-  } catch (e: any) {
-    if (e?.statusCode === 404) {
-      error.value = $t("page_blog.detail.not_found");
-    } else {
-      error.value =
-        e?.data?.message || e.message || $t("page_blog.detail.error");
+// Fetch post server-side
+const {
+  data: post,
+  status,
+  error,
+} = await useAsyncData<BlogPost | null>(
+  `blog-post-${route.params.slug}`,
+  async () => {
+    try {
+      return await ($fetch as any)(`/api/blog/${route.params.slug}`);
+    } catch (e: any) {
+      if (e?.statusCode === 404) {
+        showError({
+          statusCode: 404,
+          statusMessage: $t("page_blog.detail.not_found"),
+        });
+      } else {
+        showError({
+          statusCode: 500,
+          statusMessage: $t("page_blog.detail.error"),
+        });
+      }
+      return null; // Return null on error
     }
-  } finally {
-    loading.value = false;
+  },
+  { default: () => null } // Default value while loading
+);
+
+// Set SEO meta if post loaded
+if (post.value) {
+  useSeoMeta({
+    title: post.value.title,
+    description: post.value.content.substring(0, 150), // Truncate description
+    ogTitle: post.value.title,
+    ogDescription: post.value.content.substring(0, 150),
+    // Add more meta tags as needed (e.g., keywords, image)
+  });
+}
+
+const isLoading = computed(() => status.value === "pending");
+// Fetch user client-side ONLY if not already populated by SSR
+onMounted(() => {
+  if (!user.value) {
+    fetchUser();
   }
 });
-
-onServerPrefetch(fetchUser);
 </script>
 <template>
   <div class="max-w-3xl mx-auto py-8">
@@ -49,11 +86,12 @@ onServerPrefetch(fetchUser);
         </FormButton>
       </NuxtLinkLocale>
     </div>
-    <div v-if="loading" class="text-center py-8">
+    <div v-if="isLoading" class="text-center py-8">
       {{ $t("common.loading") }}
     </div>
     <div v-else-if="error" class="alert alert-error alert-soft mb-4">
-      {{ error }}
+      {{ $t("page_blog.detail.error") }}
+      <!-- Generic error, handled by showError -->
     </div>
     <div v-else-if="post">
       <div class="flex items-center gap-2 mb-2">
@@ -71,5 +109,6 @@ onServerPrefetch(fetchUser);
       </div>
       <MarkdownRenderer :content="post.content" />
     </div>
+    <!-- No need for explicit 404 message here, showError handles it -->
   </div>
 </template>

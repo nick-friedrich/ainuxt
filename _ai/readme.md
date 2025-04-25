@@ -135,6 +135,17 @@ This directory contains example code snippets or mini-projects demonstrating com
 
 - feel free to create new .md files in the \_ai folder if needed.
 
+- When fetching data server-side that depends on authentication, forward incoming cookies by using `useRequestHeaders` in a `process.server` block and pass the resulting headers into your `$fetch` call. For example:
+
+  ```ts
+  import { useRequestHeaders } from "#imports";
+
+  const requestHeaders = process.server ? useRequestHeaders(["cookie"]) : {};
+  const { data: items } = await useAsyncData("key", () =>
+    $fetch("/api/route", { headers: requestHeaders })
+  );
+  ```
+
 ## Auth Layer
 
 The auth layer provides authentication and user management functionality:

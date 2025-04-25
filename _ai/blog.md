@@ -60,3 +60,24 @@ layers/blog/
 - Uses `getUserFromSession` utility for server-side auth checks.
 - API endpoints validate input using Zod.
 - All user-facing text is translated using `@nuxtjs/i18n`.
+
+- When fetching data server-side that depends on authentication (e.g. listing unpublished posts for admins), forward incoming cookies by using `useRequestHeaders` in a `process.server` block and pass the resulting headers into your `$fetch` call. For example:
+
+  ```ts
+  import { useRequestHeaders } from "#imports";
+
+  const requestHeaders = process.server ? useRequestHeaders(["cookie"]) : {};
+  const { data: posts } = await useAsyncData<BlogPost[]>("blog-posts", () =>
+    $fetch("/api/blog", { headers: requestHeaders })
+  );
+  ```
+
+## Page Implementation Patterns
+
+- Server-side user sync: In `<script setup>`, call `onServerPrefetch(fetchUser)` to prefetch the session during SSR, then use a `clientReady` `ref(false)` + `onMounted` to hydrate or re-fetch the user on the client only if needed.
+- Role-based UI: Define `const isAdmin = computed(() => user.value?.roles?.some(r => r.name === 'ADMIN'))` and guard admin-only controls (e.g. new/post buttons, edit links).
+- Unpublished badge: Wrap badges in `v-if="clientReady && isAdmin && !post.published"` to prevent hydration mismatches.
+- SEO meta: Use `useSeoMeta({ title: $t('page_blog.index.title'), description: $t('page_blog.index.seo_description') })` and ensure the `page_blog.index.seo_description` key exists in your locale files.
+- Date formatting helper: Use a simple `formatDate(dateString: string)` (e.g. `DD.MM.YYYY`) to render dates consistently.
+- Content preview: Use `<MarkdownRenderer :content="post.content" size="sm" />` inside a `line-clamp-2` container for snippet previews.
+- Locale-aware routing: Use `NuxtLinkLocale` for all internal links, e.g. `<NuxtLinkLocale :to="`/blog/${post.slug}`">`.

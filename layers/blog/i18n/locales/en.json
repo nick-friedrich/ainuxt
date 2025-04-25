@@ -53,7 +53,8 @@
       "title": "Blog Posts",
       "empty": "No blog posts found.",
       "error": "Failed to load blog posts.",
-      "new_post": "Add New Blog Post"
+      "new_post": "Add New Blog Post",
+      "seo_description": "Read the latest updates and articles on our blog."
     },
     "detail": {
       "not_found": "Blog post not found.",

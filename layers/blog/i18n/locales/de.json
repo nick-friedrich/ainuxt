@@ -53,7 +53,8 @@
       "title": "Blog Beiträge",
       "empty": "Keine Blogbeiträge gefunden.",
       "error": "Blogbeiträge konnten nicht geladen werden.",
-      "new_post": "Neuen Blogbeitrag hinzufügen"
+      "new_post": "Neuen Blogbeitrag hinzufügen",
+      "seo_description": "Lesen Sie die neuesten Updates und Artikel in unserem Blog."
     },
     "detail": {
       "not_found": "Blogbeitrag nicht gefunden.",

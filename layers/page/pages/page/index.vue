@@ -112,7 +112,10 @@ function formatDate(dateString: string): string {
               <span>{{ formatDate(page.createdAt) }}</span>
             </div>
             <div class="line-clamp-2 text-gray-700">
-              <MarkdownRenderer :content="page.content" size="sm" />
+              <MarkdownRenderer
+                :content="page.content.slice(0, 100)"
+                size="sm"
+              />
             </div>
           </div>
         </li>

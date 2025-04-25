@@ -113,7 +113,10 @@ function formatDate(dateString: string): string {
               <span>{{ formatDate(post.createdAt) }}</span>
             </div>
             <div class="line-clamp-2 text-gray-700">
-              <MarkdownRenderer :content="post.content" size="sm" />
+              <MarkdownRenderer
+                :content="post.content.slice(0, 100)"
+                size="sm"
+              />
             </div>
           </div>
         </li>

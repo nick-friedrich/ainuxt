@@ -24,6 +24,8 @@ useHead({
     </main>
 
     <LayoutAppFooter />
+    <CookieBanner />
+    <TrackingScripts />
   </div>
 </template>
 

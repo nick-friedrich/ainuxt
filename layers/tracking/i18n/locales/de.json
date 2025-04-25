@@ -1,7 +1,12 @@
 {
   "cookieConsent": {
-    "message": "Diese Website verwendet Cookies für Analysen und eine verbesserte Benutzererfahrung. Akzeptieren Sie?",
+    "message": "Diese Website verwendet Cookies für Analysen und eine verbesserte Benutzererfahrung.",
     "accept": "Akzeptieren",
-    "decline": "Ablehnen"
+    "decline": "Ablehnen",
+    "manage": "Cookies verwalten",
+    "title": "Cookies",
+    "statusAccepted": "Akzeptiert",
+    "statusDeclined": "Abgelehnt",
+    "statusNotSet": "Nicht festgelegt"
   }
 }

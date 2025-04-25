@@ -1,7 +1,12 @@
 {
   "cookieConsent": {
-    "message": "This site uses cookies for analytics and improved experience. Do you accept?",
+    "message": "This site uses cookies for analytics and improved experience.",
     "accept": "Accept",
-    "decline": "Decline"
+    "decline": "Decline",
+    "manage": "Manage Cookies",
+    "title": "Cookies",
+    "statusAccepted": "Accepted",
+    "statusDeclined": "Declined",
+    "statusNotSet": "Not set"
   }
 }

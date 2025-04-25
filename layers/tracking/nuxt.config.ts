@@ -3,7 +3,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
-  extends: ['../base', '../i18n', '../layout'],
+  extends: ['../base', '../i18n'],
   // Layer configuration can go here if needed in the future
 
   // Example i18n configuration for layers, this way we can add translations to the layer

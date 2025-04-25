@@ -5,6 +5,7 @@ export default defineNuxtConfig({
 
   extends: [
     '../base',
+    '../tracking',
     '@layers/i18n',
     '@layers/styling',
   ],

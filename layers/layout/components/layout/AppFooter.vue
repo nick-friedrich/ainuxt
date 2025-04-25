@@ -14,6 +14,7 @@
       </p>
       <div class="flex items-center gap-4">
         <ThemeSwitcher />
+        <CookieControl />
       </div>
     </div>
   </footer>

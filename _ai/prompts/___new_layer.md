@@ -38,6 +38,18 @@ When requested to create a new Nuxt layer (e.g., using `@layer create <layer-nam
     }
     ```
 
+3b. **Create i18n translation files:** Create `layers/<layer-name>/i18n/locales/en.json` and `layers/<layer-name>/i18n/locales/de.json` containing your layer’s localization messages. For example:
+
+    ```json
+    {
+      "cookieConsent": {
+        "message": "This site uses cookies for analytics and improved experience. Do you accept?",
+        "accept": "Accept",
+        "decline": "Decline"
+      }
+    }
+    ```
+
 4.  **Add Additional Dependencies (if needed):** If the layer requires additional dependencies beyond the standard ones, tell the user to run:
 
     - Add layer-specific dependencies: `pnpm add -F @layers/<layer-name> <list-of-other-dependencies>`. Specify `-D` for dev dependencies.
